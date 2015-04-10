@@ -1,0 +1,50 @@
+﻿@model APTEventAssignment.Models.EventBooking
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EventBooking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EventBooking_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventBooking_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventBooking_Deleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventBooking_Deleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventPerformance.EventPerformance_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventPerformance.EventPerformance_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.User_Login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.User_Login)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EventBooking_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

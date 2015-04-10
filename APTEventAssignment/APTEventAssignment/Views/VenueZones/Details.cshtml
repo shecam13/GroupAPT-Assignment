@@ -1,0 +1,66 @@
+﻿@model APTEventAssignment.Models.VenueZone
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>VenueZone</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VenueZone_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VenueZone_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VenueZone_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VenueZone_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VenueZone_Rows)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VenueZone_Rows)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VenueZone_Columns)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VenueZone_Columns)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VenueZone_Deleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VenueZone_Deleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Venue.Venue_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Venue.Venue_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VenueZone_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

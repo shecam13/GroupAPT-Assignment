@@ -1,0 +1,64 @@
+﻿@model APTEventAssignment.Models.Venue
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Venue</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Venue_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Venue_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Venue_Capacity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Venue_Capacity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Venue_Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Venue_Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Venue_Deleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Venue_Deleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VenueType.VenueType_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VenueType.VenueType_Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

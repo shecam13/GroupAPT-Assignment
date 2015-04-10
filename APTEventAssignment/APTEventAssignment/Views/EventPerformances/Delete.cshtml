@@ -1,0 +1,56 @@
+﻿@model APTEventAssignment.Models.EventPerformance
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>EventPerformance</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EventPerformance_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventPerformance_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventPerformance_Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventPerformance_Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventPerformance_Deleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventPerformance_Deleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Event.Event_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Event.Event_Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

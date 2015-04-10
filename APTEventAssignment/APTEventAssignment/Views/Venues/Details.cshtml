@@ -1,0 +1,58 @@
+﻿@model APTEventAssignment.Models.Venue
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Venue</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Venue_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Venue_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Venue_Capacity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Venue_Capacity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Venue_Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Venue_Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Venue_Deleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Venue_Deleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VenueType.VenueType_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VenueType.VenueType_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Venue_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
