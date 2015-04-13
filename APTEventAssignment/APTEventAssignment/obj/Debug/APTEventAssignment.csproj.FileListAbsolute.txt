@@ -52,3 +52,4 @@ C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bi
 C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\obj\Debug\APTEventAssignment.dll
 C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\obj\Debug\APTEventAssignment.pdb
+C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\obj\Debug\APTEventAssignment.csprojResolveAssemblyReference.cache
