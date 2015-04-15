@@ -18,6 +18,7 @@ namespace APTEventAssignment.Controllers
     public class AccountController : Controller
     {
         private ApplicationUserManager _userManager;
+        private APTEventsEntities db = new APTEventsEntities();
 
         public AccountController()
         {
