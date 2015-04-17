@@ -169,8 +169,13 @@ fieldset[disabled] .btn-xl.active {
     background-color: #fff;
 }
 
-.navbar-default {
+/*.navbar-default {
     border-color: transparent;
+    background-color: #222;
+}*/
+
+.navbar-default {
+    border-color: #222;
     background-color: #222;
 }
 
@@ -273,6 +278,7 @@ header {
     background-size: cover;
     -o-background-size: cover;
 }
+
 
 header .intro-text {
     padding-top: 100px;

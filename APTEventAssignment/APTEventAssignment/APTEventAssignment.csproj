@@ -350,6 +350,7 @@
     <Content Include="Views\VenueZones\Details.cshtml" />
     <Content Include="Views\VenueZones\Edit.cshtml" />
     <Content Include="Views\VenueZones\Index.cshtml" />
+    <Content Include="Views\Shared\_HomeLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

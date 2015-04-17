@@ -1,0 +1,34 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is behind 'origin/master' by 3 commits, and can be fast-forwarded.
+#   (use "git pull" to update your local branch)
+#
+# Changes to be committed:
+#	deleted:    APTEventAssignment.v12.suo
+#
+# Changes not staged for commit:
+#	modified:   APTEventAssignment/Scripts/jquery-1.10.2.js
+#	modified:   APTEventAssignment/Scripts/jquery-1.10.2.min.js
+#	modified:   APTEventAssignment/Scripts/jquery.validate.js
+#	modified:   APTEventAssignment/Scripts/jquery.validate.min.js
+#	modified:   APTEventAssignment/Scripts/modernizr-2.6.2.js
+#	modified:   APTEventAssignment/Scripts/respond.js
+#	modified:   APTEventAssignment/Scripts/respond.min.js
+#
+# Untracked files:
+#	APTEventAssignment.v12.suo
+#	APTEventAssignment/App_Data/
+#	APTEventAssignment/Scripts/agency.js
+#	APTEventAssignment/Scripts/cbpAnimatedHeader.js
+#	APTEventAssignment/Scripts/cbpAnimatedHeader.min.js
+#	APTEventAssignment/Scripts/classie.js
+#	APTEventAssignment/Scripts/contact_me.js
+#	APTEventAssignment/Scripts/jqBootstrapValidation.js
+#	APTEventAssignment/Scripts/jquery.js
+#	APTEventAssignment/font-awesome/
+#	APTEventAssignment/img/
+#	APTEventAssignment/obj/Debug/APTEventAssignment.csprojResolveAssemblyReference.cache
+#
+
