@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using APTEventAssignment.Models;
+using Microsoft.AspNet.Identity;
 
 namespace APTEventAssignment.Controllers
 {
@@ -16,20 +16,31 @@ namespace APTEventAssignment.Controllers
         private APTEventsEntities db = new APTEventsEntities();
 
         // GET: EventBookings
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var eventBooking = db.EventBooking.Include(e => e.EventPerformance).Include(e => e.AspNetUsers);
-            return View(await eventBooking.ToListAsync());
+            var userId = User.Identity.GetUserId();
+            List<EventBooking> bookings = null;
+
+            if (User.IsInRole("admin"))
+            {
+                bookings = db.EventBooking.Include(e => e.EventPerformance).ToList(); //get all evnets of all users
+            }
+            else
+            {
+                bookings = db.EventBooking.Include(e => e.EventPerformance).Where(e => e.EventBooking_UserID == userId).ToList(); // get all event bookings of a particular user
+            }
+
+            return View(bookings); // return the list
         }
 
         // GET: EventBookings/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EventBooking eventBooking = await db.EventBooking.FindAsync(id);
+            EventBooking eventBooking = db.EventBooking.Find(id);
             if (eventBooking == null)
             {
                 return HttpNotFound();
@@ -41,7 +52,6 @@ namespace APTEventAssignment.Controllers
         public ActionResult Create()
         {
             ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID");
-            ViewBag.EventBooking_UserID = new SelectList(db.AspNetUsers, "User_ID", "User_Login");
             return View();
         }
 
@@ -50,34 +60,37 @@ namespace APTEventAssignment.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "EventBooking_ID,EventBooking_Date,EventBooking_UserID,EventBooking_EventPerformanceID,EventBooking_Deleted")] EventBooking eventBooking)
+
+        // in the Bind(Include = ...) put those fields only that will be returned by the view 
+        //EventBooking_ID,EventBooking_Date,EventBooking_UserID,EventBooking_EventPerformanceID,EventBooking_Deleted
+        public ActionResult Create([Bind(Include = "EventBooking_Date,EventBooking_EventPerformanceID,EventBooking_Deleted")] EventBooking eventBooking)
         {
             if (ModelState.IsValid)
             {
+                eventBooking.EventBooking_UserID = User.Identity.GetUserId();
                 db.EventBooking.Add(eventBooking);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID", eventBooking.EventBooking_EventPerformanceID);
-            ViewBag.EventBooking_UserID = new SelectList(db.AspNetUsers, "User_ID", "User_Login", eventBooking.EventBooking_UserID);
             return View(eventBooking);
         }
 
         // GET: EventBookings/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EventBooking eventBooking = await db.EventBooking.FindAsync(id);
+            EventBooking eventBooking = db.EventBooking.Find(id);
             if (eventBooking == null)
             {
                 return HttpNotFound();
             }
             ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID", eventBooking.EventBooking_EventPerformanceID);
-            ViewBag.EventBooking_UserID = new SelectList(db.AspNetUsers, "User_ID", "User_Login", eventBooking.EventBooking_UserID);
+            //ViewBag.EventBooking_UserID = new SelectList(db.User, "User_ID", "User_Login", eventBooking.EventBooking_UserID);
             return View(eventBooking);
         }
 
@@ -86,27 +99,28 @@ namespace APTEventAssignment.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "EventBooking_ID,EventBooking_Date,EventBooking_UserID,EventBooking_EventPerformanceID,EventBooking_Deleted")] EventBooking eventBooking)
+        public ActionResult Edit([Bind(Include = "EventBooking_Date,EventBooking_EventPerformanceID,EventBooking_Deleted")] EventBooking eventBooking)
         {
             if (ModelState.IsValid)
             {
+                eventBooking.EventBooking_UserID = User.Identity.GetUserId();
                 db.Entry(eventBooking).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID", eventBooking.EventBooking_EventPerformanceID);
-            ViewBag.EventBooking_UserID = new SelectList(db.AspNetUsers, "User_ID", "User_Login", eventBooking.EventBooking_UserID);
+
             return View(eventBooking);
         }
 
         // GET: EventBookings/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EventBooking eventBooking = await db.EventBooking.FindAsync(id);
+            EventBooking eventBooking = db.EventBooking.Find(id);
             if (eventBooking == null)
             {
                 return HttpNotFound();
@@ -117,11 +131,11 @@ namespace APTEventAssignment.Controllers
         // POST: EventBookings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            EventBooking eventBooking = await db.EventBooking.FindAsync(id);
+            EventBooking eventBooking = db.EventBooking.Find(id);
             db.EventBooking.Remove(eventBooking);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\Models\APTEventModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Sheryl\SkyDrive\Documents\University_SD\Year2\Semester2\CIS2104-GroupAPT\CSI2015\APTEventAssignment\APTEventAssignment\Models\APTEventModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

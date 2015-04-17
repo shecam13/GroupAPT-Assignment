@@ -6,11 +6,10 @@
     <edmx:Diagrams>
       <Diagram DiagramId="0b7bd80adb234adb85e8266d72950e4a" Name="Diagram1">
         <EntityTypeShape EntityType="APTEventsModel.Event" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="APTEventsModel.EventBooking" Width="1.5" PointX="9.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="APTEventsModel.EventBookingSeat" Width="1.5" PointX="12" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="APTEventsModel.EventBooking" Width="2.125" PointX="10" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="APTEventsModel.EventBookingSeat" Width="1.5" PointX="13" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="APTEventsModel.EventPerformance" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="APTEventsModel.EventVenueZone" Width="1.5" PointX="7.5" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="APTEventsModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="APTEventsModel.Venue" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="APTEventsModel.VenueType" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="APTEventsModel.VenueZone" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
@@ -22,17 +21,8 @@
         <AssociationConnector Association="APTEventsModel.FK_EventVenueZone_VenueZone" ManuallyRouted="false" />
         <AssociationConnector Association="APTEventsModel.FK_Venue_VenueType" ManuallyRouted="false" />
         <AssociationConnector Association="APTEventsModel.FK_VenueZone_Venue" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="APTEventsModel.C__MigrationHistory" Width="1.5" PointX="3.375" PointY="0.75" />
-        <EntityTypeShape EntityType="APTEventsModel.AspNetRoles" Width="1.5" PointX="10.375" PointY="10.5" />
-        <EntityTypeShape EntityType="APTEventsModel.AspNetUserClaims" Width="1.5" PointX="14.875" PointY="11.625" />
-        <EntityTypeShape EntityType="APTEventsModel.AspNetUserLogins" Width="1.5" PointX="14.875" PointY="9" />
-        <EntityTypeShape EntityType="APTEventsModel.AspNetUsers" Width="1.5" PointX="12.625" PointY="9.25" />
         <EntityTypeShape EntityType="APTEventsModel.Category" Width="1.5" PointX="3" PointY="3.875" />
-        <AssociationConnector Association="APTEventsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="APTEventsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="APTEventsModel.FK_EventBooking_AspNetUsers" />
         <AssociationConnector Association="APTEventsModel.FK_Event_Category" />
-        <AssociationConnector Association="APTEventsModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

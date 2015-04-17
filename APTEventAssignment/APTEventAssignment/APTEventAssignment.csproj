@@ -191,22 +191,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>APTEventModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\AspNetRoles.cs">
-      <DependentUpon>APTEventModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserClaims.cs">
-      <DependentUpon>APTEventModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserLogins.cs">
-      <DependentUpon>APTEventModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUsers.cs">
-      <DependentUpon>APTEventModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Category.cs">
-      <DependentUpon>APTEventModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>APTEventModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Event.cs">
@@ -225,9 +210,6 @@
       <DependentUpon>APTEventModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>APTEventModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Venue.cs">
       <DependentUpon>APTEventModel.tt</DependentUpon>
     </Compile>
