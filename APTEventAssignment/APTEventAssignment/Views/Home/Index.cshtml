@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<APTEventAssignment.Models.Event>
+
+@{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
@@ -41,6 +43,30 @@
     </div>
 </section>
 <!-- Events Grid Section -->
+
+@*@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Event_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Event_Rating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Event_Deleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Venue.Venue_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Event_ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Event_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Event_ID })
+        </td>
+    </tr>
+}*@
+
 <section id="portfolio" class="bg-light-gray">
     <div class="container">
         <div class="row">
@@ -71,8 +97,7 @@
                             <i class="fa fa-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img src="@Url.Content("~/img/portfolio/startup-framework.png")" class="img-responsive" alt="">
-                    >
+                    <img src="@Url.Content("~/img/portfolio/startup-framework.png")" class="img-responsive" alt="">               
                 </a>
                 <div class="portfolio-caption">
                     <h4>Startup Framework</h4>
@@ -86,8 +111,7 @@
                             <i class="fa fa-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img src="@Url.Content("~/img/portfolio/treehouse.png")" class="img-responsive" alt="">
-                    >
+                    <img src="@Url.Content("~/img/portfolio/treehouse.png")" class="img-responsive" alt="">                   
                 </a>
                 <div class="portfolio-caption">
                     <h4>Treehouse</h4>
@@ -101,8 +125,7 @@
                             <i class="fa fa-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img src="@Url.Content("~/img/portfolio/golden.png")" class="img-responsive" alt="">
-                    >
+                    <img src="@Url.Content("~/img/portfolio/golden.png")" class="img-responsive" alt="">                   
                 </a>
                 <div class="portfolio-caption">
                     <h4>Golden</h4>
@@ -116,8 +139,7 @@
                             <i class="fa fa-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img src="@Url.Content("~/img/portfolio/escape.png")" class="img-responsive" alt="">
-                    >
+                    <img src="@Url.Content("~/img/portfolio/escape.png")" class="img-responsive" alt="">                   
                 </a>
                 <div class="portfolio-caption">
                     <h4>Escape</h4>
@@ -131,8 +153,7 @@
                             <i class="fa fa-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img src="@Url.Content("~/img/portfolio/dreams.png")" class="img-responsive" alt="">
-                    >
+                    <img src="@Url.Content("~/img/portfolio/dreams.png")" class="img-responsive" alt="">                    
                 </a>
                 <div class="portfolio-caption">
                     <h4>Dreams</h4>
@@ -156,8 +177,7 @@
                 <ul class="timeline">
                     <li>
                         <div class="timeline-image">
-                            <img class="img-circle img-responsive" src="@Url.Content("~/img/about/1.jpg")" alt="">
-                            >
+                            <img class="img-circle img-responsive" src="@Url.Content("~/img/about/1.jpg")" alt="">                            
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -172,7 +192,7 @@
                     <li class="timeline-inverted">
                         <div class="timeline-image">
                             <img class="img-circle img-responsive" src="@Url.Content("~/img/about/2.jpg")" alt="">
-                            >
+                            
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -187,7 +207,7 @@
                     <li>
                         <div class="timeline-image">
                             <img class="img-circle img-responsive" src="@Url.Content("~/img/about/3.jpg")" alt="">
-                            >
+                            
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
