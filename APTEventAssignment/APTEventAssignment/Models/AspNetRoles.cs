@@ -12,18 +12,16 @@ namespace APTEventAssignment.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Role
+    public partial class AspNetRoles
     {
-        public Role()
+        public AspNetRoles()
         {
-            this.User = new HashSet<User>();
+            this.AspNetUsers = new HashSet<AspNetUsers>();
         }
     
-        public int Role_ID { get; set; }
-        public string Role_Name { get; set; }
-        public bool Role_Administrator { get; set; }
-        public bool Role_Deleted { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
     
-        public virtual ICollection<User> User { get; set; }
+        public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
     }
 }

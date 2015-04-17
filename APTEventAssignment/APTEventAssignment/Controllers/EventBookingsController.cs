@@ -18,7 +18,7 @@ namespace APTEventAssignment.Controllers
         // GET: EventBookings
         public async Task<ActionResult> Index()
         {
-            var eventBooking = db.EventBooking.Include(e => e.EventPerformance).Include(e => e.User);
+            var eventBooking = db.EventBooking.Include(e => e.EventPerformance).Include(e => e.AspNetUsers);
             return View(await eventBooking.ToListAsync());
         }
 
@@ -41,7 +41,7 @@ namespace APTEventAssignment.Controllers
         public ActionResult Create()
         {
             ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID");
-            ViewBag.EventBooking_UserID = new SelectList(db.User, "User_ID", "User_Login");
+            ViewBag.EventBooking_UserID = new SelectList(db.AspNetUsers, "User_ID", "User_Login");
             return View();
         }
 
@@ -60,7 +60,7 @@ namespace APTEventAssignment.Controllers
             }
 
             ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID", eventBooking.EventBooking_EventPerformanceID);
-            ViewBag.EventBooking_UserID = new SelectList(db.User, "User_ID", "User_Login", eventBooking.EventBooking_UserID);
+            ViewBag.EventBooking_UserID = new SelectList(db.AspNetUsers, "User_ID", "User_Login", eventBooking.EventBooking_UserID);
             return View(eventBooking);
         }
 
@@ -77,7 +77,7 @@ namespace APTEventAssignment.Controllers
                 return HttpNotFound();
             }
             ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID", eventBooking.EventBooking_EventPerformanceID);
-            ViewBag.EventBooking_UserID = new SelectList(db.User, "User_ID", "User_Login", eventBooking.EventBooking_UserID);
+            ViewBag.EventBooking_UserID = new SelectList(db.AspNetUsers, "User_ID", "User_Login", eventBooking.EventBooking_UserID);
             return View(eventBooking);
         }
 
@@ -95,7 +95,7 @@ namespace APTEventAssignment.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID", eventBooking.EventBooking_EventPerformanceID);
-            ViewBag.EventBooking_UserID = new SelectList(db.User, "User_ID", "User_Login", eventBooking.EventBooking_UserID);
+            ViewBag.EventBooking_UserID = new SelectList(db.AspNetUsers, "User_ID", "User_Login", eventBooking.EventBooking_UserID);
             return View(eventBooking);
         }
 

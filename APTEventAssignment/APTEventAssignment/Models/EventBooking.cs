@@ -21,12 +21,12 @@ namespace APTEventAssignment.Models
     
         public int EventBooking_ID { get; set; }
         public Nullable<System.DateTime> EventBooking_Date { get; set; }
-        public Nullable<int> EventBooking_UserID { get; set; }
+        public string EventBooking_UserID { get; set; }
         public Nullable<int> EventBooking_EventPerformanceID { get; set; }
         public bool EventBooking_Deleted { get; set; }
     
         public virtual EventPerformance EventPerformance { get; set; }
-        public virtual User User { get; set; }
         public virtual ICollection<EventBookingSeat> EventBookingSeat { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

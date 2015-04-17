@@ -30,11 +30,15 @@ namespace APTEventAssignment.Models
         public virtual DbSet<EventBookingSeat> EventBookingSeat { get; set; }
         public virtual DbSet<EventPerformance> EventPerformance { get; set; }
         public virtual DbSet<EventVenueZone> EventVenueZone { get; set; }
-        public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Venue> Venue { get; set; }
         public virtual DbSet<VenueType> VenueType { get; set; }
         public virtual DbSet<VenueZone> VenueZone { get; set; }
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public virtual DbSet<Category> Category { get; set; }
     }
 }

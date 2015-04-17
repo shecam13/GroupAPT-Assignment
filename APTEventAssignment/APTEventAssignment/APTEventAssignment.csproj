@@ -169,8 +169,6 @@
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\EventVenueZonesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\RolesController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\VenuesController.cs" />
     <Compile Include="Controllers\VenueTypesController.cs" />
     <Compile Include="Controllers\VenueZonesController.cs" />
@@ -193,6 +191,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>APTEventModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\AspNetRoles.cs">
+      <DependentUpon>APTEventModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaims.cs">
+      <DependentUpon>APTEventModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogins.cs">
+      <DependentUpon>APTEventModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUsers.cs">
+      <DependentUpon>APTEventModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>APTEventModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>APTEventModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Event.cs">
       <DependentUpon>APTEventModel.tt</DependentUpon>
     </Compile>
@@ -209,13 +225,7 @@
       <DependentUpon>APTEventModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Role.cs">
-      <DependentUpon>APTEventModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>APTEventModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User.cs">
       <DependentUpon>APTEventModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Venue.cs">
@@ -325,16 +335,6 @@
     <Content Include="Views\EventVenueZones\Details.cshtml" />
     <Content Include="Views\EventVenueZones\Edit.cshtml" />
     <Content Include="Views\EventVenueZones\Index.cshtml" />
-    <Content Include="Views\Roles\Create.cshtml" />
-    <Content Include="Views\Roles\Delete.cshtml" />
-    <Content Include="Views\Roles\Details.cshtml" />
-    <Content Include="Views\Roles\Edit.cshtml" />
-    <Content Include="Views\Roles\Index.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
-    <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Venues\Create.cshtml" />
     <Content Include="Views\Venues\Delete.cshtml" />
     <Content Include="Views\Venues\Details.cshtml" />
