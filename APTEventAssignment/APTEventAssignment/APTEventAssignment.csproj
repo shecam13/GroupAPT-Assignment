@@ -333,6 +333,7 @@
     <Content Include="Views\VenueZones\Edit.cshtml" />
     <Content Include="Views\VenueZones\Index.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
