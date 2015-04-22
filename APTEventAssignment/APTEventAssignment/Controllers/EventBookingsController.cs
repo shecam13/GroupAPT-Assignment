@@ -63,7 +63,7 @@ namespace APTEventAssignment.Controllers
 
         // in the Bind(Include = ...) put those fields only that will be returned by the view 
         //EventBooking_ID,EventBooking_Date,EventBooking_UserID,EventBooking_EventPerformanceID,EventBooking_Deleted
-        public ActionResult Create([Bind(Include = "EventBooking_Date,EventBooking_EventPerformanceID,EventBooking_Deleted")] EventBooking eventBooking)
+        public ActionResult Create([Bind(Include = "EventBooking_Date,EventBooking_EventPerformanceID")] EventBooking eventBooking)
         {
             if (ModelState.IsValid)
             {
