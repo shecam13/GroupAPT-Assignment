@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 
 namespace APTEventAssignment.Models
 {
@@ -15,6 +16,8 @@ namespace APTEventAssignment.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public Nullable<System.DateTime> DOB { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
