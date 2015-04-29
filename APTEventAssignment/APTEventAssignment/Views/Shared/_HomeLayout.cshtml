@@ -31,7 +31,6 @@
 </head>
 
 
-
 <body id="page-top" class="index">
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -53,22 +52,6 @@
                         <a href="#page-top"></a>
                     </li>
 
-
-                    @*<li><a class="page-scroll" href="#services">Services</a></li>
-                        <li>
-                            <a class="page-scroll" href="#portfolio">Events</a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="#about">About</a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="#team">Team</a>
-                        </li>
-                        <li>
-                            <a class="page-scroll" href="#contact">Contact</a>
-                        </li>*@
-
-
                     <li><a class="page-scroll" href='@Url.Action("Index", "Home")#services'>Services</a></li>
                     <li><a href='@Url.Action("Index", "Home")#portfolio'>Events</a></li>
                     <li><a href='@Url.Action("Index", "Home")#about'>About</a></li>
@@ -79,7 +62,7 @@
                             <i class="fa fa-search"></i> 
                         </a>
                     </li>
-
+                    
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

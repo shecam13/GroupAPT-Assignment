@@ -1,7 +1,8 @@
-﻿@model IEnumerable<APTEventAssignment.Models.EventBooking>
+﻿@model IEnumerable<APTEventAssignment.ViewModels.EventBookingViewModel>
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <h2>Index</h2>
@@ -12,34 +13,61 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.EventBooking_UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.EventBooking_Date)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.EventName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PerformanceDate)
+        </th>
+        @*<th>
             @Html.DisplayNameFor(model => model.EventBooking_Deleted)
-        </th>
-        <th>
+        </th>*@
+        @*<th>
             @Html.DisplayNameFor(model => model.EventPerformance.EventPerformance_ID)
-        </th>
-        <th>
+        </th>*@
+        @*<th>
             @Html.DisplayNameFor(model => model.User.User_Login)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        <th>
+            @Html.DisplayNameFor(model => model.EventBooking_UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(modelItem => item.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(modelItem => item.EventBooking_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(modelItem => item.EventName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(modelItem => item.PerformanceDate)
+        </th>
+        @*<td>
             @Html.DisplayFor(modelItem => item.EventBooking_Date)
-        </td>
-        <td>
+        </td>*@
+        @*<td>
             @Html.DisplayFor(modelItem => item.EventBooking_Deleted)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.EventPerformance.EventPerformance_ID)
-        </td>
-        <td>
+        </td>*@
+        @*<td>
             @Html.DisplayFor(modelItem => item.User.User_Login)
-        </td>
+        </td>*@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.EventBooking_ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.EventBooking_ID }) |

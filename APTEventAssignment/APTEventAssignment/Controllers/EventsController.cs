@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -16,20 +15,20 @@ namespace APTEventAssignment.Controllers
         private APTEventsEntities db = new APTEventsEntities();
 
         // GET: Events
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var Event = db.Event.Include(E => E.Venue);  //changed event to Event and (@ => @.Venue) to (E => E.Venue) --- orgininal: var event = db.event.Include(@ => @.Venue);  --- i think event is a keyword and so was why it didn't work. 
-            return View(await Event.ToListAsync());
+            var Event = db.Event.Include(E => E.Venue).Include(E => E.Category);
+            return View(Event.ToList());
         }
 
         // GET: Events/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = await db.Event.FindAsync(id);
+            Event @event = db.Event.Find(id);
             if (@event == null)
             {
                 return HttpNotFound();
@@ -41,6 +40,7 @@ namespace APTEventAssignment.Controllers
         public ActionResult Create()
         {
             ViewBag.Event_VenueID = new SelectList(db.Venue, "Venue_ID", "Venue_Name");
+            ViewBag.Event_CategoryID = new SelectList(db.Category, "Category_ID", "Category_Name");
             return View();
         }
 
@@ -49,32 +49,34 @@ namespace APTEventAssignment.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Event_ID,Event_Name,Event_VenueID,Event_Rating,Event_Deleted")] Event @event)
+        public ActionResult Create([Bind(Include = "Event_ID,Event_Name,Event_VenueID,Event_Rating,Event_Deleted,Event_CategoryID,Image")] Event @event)
         {
             if (ModelState.IsValid)
             {
                 db.Event.Add(@event);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.Event_VenueID = new SelectList(db.Venue, "Venue_ID", "Venue_Name", @event.Event_VenueID);
+            ViewBag.Event_CategoryID = new SelectList(db.Category, "Category_ID", "Category_Name", @event.Event_CategoryID);
             return View(@event);
         }
 
         // GET: Events/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = await db.Event.FindAsync(id);
+            Event @event = db.Event.Find(id);
             if (@event == null)
             {
                 return HttpNotFound();
             }
             ViewBag.Event_VenueID = new SelectList(db.Venue, "Venue_ID", "Venue_Name", @event.Event_VenueID);
+            ViewBag.Event_CategoryID = new SelectList(db.Category, "Category_ID", "Category_Name", @event.Event_CategoryID);
             return View(@event);
         }
 
@@ -83,26 +85,27 @@ namespace APTEventAssignment.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Event_ID,Event_Name,Event_VenueID,Event_Rating,Event_Deleted")] Event @event)
+        public ActionResult Edit([Bind(Include = "Event_ID,Event_Name,Event_VenueID,Event_Rating,Event_Deleted,Event_CategoryID,Image")] Event @event)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(@event).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.Event_VenueID = new SelectList(db.Venue, "Venue_ID", "Venue_Name", @event.Event_VenueID);
+            ViewBag.Event_CategoryID = new SelectList(db.Category, "Category_ID", "Category_Name", @event.Event_CategoryID);
             return View(@event);
         }
 
         // GET: Events/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Event @event = await db.Event.FindAsync(id);
+            Event @event = db.Event.Find(id);
             if (@event == null)
             {
                 return HttpNotFound();
@@ -113,11 +116,11 @@ namespace APTEventAssignment.Controllers
         // POST: Events/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Event @event = await db.Event.FindAsync(id);
+            Event @event = db.Event.Find(id);
             db.Event.Remove(@event);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

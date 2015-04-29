@@ -1,57 +1,66 @@
-﻿@model IEnumerable<APTEventAssignment.Models.Venue>
+﻿@*@model IEnumerable<APTEventAssignment.Models.Venue>*@
+@model IEnumerable<APTEventAssignment.ViewModels.VenueViewModel>
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="container">
+    <div class="row">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Venue_Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Venue_Capacity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Venue_Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Venue_Deleted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VenueType.VenueType_Name)
-        </th>
-        <th></th>
-    </tr>
+        <h2>Venues</h2>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Venue_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Venue_Capacity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Venue_Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Venue_Deleted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VenueType.VenueType_Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Venue_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Venue_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Venue_ID })
-        </td>
-    </tr>
-}
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Venue_Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Venue_Capacity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Venue_Address)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Venue_Deleted)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.VenueType_Name)
+                </th>
+                <th></th>
+            </tr>
 
-</table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Venue_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Venue_Capacity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Venue_Address)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Venue_Deleted)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VenueType_Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Venue_ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Venue_ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Venue_ID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</div>

@@ -104,7 +104,7 @@ C:\Users\Sheryl\SkyDrive\Documents\University_SD\Year2\Semester2\CIS2104-GroupAP
 C:\Users\Sheryl\SkyDrive\Documents\University_SD\Year2\Semester2\CIS2104-GroupAPT\CSI2015\APTEventAssignment\APTEventAssignment\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Sheryl\SkyDrive\Documents\University_SD\Year2\Semester2\CIS2104-GroupAPT\CSI2015\APTEventAssignment\APTEventAssignment\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Sheryl\SkyDrive\Documents\University_SD\Year2\Semester2\CIS2104-GroupAPT\CSI2015\APTEventAssignment\APTEventAssignment\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Sheryl\SkyDrive\Documents\University_SD\Year2\Semester2\CIS2104-GroupAPT\CSI2015\APTEventAssignment\APTEventAssignment\obj\Debug\APTEventAssignment.csprojResolveAssemblyReference.cache
 C:\Users\Sheryl\SkyDrive\Documents\University_SD\Year2\Semester2\CIS2104-GroupAPT\CSI2015\APTEventAssignment\APTEventAssignment\obj\Debug\APTEventAssignment.dll
 C:\Users\Sheryl\SkyDrive\Documents\University_SD\Year2\Semester2\CIS2104-GroupAPT\CSI2015\APTEventAssignment\APTEventAssignment\obj\Debug\APTEventAssignment.pdb
 C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\obj\Debug\APTEventAssignment.csprojResolveAssemblyReference.cache
+C:\Users\Sheryl\SkyDrive\Documents\University_SD\Year2\Semester2\CIS2104-GroupAPT\CSI2015\APTEventAssignment\APTEventAssignment\obj\Debug\APTEventAssignment.csprojResolveAssemblyReference.cache

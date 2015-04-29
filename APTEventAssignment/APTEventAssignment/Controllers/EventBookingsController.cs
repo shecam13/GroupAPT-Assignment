@@ -21,6 +21,17 @@ namespace APTEventAssignment.Controllers
             var userId = User.Identity.GetUserId();
             List<EventBooking> bookings = null;
 
+            //var query = ( from 
+                
+                
+                
+            //    )
+                
+                
+            //    "SELECT UserName, EventBooking_Date, Event_Name, EventPerformance_Date " +
+            //            "FROM EventBooking "+
+            //            "INNER JOIN EventBooking eb "
+
             if (User.IsInRole("admin"))
             {
                 bookings = db.EventBooking.Include(e => e.EventPerformance).ToList(); //get all evnets of all users
