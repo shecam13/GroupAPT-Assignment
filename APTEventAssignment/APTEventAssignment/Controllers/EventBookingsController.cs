@@ -16,19 +16,13 @@ namespace APTEventAssignment.Controllers
         private APTEventsEntities db = new APTEventsEntities();
 
         // GET: EventBookings
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
             var userId = User.Identity.GetUserId();
             List<EventBooking> bookings = null;
-
-            if (User.IsInRole("admin"))
-            {
-                bookings = db.EventBooking.Include(e => e.EventPerformance).ToList(); //get all evnets of all users
-            }
-            else
-            {
-                bookings = db.EventBooking.Include(e => e.EventPerformance).Where(e => e.EventBooking_UserID == userId).ToList(); // get all event bookings of a particular user
-            }
+            
+            bookings = db.EventBooking.Include(e => e.EventPerformance).Where(e => e.EventBooking_UserID == userId).ToList(); // get all event bookings of a particular user
+            
 
             return View(bookings); // return the list
         }
@@ -51,6 +45,7 @@ namespace APTEventAssignment.Controllers
         // GET: EventBookings/Create
         public ActionResult Create()
         {
+            
             ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID");
             return View();
         }

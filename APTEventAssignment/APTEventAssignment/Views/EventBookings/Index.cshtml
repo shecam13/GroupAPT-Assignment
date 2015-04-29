@@ -4,24 +4,29 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="container">
+    <h2>Ticket Details</h2>
+    <h5>Please confirm the following details for booking</h5>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.EventBooking_Date)
+            @*@Html.DisplayNameFor(model => model.EventBooking_Date)*@
+            @Html.DisplayName("Time of Booking")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EventBooking_Deleted)
+            @*@Html.DisplayNameFor(model => model.EventPerformance.EventPerformance_ID)*@
+            @Html.DisplayName("Event Booking Seat")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EventPerformance.EventPerformance_ID)
+            @Html.DisplayName("Event Name")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User.User_Login)
+            @Html.DisplayName("Venue Name")
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.EventBooking_UserID)*@
+            @Html.DisplayName("Date")
         </th>
         <th></th>
     </tr>
@@ -29,16 +34,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.EventBooking_Date)
+            @Html.DisplayFor(modelItem => item.EventPerformance.EventPerformance_Time)  @*getting the time of the performance*@
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EventBooking_Deleted)
+            @Html.DisplayFor(modelItem => item.EventBookingSeat)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EventPerformance.EventPerformance_ID)
+            @Html.DisplayFor(modelItem => item.EventPerformance.Event.Event_Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.User.User_Login)
+            @Html.DisplayFor(modelItem => item.EventPerformance.Event.Venue.Venue_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EventPerformance.EventPerformance_Date)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.EventBooking_ID }) |
@@ -49,3 +57,9 @@
 }
 
 </table>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-5 col-md-12">
+        <h4>@Html.ActionLink("Confirm Details", "Create")</h4>
+    </div>
+</div>
