@@ -44,6 +44,11 @@ namespace APTEventAssignment.Controllers
             return View(bookings); // return the list
         }
 
+        public ActionResult IndexBooking()
+        {
+            return View();
+        }
+
         // GET: EventBookings/Details/5
         public ActionResult Details(int? id)
         {
