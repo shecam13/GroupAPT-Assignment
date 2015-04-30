@@ -394,6 +394,7 @@
     <Content Include="Views\Events\Edit.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Venues\_Form.cshtml" />
+    <Content Include="Views\EventBookings\IndexBooking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
