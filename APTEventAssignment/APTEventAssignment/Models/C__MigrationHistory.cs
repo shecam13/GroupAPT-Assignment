@@ -12,15 +12,11 @@ namespace APTEventAssignment.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class EventVenueZone
+    public partial class C__MigrationHistory
     {
-        public int EventVenueZone_ID { get; set; }
-        public Nullable<int> EventVenueZone_EventID { get; set; }
-        public Nullable<int> EventVenueZone_VenueZoneID { get; set; }
-        public Nullable<int> EventVenueZone_Price { get; set; }
-        public bool EventVenueZone_Deleted { get; set; }
-    
-        public virtual VenueZone VenueZone { get; set; }
-        public virtual Event Event { get; set; }
+        public string MigrationId { get; set; }
+        public string ContextKey { get; set; }
+        public byte[] Model { get; set; }
+        public string ProductVersion { get; set; }
     }
 }

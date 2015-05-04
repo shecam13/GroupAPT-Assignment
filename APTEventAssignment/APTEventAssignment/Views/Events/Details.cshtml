@@ -1,67 +1,70 @@
-﻿@model APTEventAssignment.Models.Event
+﻿@model APTEventAssignment.ViewModels.EventsViewModel
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container">
+    <h2>Details</h2>
 
-<div>
-    <h4>Event</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Event_Name)
-        </dt>
+    <div>
+        <h4>Event</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Event_Name)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Event_Name)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Event_Name)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Event_Rating)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Event_Rating)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Event_Rating)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Event_Rating)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Event_Deleted)
-        </dt>
+            @*<dt>
+                    @Html.DisplayNameFor(model => model.Event_Deleted)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Event_Deleted)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Event_Deleted)
+                </dd>*@
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Image)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Image)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Image)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Venue.Venue_Name)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Event_VenueName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Venue.Venue_Name)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Event_VenueName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Category.Category_Name)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Event_CategoryName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Category.Category_Name)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Event_CategoryName)
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Event_ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Event_ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

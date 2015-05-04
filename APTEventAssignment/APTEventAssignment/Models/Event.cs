@@ -26,11 +26,10 @@ namespace APTEventAssignment.Models
         public string Event_Rating { get; set; }
         public bool Event_Deleted { get; set; }
         public int Event_CategoryID { get; set; }
-        public byte[] Image { get; set; }
     
+        public virtual Category Category { get; set; }
         public virtual Venue Venue { get; set; }
         public virtual ICollection<EventPerformance> EventPerformance { get; set; }
         public virtual ICollection<EventVenueZone> EventVenueZone { get; set; }
-        public virtual Category Category { get; set; }
     }
 }

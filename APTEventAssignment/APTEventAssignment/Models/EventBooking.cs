@@ -27,5 +27,6 @@ namespace APTEventAssignment.Models
     
         public virtual EventPerformance EventPerformance { get; set; }
         public virtual ICollection<EventBookingSeat> EventBookingSeat { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

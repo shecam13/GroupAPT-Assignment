@@ -12,15 +12,12 @@ namespace APTEventAssignment.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class EventVenueZone
+    public partial class sysdiagrams
     {
-        public int EventVenueZone_ID { get; set; }
-        public Nullable<int> EventVenueZone_EventID { get; set; }
-        public Nullable<int> EventVenueZone_VenueZoneID { get; set; }
-        public Nullable<int> EventVenueZone_Price { get; set; }
-        public bool EventVenueZone_Deleted { get; set; }
-    
-        public virtual VenueZone VenueZone { get; set; }
-        public virtual Event Event { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

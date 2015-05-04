@@ -1,0 +1,54 @@
+﻿@model APTEventAssignment.ViewModels.AddEventViewModel
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@Html.HiddenFor(model => model.Event_ID)
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Event_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Event_Name, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Event_Name, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Event_VenueID, "Venue", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownList("Event_VenueID", null, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Event_VenueID, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Event_Rating, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Event_Rating, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Event_Rating, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+@*<div class="form-group">
+    @Html.LabelFor(model => model.Event_Deleted, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <div class="checkbox">
+            @Html.EditorFor(model => model.Event_Deleted)
+            @Html.ValidationMessageFor(model => model.Event_Deleted, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>*@
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Event_CategoryID, "Category", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DropDownList("Event_CategoryID", null, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Event_CategoryID, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+@*<div class="form-group">
+    @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+    </div>
+</div>*@
