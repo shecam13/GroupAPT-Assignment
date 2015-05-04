@@ -44,6 +44,22 @@ namespace APTEventAssignment.Controllers
             e.Event_CategoryID = addviewmodel.Event_CategoryID;
         }
 
+        public ActionResult EventsDetailsPage(int? id)
+        {
+            //var Event = db.Event.Include(E => E.Venue).Include(E => E.Category);
+            //return View(Event.ToList());
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Event @event = db.Event.Find(id);
+            if (@event == null)
+            {
+                return HttpNotFound();
+            }
+            return View(@event);
+        }
+
         // GET: Events/Details/5
         public ActionResult Details(int? id)
         {

@@ -206,12 +206,14 @@
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\EventVenueZonesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageDataController.cs" />
     <Compile Include="Controllers\VenuesController.cs" />
     <Compile Include="Controllers\VenueTypesController.cs" />
     <Compile Include="Controllers\VenueZonesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HtmlHelperRepository\Images\ImageHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\APTEventModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -228,22 +230,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>APTEventModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\AspNetRoles.cs">
-      <DependentUpon>APTEventModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserClaims.cs">
-      <DependentUpon>APTEventModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserLogins.cs">
-      <DependentUpon>APTEventModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUsers.cs">
-      <DependentUpon>APTEventModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Category.cs">
-      <DependentUpon>APTEventModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>APTEventModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Event.cs">
@@ -262,9 +249,7 @@
       <DependentUpon>APTEventModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>APTEventModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\ModelClasses.cs" />
     <Compile Include="Models\Venue.cs">
       <DependentUpon>APTEventModel.tt</DependentUpon>
     </Compile>
@@ -278,7 +263,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\EventBookingViewModel.cs" />
-    <Compile Include="ViewModels\EventsViewModel.cs" />
+    <Compile Include="ViewModels\EventImageViewModel.cs" />
     <Compile Include="ViewModels\VenueViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -335,7 +320,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -414,11 +401,12 @@
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Venues\_Form.cshtml" />
     <Content Include="Views\EventBookings\IndexBooking.cshtml" />
-    <Content Include="Views\Shared\_PublicLayout.cshtml" />
-    <Content Include="Views\Events\_Form.cshtml" />
+    <Content Include="Views\Events\EventsDetailsPage.cshtml" />
+    <Content Include="Views\Home\_AllEvents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ImageData\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
