@@ -23,6 +23,16 @@
         <AssociationConnector Association="APTEventsModel.FK_Event_Venue" />
         <AssociationConnector Association="APTEventsModel.FK_EventPerformance_Event" />
         <AssociationConnector Association="APTEventsModel.FK_EventVenueZone_Event" />
+        <EntityTypeShape EntityType="APTEventsModel.AspNetUsers" Width="1.5" PointX="0.75" PointY="11" />
+        <AssociationConnector Association="APTEventsModel.FK_EventBooking_AspNetUsers1" />
+        <EntityTypeShape EntityType="APTEventsModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="APTEventsModel.AspNetRoles" Width="1.5" PointX="1.125" PointY="16.375" />
+        <EntityTypeShape EntityType="APTEventsModel.AspNetUserClaims" Width="1.5" PointX="3.375" PointY="13.375" />
+        <EntityTypeShape EntityType="APTEventsModel.AspNetUserLogins" Width="1.5" PointX="3.375" PointY="10.875" />
+        <EntityTypeShape EntityType="APTEventsModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" />
+        <AssociationConnector Association="APTEventsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="APTEventsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="APTEventsModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

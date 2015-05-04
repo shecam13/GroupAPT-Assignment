@@ -27,6 +27,7 @@ namespace APTEventAssignment.Models
         public bool Event_Deleted { get; set; }
         public int Event_CategoryID { get; set; }
         public byte[] Event_Image { get; set; }
+        public byte[] Event_Image1 { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual Venue Venue { get; set; }

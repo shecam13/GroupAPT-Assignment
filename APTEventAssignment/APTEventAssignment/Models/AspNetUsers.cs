@@ -16,9 +16,9 @@ namespace APTEventAssignment.Models
     {
         public AspNetUsers()
         {
+            this.EventBooking = new HashSet<EventBooking>();
             this.AspNetUserClaims = new HashSet<AspNetUserClaims>();
             this.AspNetUserLogins = new HashSet<AspNetUserLogins>();
-            this.EventBooking = new HashSet<EventBooking>();
             this.AspNetRoles = new HashSet<AspNetRoles>();
         }
     
@@ -36,9 +36,9 @@ namespace APTEventAssignment.Models
         public string UserName { get; set; }
         public System.DateTime DOB { get; set; }
     
+        public virtual ICollection<EventBooking> EventBooking { get; set; }
         public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
-        public virtual ICollection<EventBooking> EventBooking { get; set; }
         public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }
     }
 }
