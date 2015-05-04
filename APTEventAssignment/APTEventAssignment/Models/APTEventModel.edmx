@@ -626,23 +626,6 @@
             <End Role="VenueZone" EntitySet="VenueZone" />
           </AssociationSet>
           <EntitySet Name="Category" EntityType="APTEventsModel.Category" />
-          <EntitySet Name="Event" EntityType="APTEventsModel.Event" />
-          <AssociationSet Name="FK_Event_Category" Association="APTEventsModel.FK_Event_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Event" EntitySet="Event" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Event_Venue" Association="APTEventsModel.FK_Event_Venue">
-            <End Role="Venue" EntitySet="Venue" />
-            <End Role="Event" EntitySet="Event" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EventPerformance_Event" Association="APTEventsModel.FK_EventPerformance_Event">
-            <End Role="Event" EntitySet="Event" />
-            <End Role="EventPerformance" EntitySet="EventPerformance" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EventVenueZone_Event" Association="APTEventsModel.FK_EventVenueZone_Event">
-            <End Role="Event" EntitySet="Event" />
-            <End Role="EventVenueZone" EntitySet="EventVenueZone" />
-          </AssociationSet>
           <EntitySet Name="AspNetUsers" EntityType="APTEventsModel.AspNetUsers" />
           <AssociationSet Name="FK_EventBooking_AspNetUsers1" Association="APTEventsModel.FK_EventBooking_AspNetUsers1">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -695,6 +678,23 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="Event" EntityType="APTEventsModel.Event" />
+          <AssociationSet Name="FK_Event_Category" Association="APTEventsModel.FK_Event_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Event_Venue" Association="APTEventsModel.FK_Event_Venue">
+            <End Role="Venue" EntitySet="Venue" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventPerformance_Event" Association="APTEventsModel.FK_EventPerformance_Event">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="EventPerformance" EntitySet="EventPerformance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventVenueZone_Event" Association="APTEventsModel.FK_EventVenueZone_Event">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="EventVenueZone" EntitySet="EventVenueZone" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Category">
           <Key>
@@ -704,71 +704,6 @@
           <Property Name="Category_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Event" Relationship="APTEventsModel.FK_Event_Category" FromRole="Category" ToRole="Event" />
         </EntityType>
-        <EntityType Name="Event">
-          <Key>
-            <PropertyRef Name="Event_ID" />
-          </Key>
-          <Property Name="Event_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Event_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Event_VenueID" Type="Int32" Nullable="false" />
-          <Property Name="Event_Rating" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Event_Deleted" Type="Boolean" Nullable="false" />
-          <Property Name="Event_CategoryID" Type="Int32" Nullable="false" />
-          <Property Name="Event_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="Category" Relationship="APTEventsModel.FK_Event_Category" FromRole="Event" ToRole="Category" />
-          <NavigationProperty Name="Venue" Relationship="APTEventsModel.FK_Event_Venue" FromRole="Event" ToRole="Venue" />
-          <NavigationProperty Name="EventPerformance" Relationship="APTEventsModel.FK_EventPerformance_Event" FromRole="Event" ToRole="EventPerformance" />
-          <NavigationProperty Name="EventVenueZone" Relationship="APTEventsModel.FK_EventVenueZone_Event" FromRole="Event" ToRole="EventVenueZone" />
-          <Property Name="Event_Image1" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <Association Name="FK_Event_Category">
-          <End Type="APTEventsModel.Category" Role="Category" Multiplicity="1" />
-          <End Type="APTEventsModel.Event" Role="Event" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="Category_ID" />
-            </Principal>
-            <Dependent Role="Event">
-              <PropertyRef Name="Event_CategoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Event_Venue">
-          <End Type="APTEventsModel.Venue" Role="Venue" Multiplicity="1" />
-          <End Type="APTEventsModel.Event" Role="Event" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Venue">
-              <PropertyRef Name="Venue_ID" />
-            </Principal>
-            <Dependent Role="Event">
-              <PropertyRef Name="Event_VenueID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EventPerformance_Event">
-          <End Type="APTEventsModel.Event" Role="Event" Multiplicity="0..1" />
-          <End Type="APTEventsModel.EventPerformance" Role="EventPerformance" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Event">
-              <PropertyRef Name="Event_ID" />
-            </Principal>
-            <Dependent Role="EventPerformance">
-              <PropertyRef Name="EventPerformance_EventID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EventVenueZone_Event">
-          <End Type="APTEventsModel.Event" Role="Event" Multiplicity="0..1" />
-          <End Type="APTEventsModel.EventVenueZone" Role="EventVenueZone" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Event">
-              <PropertyRef Name="Event_ID" />
-            </Principal>
-            <Dependent Role="EventVenueZone">
-              <PropertyRef Name="EventVenueZone_EventID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="AspNetUsers">
           <Key>
             <PropertyRef Name="Id" />
@@ -895,6 +830,72 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Event_ID" />
+          </Key>
+          <Property Name="Event_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Event_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Event_VenueID" Type="Int32" Nullable="false" />
+          <Property Name="Event_Rating" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Event_Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="Event_CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Event_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Category" Relationship="APTEventsModel.FK_Event_Category" FromRole="Event" ToRole="Category" />
+          <NavigationProperty Name="Venue" Relationship="APTEventsModel.FK_Event_Venue" FromRole="Event" ToRole="Venue" />
+          <NavigationProperty Name="EventPerformance" Relationship="APTEventsModel.FK_EventPerformance_Event" FromRole="Event" ToRole="EventPerformance" />
+          <NavigationProperty Name="EventVenueZone" Relationship="APTEventsModel.FK_EventVenueZone_Event" FromRole="Event" ToRole="EventVenueZone" />
+        </EntityType>
+        <Association Name="FK_Event_Category">
+          <End Type="APTEventsModel.Category" Role="Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="APTEventsModel.Event" Role="Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Category_ID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="Event_CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Event_Venue">
+          <End Type="APTEventsModel.Venue" Role="Venue" Multiplicity="1" />
+          <End Type="APTEventsModel.Event" Role="Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venue">
+              <PropertyRef Name="Venue_ID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="Event_VenueID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventPerformance_Event">
+          <End Type="APTEventsModel.Event" Role="Event" Multiplicity="0..1" />
+          <End Type="APTEventsModel.EventPerformance" Role="EventPerformance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="Event_ID" />
+            </Principal>
+            <Dependent Role="EventPerformance">
+              <PropertyRef Name="EventPerformance_EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventVenueZone_Event">
+          <End Type="APTEventsModel.Event" Role="Event" Multiplicity="0..1" />
+          <End Type="APTEventsModel.EventVenueZone" Role="EventVenueZone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="Event_ID" />
+            </Principal>
+            <Dependent Role="EventVenueZone">
+              <PropertyRef Name="EventVenueZone_EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -983,19 +984,6 @@
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
                 <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Event">
-            <EntityTypeMapping TypeName="APTEventsModel.Event">
-              <MappingFragment StoreEntitySet="Event">
-                <ScalarProperty Name="Event_Image1" ColumnName="Event_Image" />
-                <ScalarProperty Name="Event_CategoryID" ColumnName="Event_CategoryID" />
-                <ScalarProperty Name="Event_Deleted" ColumnName="Event_Deleted" />
-                <ScalarProperty Name="Event_Rating" ColumnName="Event_Rating" />
-                <ScalarProperty Name="Event_VenueID" ColumnName="Event_VenueID" />
-                <ScalarProperty Name="Event_Name" ColumnName="Event_Name" />
-                <ScalarProperty Name="Event_ID" ColumnName="Event_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1098,6 +1086,19 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="APTEventsModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="APTEventsModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Event">
+            <EntityTypeMapping TypeName="APTEventsModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="Event_Image" ColumnName="Event_Image" />
+                <ScalarProperty Name="Event_CategoryID" ColumnName="Event_CategoryID" />
+                <ScalarProperty Name="Event_Deleted" ColumnName="Event_Deleted" />
+                <ScalarProperty Name="Event_Rating" ColumnName="Event_Rating" />
+                <ScalarProperty Name="Event_VenueID" ColumnName="Event_VenueID" />
+                <ScalarProperty Name="Event_Name" ColumnName="Event_Name" />
+                <ScalarProperty Name="Event_ID" ColumnName="Event_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -19,7 +19,7 @@ namespace APTEventAssignment.ViewModels
 
         [HiddenInput(DisplayValue = false)]
         //[Display(Name = "Event Venue")]
-        public Nullable<int> Event_VenueID { get; set; }
+        public int Event_VenueID { get; set; }
 
 
         [Display(Name = "Event Rating")]
@@ -36,7 +36,7 @@ namespace APTEventAssignment.ViewModels
         [Display(Name = "Category")]
         public string Event_CategoryName { get; set; }
         //public Nullable<byte[]> Image { get; set; }
-    
+
         //public virtual Venue Venue { get; set; }
         //public virtual ICollection<EventPerformance> EventPerformance { get; set; }
         //public virtual ICollection<EventVenueZone> EventVenueZone { get; set; }
@@ -54,7 +54,7 @@ namespace APTEventAssignment.ViewModels
 
         [Required]
         [Display(Name = "Event Venue")]
-        public Nullable<int> Event_VenueID { get; set; }
+        public int Event_VenueID { get; set; }
 
         [Display(Name = "Event Rating")]
         public string Event_Rating { get; set; }
