@@ -44,9 +44,13 @@ namespace APTEventAssignment.Controllers
             return View(bookings); // return the list
         }
 
-        public ActionResult IndexBooking()
+        public ActionResult IndexBooking(int? id)
         {
-            return View();
+            var userId = User.Identity.GetUserId();
+            List<EventBooking> bookings = null;
+            bookings = db.EventBooking.Include(e => e.EventPerformance).Where(e => e.EventBooking_UserID == userId).ToList();
+
+            return View(bookings);
         }
 
         // GET: EventBookings/Details/5
