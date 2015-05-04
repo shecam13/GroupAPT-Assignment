@@ -25,7 +25,7 @@ namespace APTEventAssignment.Models
         public Nullable<System.DateTime> EventPerformance_Time { get; set; }
         public bool EventPerformance_Deleted { get; set; }
     
-        public virtual Event Event { get; set; }
         public virtual ICollection<EventBooking> EventBooking { get; set; }
+        public virtual Event Event { get; set; }
     }
 }

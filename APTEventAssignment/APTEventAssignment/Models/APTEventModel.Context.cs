@@ -25,7 +25,6 @@ namespace APTEventAssignment.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Event> Event { get; set; }
         public virtual DbSet<EventBooking> EventBooking { get; set; }
         public virtual DbSet<EventBookingSeat> EventBookingSeat { get; set; }
         public virtual DbSet<EventPerformance> EventPerformance { get; set; }
@@ -34,5 +33,6 @@ namespace APTEventAssignment.Models
         public virtual DbSet<VenueType> VenueType { get; set; }
         public virtual DbSet<VenueZone> VenueZone { get; set; }
         public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<Event> Event { get; set; }
     }
 }

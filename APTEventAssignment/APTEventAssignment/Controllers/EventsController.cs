@@ -21,6 +21,22 @@ namespace APTEventAssignment.Controllers
             return View(Event.ToList());
         }
 
+        public ActionResult EventsDetailsPage(int? id)
+        {
+            //var Event = db.Event.Include(E => E.Venue).Include(E => E.Category);
+            //return View(Event.ToList());
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Event @event = db.Event.Find(id);
+            if (@event == null)
+            {
+                return HttpNotFound();
+            }
+            return View(@event);
+        }
+
         // GET: Events/Details/5
         public ActionResult Details(int? id)
         {
@@ -49,7 +65,7 @@ namespace APTEventAssignment.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Event_ID,Event_Name,Event_VenueID,Event_Rating,Event_Deleted,Event_CategoryID,Image")] Event @event)
+        public ActionResult Create([Bind(Include = "Event_ID,Event_Name,Event_VenueID,Event_Rating,Event_Deleted,Event_CategoryID,Event_Image")] Event @event)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +101,7 @@ namespace APTEventAssignment.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Event_ID,Event_Name,Event_VenueID,Event_Rating,Event_Deleted,Event_CategoryID,Image")] Event @event)
+        public ActionResult Edit([Bind(Include = "Event_ID,Event_Name,Event_VenueID,Event_Rating,Event_Deleted,Event_CategoryID,Event_Image")] Event @event)
         {
             if (ModelState.IsValid)
             {

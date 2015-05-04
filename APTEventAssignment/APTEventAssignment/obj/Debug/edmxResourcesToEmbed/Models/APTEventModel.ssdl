@@ -13,11 +13,11 @@
     </Key>
     <Property Name="Event_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Event_Name" Type="nvarchar" MaxLength="255" />
-    <Property Name="Event_VenueID" Type="int" />
+    <Property Name="Event_VenueID" Type="int" Nullable="false" />
     <Property Name="Event_Rating" Type="nvarchar" MaxLength="255" />
     <Property Name="Event_Deleted" Type="bit" Nullable="false" />
     <Property Name="Event_CategoryID" Type="int" Nullable="false" />
-    <Property Name="Image" Type="image" Nullable="false" />
+    <Property Name="Event_Image" Type="image" />
   </EntityType>
   <EntityType Name="EventBooking">
     <Key>
@@ -25,7 +25,7 @@
     </Key>
     <Property Name="EventBooking_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="EventBooking_Date" Type="datetime" />
-    <Property Name="EventBooking_UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="EventBooking_UserID" Type="nvarchar" MaxLength="128" />
     <Property Name="EventBooking_EventPerformanceID" Type="int" />
     <Property Name="EventBooking_Deleted" Type="bit" Nullable="false" />
   </EntityType>
@@ -63,7 +63,7 @@
       <PropertyRef Name="Venue_ID" />
     </Key>
     <Property Name="Venue_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Venue_Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="Venue_Name" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Venue_VenueTypeID" Type="int" />
     <Property Name="Venue_Capacity" Type="int" />
     <Property Name="Venue_Address" Type="nvarchar" MaxLength="255" />
@@ -102,7 +102,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Event_Venue">
-    <End Role="Venue" Type="Self.Venue" Multiplicity="0..1" />
+    <End Role="Venue" Type="Self.Venue" Multiplicity="1" />
     <End Role="Event" Type="Self.Event" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Venue">
@@ -125,7 +125,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_EventBookingSeat_EventBooking">
+  <Association Name="FK_EventBookingSeat_EventBookingSeat">
     <End Role="EventBooking" Type="Self.EventBooking" Multiplicity="0..1" />
     <End Role="EventBookingSeat" Type="Self.EventBookingSeat" Multiplicity="*" />
     <ReferentialConstraint>
@@ -185,18 +185,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_VenueZone_Venue">
-    <End Role="Venue" Type="Self.Venue" Multiplicity="0..1" />
-    <End Role="VenueZone" Type="Self.VenueZone" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Venue">
-        <PropertyRef Name="Venue_ID" />
-      </Principal>
-      <Dependent Role="VenueZone">
-        <PropertyRef Name="VenueZone_VenueID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="APTEventsModelStoreContainer">
     <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
@@ -219,7 +207,7 @@
       <End Role="EventPerformance" EntitySet="EventPerformance" />
       <End Role="EventBooking" EntitySet="EventBooking" />
     </AssociationSet>
-    <AssociationSet Name="FK_EventBookingSeat_EventBooking" Association="Self.FK_EventBookingSeat_EventBooking">
+    <AssociationSet Name="FK_EventBookingSeat_EventBookingSeat" Association="Self.FK_EventBookingSeat_EventBookingSeat">
       <End Role="EventBooking" EntitySet="EventBooking" />
       <End Role="EventBookingSeat" EntitySet="EventBookingSeat" />
     </AssociationSet>
@@ -238,10 +226,6 @@
     <AssociationSet Name="FK_Venue_VenueType" Association="Self.FK_Venue_VenueType">
       <End Role="VenueType" EntitySet="VenueType" />
       <End Role="Venue" EntitySet="Venue" />
-    </AssociationSet>
-    <AssociationSet Name="FK_VenueZone_Venue" Association="Self.FK_VenueZone_Venue">
-      <End Role="Venue" EntitySet="Venue" />
-      <End Role="VenueZone" EntitySet="VenueZone" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
