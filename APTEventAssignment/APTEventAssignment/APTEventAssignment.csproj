@@ -264,6 +264,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\EventBookingViewModel.cs" />
     <Compile Include="ViewModels\EventImageViewModel.cs" />
+    <Compile Include="ViewModels\EventsViewModel.cs" />
     <Compile Include="ViewModels\VenueViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

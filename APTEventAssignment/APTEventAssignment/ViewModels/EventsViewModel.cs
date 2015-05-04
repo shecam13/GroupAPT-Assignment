@@ -36,7 +36,7 @@ namespace APTEventAssignment.ViewModels
         [Display(Name = "Category")]
         public string Event_CategoryName { get; set; }
         //public Nullable<byte[]> Image { get; set; }
-    
+
         //public virtual Venue Venue { get; set; }
         //public virtual ICollection<EventPerformance> EventPerformance { get; set; }
         //public virtual ICollection<EventVenueZone> EventVenueZone { get; set; }
