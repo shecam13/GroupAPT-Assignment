@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using APTEventAssignment.Models;
+using APTEventAssignment.SeatingPlan;
 
 namespace APTEventAssignment.Controllers
 {
@@ -16,20 +16,56 @@ namespace APTEventAssignment.Controllers
         private APTEventsEntities db = new APTEventsEntities();
 
         // GET: EventBookingSeats
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             var eventBookingSeat = db.EventBookingSeat.Include(e => e.EventBooking);
-            return View(await eventBookingSeat.ToListAsync());
+            return View(eventBookingSeat.ToList());
+        }
+       
+        public ActionResult SeatingPage()
+        {
+            var eventBookingSeat = db.EventBookingSeat.Include(e => e.EventBooking);
+            return View(eventBookingSeat.ToList());
         }
 
+        String[] seatsArray = new String[10];
+        int number = 0;
+        public void GetSeats()
+        {
+            WEB web = new WEB();
+            //seatsArray = web.getSeats();
+            seatsArray = web.getSeats();
+
+        }
+
+        //int venueID = 1;
+        //public void GetRow()
+        //{
+        //    var query = (from e in db.VenueZone
+        //                 where e.VenueZone_VenueID == venueID
+        //                 select e.VenueZone_Rows);
+
+
+        //}
+
+        //public ActionResult ViewSeatingPlan()
+        //{
+        //    return View("WEB"); //Aspx file Views/Products/WebForm1.aspx
+        //}
+
+        public RedirectResult ViewSeatingPlan()
+        {
+            return Redirect("/SeatingPlan/WEB.aspx");
+        }
+       
         // GET: EventBookingSeats/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EventBookingSeat eventBookingSeat = await db.EventBookingSeat.FindAsync(id);
+            EventBookingSeat eventBookingSeat = db.EventBookingSeat.Find(id);
             if (eventBookingSeat == null)
             {
                 return HttpNotFound();
@@ -40,7 +76,7 @@ namespace APTEventAssignment.Controllers
         // GET: EventBookingSeats/Create
         public ActionResult Create()
         {
-            ViewBag.EventBookingSeat_EventBookingID = new SelectList(db.EventBooking, "EventBooking_ID", "EventBooking_ID");
+            ViewBag.EventBookingSeat_EventBookingID = new SelectList(db.EventBooking, "EventBooking_ID", "EventBooking_UserID");
             return View();
         }
 
@@ -49,32 +85,32 @@ namespace APTEventAssignment.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "EventBookingSeat_ID,EventBookingSeat_EventBookingID,EventBookingSeat_SeatIdentifier,EventBookingSeat_Deleted")] EventBookingSeat eventBookingSeat)
+        public ActionResult Create([Bind(Include = "EventBookingSeat_ID,EventBookingSeat_EventBookingID,EventBookingSeat_SeatIdentifier,EventBookingSeat_Deleted")] EventBookingSeat eventBookingSeat)
         {
             if (ModelState.IsValid)
             {
                 db.EventBookingSeat.Add(eventBookingSeat);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EventBookingSeat_EventBookingID = new SelectList(db.EventBooking, "EventBooking_ID", "EventBooking_ID", eventBookingSeat.EventBookingSeat_EventBookingID);
+            ViewBag.EventBookingSeat_EventBookingID = new SelectList(db.EventBooking, "EventBooking_ID", "EventBooking_UserID", eventBookingSeat.EventBookingSeat_EventBookingID);
             return View(eventBookingSeat);
         }
 
         // GET: EventBookingSeats/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EventBookingSeat eventBookingSeat = await db.EventBookingSeat.FindAsync(id);
+            EventBookingSeat eventBookingSeat = db.EventBookingSeat.Find(id);
             if (eventBookingSeat == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.EventBookingSeat_EventBookingID = new SelectList(db.EventBooking, "EventBooking_ID", "EventBooking_ID", eventBookingSeat.EventBookingSeat_EventBookingID);
+            ViewBag.EventBookingSeat_EventBookingID = new SelectList(db.EventBooking, "EventBooking_ID", "EventBooking_UserID", eventBookingSeat.EventBookingSeat_EventBookingID);
             return View(eventBookingSeat);
         }
 
@@ -83,26 +119,26 @@ namespace APTEventAssignment.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "EventBookingSeat_ID,EventBookingSeat_EventBookingID,EventBookingSeat_SeatIdentifier,EventBookingSeat_Deleted")] EventBookingSeat eventBookingSeat)
+        public ActionResult Edit([Bind(Include = "EventBookingSeat_ID,EventBookingSeat_EventBookingID,EventBookingSeat_SeatIdentifier,EventBookingSeat_Deleted")] EventBookingSeat eventBookingSeat)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(eventBookingSeat).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EventBookingSeat_EventBookingID = new SelectList(db.EventBooking, "EventBooking_ID", "EventBooking_ID", eventBookingSeat.EventBookingSeat_EventBookingID);
+            ViewBag.EventBookingSeat_EventBookingID = new SelectList(db.EventBooking, "EventBooking_ID", "EventBooking_UserID", eventBookingSeat.EventBookingSeat_EventBookingID);
             return View(eventBookingSeat);
         }
 
         // GET: EventBookingSeats/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EventBookingSeat eventBookingSeat = await db.EventBookingSeat.FindAsync(id);
+            EventBookingSeat eventBookingSeat = db.EventBookingSeat.Find(id);
             if (eventBookingSeat == null)
             {
                 return HttpNotFound();
@@ -113,11 +149,11 @@ namespace APTEventAssignment.Controllers
         // POST: EventBookingSeats/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            EventBookingSeat eventBookingSeat = await db.EventBookingSeat.FindAsync(id);
+            EventBookingSeat eventBookingSeat = db.EventBookingSeat.Find(id);
             db.EventBookingSeat.Remove(eventBookingSeat);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

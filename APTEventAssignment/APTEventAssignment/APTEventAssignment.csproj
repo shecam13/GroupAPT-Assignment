@@ -285,6 +285,13 @@
     </Compile>
     <Compile Include="PayPalFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeatingPlan\WEB.aspx.cs">
+      <DependentUpon>WEB.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeatingPlan\WEB.aspx.designer.cs">
+      <DependentUpon>WEB.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\EventBookingViewModel.cs" />
     <Compile Include="ViewModels\EventImageViewModel.cs" />
@@ -336,6 +343,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="SeatingPlan\WEB.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -375,11 +383,6 @@
     <Content Include="Views\EventBookings\Details.cshtml" />
     <Content Include="Views\EventBookings\Edit.cshtml" />
     <Content Include="Views\EventBookings\Index.cshtml" />
-    <Content Include="Views\EventBookingSeats\Create.cshtml" />
-    <Content Include="Views\EventBookingSeats\Delete.cshtml" />
-    <Content Include="Views\EventBookingSeats\Details.cshtml" />
-    <Content Include="Views\EventBookingSeats\Edit.cshtml" />
-    <Content Include="Views\EventBookingSeats\Index.cshtml" />
     <Content Include="Views\EventPerformances\Create.cshtml" />
     <Content Include="Views\EventPerformances\Delete.cshtml" />
     <Content Include="Views\EventPerformances\Details.cshtml" />
@@ -428,6 +431,12 @@
     <Content Include="Views\EventBookings\IndexBooking.cshtml" />
     <Content Include="Views\Events\EventsDetailsPage.cshtml" />
     <Content Include="Views\Home\_AllEvents.cshtml" />
+    <Content Include="Views\EventBookingSeats\Create.cshtml" />
+    <Content Include="Views\EventBookingSeats\Delete.cshtml" />
+    <Content Include="Views\EventBookingSeats\Details.cshtml" />
+    <Content Include="Views\EventBookingSeats\Edit.cshtml" />
+    <Content Include="Views\EventBookingSeats\Index.cshtml" />
+    <Content Include="Views\EventBookingSeats\SeatingPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -18,7 +18,6 @@ namespace APTEventAssignment.Controllers
 
         public ActionResult Index()
         {
-
             IList<Event> eventList = new List<Event>();
 
             // get the most recent events including the event name and image

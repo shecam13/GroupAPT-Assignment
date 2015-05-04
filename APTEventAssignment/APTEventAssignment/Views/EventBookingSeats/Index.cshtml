@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Index</h2>
@@ -18,7 +19,7 @@
             @Html.DisplayNameFor(model => model.EventBookingSeat_Deleted)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EventBooking.EventBooking_ID)
+            @Html.DisplayNameFor(model => model.EventBooking.EventBooking_UserID)
         </th>
         <th></th>
     </tr>
@@ -32,7 +33,7 @@
             @Html.DisplayFor(modelItem => item.EventBookingSeat_Deleted)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EventBooking.EventBooking_ID)
+            @Html.DisplayFor(modelItem => item.EventBooking.EventBooking_UserID)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.EventBookingSeat_ID }) |

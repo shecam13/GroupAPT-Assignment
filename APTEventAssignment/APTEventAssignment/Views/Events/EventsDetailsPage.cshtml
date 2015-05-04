@@ -65,3 +65,6 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.Event_ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+<input type='button' value='Button' onclick='window.location = "@Url.Action("Index", "Home")";' />
+

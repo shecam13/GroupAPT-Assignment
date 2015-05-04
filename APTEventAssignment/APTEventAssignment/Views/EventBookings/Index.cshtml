@@ -42,19 +42,19 @@
 @foreach (var item in Model) {
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.EventBooking_UserID)
+            @Html.DisplayFor(modelItem => item.EventBooking_UserID)
         </th>
         <th>
-            @Html.DisplayNameFor(modelItem => item.UserName)
+            @Html.DisplayFor(modelItem => item.UserName)
         </th>
         <th>
-            @Html.DisplayNameFor(modelItem => item.EventBooking_Date)
+            @Html.DisplayFor(modelItem => item.EventBooking_Date)
         </th>
         <th>
-            @Html.DisplayNameFor(modelItem => item.EventName)
+            @Html.DisplayFor(modelItem => item.EventName)
         </th>
         <th>
-            @Html.DisplayNameFor(modelItem => item.PerformanceDate)
+            @Html.DisplayFor(modelItem => item.PerformanceDate)
         </th>
         @*<td>
             @Html.DisplayFor(modelItem => item.EventBooking_Date)
@@ -68,11 +68,11 @@
         @*<td>
             @Html.DisplayFor(modelItem => item.User.User_Login)
         </td>*@
-        <td>
+        @*<td>
             @Html.ActionLink("Edit", "Edit", new { id=item.EventBooking_ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.EventBooking_ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.EventBooking_ID })
-        </td>
+        </td>*@
     </tr>
 }
 
