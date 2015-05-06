@@ -64,4 +64,24 @@ namespace APTEventAssignment.ViewModels
         public int Event_CategoryID { get; set; }
         //public Nullable<byte[]> Image { get; set; }
     }
+
+    public class EventsDetailsViewModel
+    {
+        [Required]
+        [Display(Name = "Event Name")]
+        public string Event_Name { get; set; }
+
+        [Display(Name = "Event Rating")]
+        public string Event_Rating { get; set; }
+
+        [Display(Name = "Venue")]
+        public string Event_VenueName { get; set; }
+
+        [Display(Name = "Category")]
+        public string Event_CategoryName { get; set; }
+
+        public Nullable<byte[]> Image { get; set; }
+
+        public Nullable<System.DateTime> EventPerformance_Date { get; set; }
+    }
 }

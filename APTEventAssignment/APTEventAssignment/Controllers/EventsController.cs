@@ -52,11 +52,17 @@ namespace APTEventAssignment.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Event @event = db.Event.Find(id);
+
+            //query to get all the data required by the EventDetailsViewModel
+
+
             if (@event == null)
             {
                 return HttpNotFound();
             }
+            
             return View(@event);
         }
 
