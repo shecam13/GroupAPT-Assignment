@@ -46,24 +46,51 @@ namespace APTEventAssignment.Controllers
 
         public ActionResult EventsDetailsPage(int? id)
         {
-            //var Event = db.Event.Include(E => E.Venue).Include(E => E.Category);
-            //return View(Event.ToList());
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
+            // get event according to the id passed
             Event @event = db.Event.Find(id);
-
-            //query to get all the data required by the EventDetailsViewModel
-
 
             if (@event == null)
             {
                 return HttpNotFound();
             }
-            
-            return View(@event);
+
+            //get category name
+            var category = db.Category.FirstOrDefault(c => c.Category_ID == @event.Event_CategoryID);
+            var categoryName = category.Category_Name;
+
+            // get venue name
+            var venue = db.Venue.FirstOrDefault(c => c.Venue_ID == @event.Event_VenueID);
+            var venueName = venue.Venue_Name;
+
+            List<EventPerformance> performances = null;
+
+            // get the list of performances for a particular event
+            var query = from ep in db.EventPerformance
+                        where ep.EventPerformance_EventID == id
+                        select ep;
+
+            performances = query.ToList();
+
+            var viewmodel = new EventsDetailsViewModel
+            {
+                Event_Name = @event.Event_Name,
+                Event_VenueName = venueName,
+                Event_Image = @event.Event_Image,
+                //Event_VenueID = @event.Event_ID,
+                Event_Rating = @event.Event_Rating,
+                //Event_CategoryID = @event.Event_CategoryID,
+                Event_CategoryName = categoryName
+            };
+
+            viewmodel.Event_Performances = performances;
+
+            return View(viewmodel);
         }
 
         // GET: Events/Details/5
@@ -83,10 +110,13 @@ namespace APTEventAssignment.Controllers
             {
                 Event_ID = e.Event_ID,
                 Event_Name = e.Event_Name,
-                Event_VenueName = e.Venue.Venue_Name,
+                Event_VenueID = e.Event_VenueID,
+                //Event_VenueName = e.Venue.Venue_Name,
                 Event_Rating = e.Event_Rating,
-                Event_CategoryName = e.Category.Category_Name,
+                Event_CategoryID = e.Event_CategoryID,
+                //Event_CategoryName = e.Category.Category_Name,
             };
+
             return View(viewmodel);
         }
 
