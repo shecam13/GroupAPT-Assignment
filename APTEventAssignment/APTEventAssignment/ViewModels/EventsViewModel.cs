@@ -35,7 +35,8 @@ namespace APTEventAssignment.ViewModels
 
         [Display(Name = "Category")]
         public string Event_CategoryName { get; set; }
-        //public Nullable<byte[]> Image { get; set; }
+
+        public byte[] Event_Image { get; set; }
 
         //public virtual Venue Venue { get; set; }
         //public virtual ICollection<EventPerformance> EventPerformance { get; set; }
@@ -62,7 +63,8 @@ namespace APTEventAssignment.ViewModels
         [Required]
         [Display(Name = "Event Category")]
         public int Event_CategoryID { get; set; }
-        //public Nullable<byte[]> Image { get; set; }
+
+        public byte[] Event_Image { get; set; }
     }
 
     public class EventsDetailsViewModel

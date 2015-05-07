@@ -1,0 +1,67 @@
+﻿@model IEnumerable<APTEventAssignment.Models.EventBooking>
+@{
+    ViewBag.Title = "IndexBooking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Index</h2>
+<div class="container">
+    <h2>Ticket Details</h2>
+    <h5>Please confirm the following details for booking</h5>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @*@Html.DisplayNameFor(model => model.EventBooking_Date)*@
+                @Html.DisplayName("Time of Booking")
+            </th>
+                @*@Html.DisplayNameFor(model => model.EventPerformance.EventPerformance_ID)*@
+                @Html.DisplayName("Event Booking Seat")
+            </th>
+            <th>
+                @Html.DisplayName("Event Name")
+            </th>
+            <th>
+                @Html.DisplayName("Venue Name")
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.EventBooking_UserID)*@
+                @Html.DisplayName("Date")
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventPerformance.EventPerformance_Time)  @*getting the time of the performance*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventBookingSeat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventPerformance.Event.Event_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventPerformance.Event.Venue.Venue_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventPerformance.EventPerformance_Date)
+                </td>
+              </tr>
+                  
+            }
+
+        </table>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-5 col-md-12">
+            <h4>@Html.ActionLink("Confirm Details", "Create")</h4>
+            <input type='button' value='Button' onclick='window.location = "@Url.Action("Index", "Home")";' />
+            @*<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i>Book Your Seats!</button>*@
+            <button type='button' value='Book Your Seats!' onclick='window.location = "@Url.Action("Index", "Home")";' />
+        </div>
+    </div>

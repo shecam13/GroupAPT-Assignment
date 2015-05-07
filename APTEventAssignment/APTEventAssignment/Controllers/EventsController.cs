@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using APTEventAssignment.Models;
 using APTEventAssignment.ViewModels;
+using System.Web.Helpers;
+using System.IO;
 
 namespace APTEventAssignment.Controllers
 {
@@ -93,6 +95,29 @@ namespace APTEventAssignment.Controllers
             return View(viewmodel);
         }
 
+        //public ActionResult FileUpload(HttpPostedFileBase file)
+        //{
+
+        //    if (file != null)
+        //    {
+        //        string ImageName = System.IO.Path.GetFileName(file.FileName);
+        //        string physicalPath = Server.MapPath("~/images/" + ImageName);
+
+        //        // save image in folder
+        //        file.SaveAs(physicalPath);
+
+        //        //save new record in database
+        //        Event newRecord = new Event();
+        //        newRecord.Event_Image = ImageName;
+        //        db.Event.Add(newRecord);
+        //        db.SaveChanges();
+
+        //    }
+
+        //    Display records
+        //    return RedirectToAction("../home/Display/");
+        //}
+
         // GET: Events/Details/5
         public ActionResult Details(int? id)
         {
@@ -131,13 +156,63 @@ namespace APTEventAssignment.Controllers
         // POST: Events/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        ////public ActionResult Create([Bind(Include = "Event_ID,Event_Name,Event_VenueID,Event_Rating,Event_Deleted,Event_CategoryID,Image")] Event @event)
+        //public ActionResult Create(AddEventViewModel addviewmodel, HttpPostedFileBase file)
+        //{
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        var e = new Event();
+
+        //        UpdateEvent(e, addviewmodel);
+
+        //        db.Event.Add(e);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    ViewBag.Event_VenueID = new SelectList(db.Venue, "Venue_ID", "Venue_Name", addviewmodel.Event_VenueID);
+        //    ViewBag.Event_CategoryID = new SelectList(db.Category, "Category_ID", "Category_Name", addviewmodel.Event_CategoryID);
+        //    return View(addviewmodel);
+        //}
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         //public ActionResult Create([Bind(Include = "Event_ID,Event_Name,Event_VenueID,Event_Rating,Event_Deleted,Event_CategoryID,Image")] Event @event)
-        public ActionResult Create(AddEventViewModel addviewmodel)
+        public ActionResult Create(AddEventViewModel addviewmodel, HttpPostedFileBase file)
         {
+            //var id = addviewmodel.Event_Image;
+
             if (ModelState.IsValid)
             {
+                string filename = "";
+                byte[] bytes;
+                int BytestoRead;
+                int numBytesRead;
+
+                if(file != null)
+                {
+                    filename = Path.GetFileName(file.FileName);
+                    bytes = new byte[file.ContentLength];
+                    BytestoRead = (int)file.ContentLength;
+                    numBytesRead = 0;
+
+                    while(BytestoRead > 0)
+                    {
+                        int n = file.InputStream.Read(bytes, numBytesRead, BytestoRead);
+                        if (n == 0) break;
+
+                        numBytesRead += n;
+                        BytestoRead -= n;
+                    }
+
+                    addviewmodel.Event_Image = bytes;
+                }
+
+                //db.Event.Add(addviewmodel);
+                //db.SaveChanges();
                 var e = new Event();
 
                 UpdateEvent(e, addviewmodel);
