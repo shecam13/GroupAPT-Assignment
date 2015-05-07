@@ -28,14 +28,14 @@
 </div>
 
 @*<div class="form-group">
-    @Html.LabelFor(model => model.Event_Deleted, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        <div class="checkbox">
-            @Html.EditorFor(model => model.Event_Deleted)
-            @Html.ValidationMessageFor(model => model.Event_Deleted, "", new { @class = "text-danger" })
+        @Html.LabelFor(model => model.Event_Deleted, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Event_Deleted)
+                @Html.ValidationMessageFor(model => model.Event_Deleted, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-</div>*@
+    </div>*@
 
 <div class="form-group">
     @Html.LabelFor(model => model.Event_CategoryID, "Category", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -45,10 +45,21 @@
     </div>
 </div>
 
-@*<div class="form-group">
-    @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+@using (Html.BeginForm("Create", "Events", FormMethod.Post,
+                    new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.DisplayName("Image")
+            @*@Html.HiddenFor(model => model.Event_Image)*@
+            <input type="file" name="file" id="file" style="width: 100%;" /> 
+            @*<input type="submit" value="Upload" class="submit" />*@
+        </div>
     </div>
-</div>*@
+}
+
+@*<form name="datapluspics" method="post" enctype="multipart/form-data">
+
+        <input type="file" id="file" name="file"/>
+
+    </form>*@

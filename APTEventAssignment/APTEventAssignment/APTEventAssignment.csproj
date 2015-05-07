@@ -425,9 +425,10 @@
     <Content Include="Views\Events\Edit.cshtml" />
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Venues\_Form.cshtml" />
-    <Content Include="Views\EventBookings\IndexBooking.cshtml" />
     <Content Include="Views\Events\EventsDetailsPage.cshtml" />
     <Content Include="Views\Home\_AllEvents.cshtml" />
+    <Content Include="Views\EventBookings\IndexBooking.cshtml" />
+    <Content Include="Views\Events\_Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
