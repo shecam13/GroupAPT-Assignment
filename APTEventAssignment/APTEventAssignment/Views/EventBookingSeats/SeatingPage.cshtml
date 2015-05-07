@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "SeatingPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SeatingPage</h2>
+
+
+<iframe src="@Url.Action("ViewSeatingPlan", "EventBookingSeats")" width="1000" height="400"></iframe>
+
+<input type='button' value='Button' onclick='window.location = "@Url.Action("GetSeats", "EventBookingSeats")";' />

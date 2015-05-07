@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<APTEventAssignment.ViewModels.EventBookingViewModel>
 
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -69,11 +68,11 @@
         @*<td>
             @Html.DisplayFor(modelItem => item.User.User_Login)
         </td>*@
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item. }) |
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EventBooking_ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.EventBooking_ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.EventBooking_ID })
-        </td>
+        </td>*@
     </tr>
 }
 
