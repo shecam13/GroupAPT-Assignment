@@ -1,8 +1,7 @@
 ﻿@model IEnumerable<APTEventAssignment.Models.Event>
 
-<div class="row">
 
-    @{var i=1;}
+<div class="row">
 
     @foreach (var item in Model)
     {
@@ -31,52 +30,8 @@
                     <p class="text-muted"></p>
                 </div>
             </div>
-        
-            
         }
     }
 
 </div>
 
-
-
-    @*<table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Event_Name)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Event_Image)
-            </th>
-
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Event_Name)
-                </td>
-
-                <td>
-
-                    @if (item.Event_Image != null)
-                    {
-
-                        var base64 = Convert.ToBase64String(item.Event_Image);
-
-                        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-
-
-                        <img src="@imgSrc" class="img-responsive" height="50" width="50" />
-                    }
-
-                </td>
-
-
-            </tr>
-        }
-
-    </table>*@

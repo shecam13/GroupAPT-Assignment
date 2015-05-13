@@ -293,6 +293,7 @@
       <DependentUpon>WEB.aspx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\EventBookingSeatsViewModel.cs" />
     <Compile Include="ViewModels\EventBookingViewModel.cs" />
     <Compile Include="ViewModels\EventImageViewModel.cs" />
     <Compile Include="ViewModels\EventsViewModel.cs" />
@@ -437,6 +438,7 @@
     <Content Include="Views\EventBookingSeats\Edit.cshtml" />
     <Content Include="Views\EventBookingSeats\Index.cshtml" />
     <Content Include="Views\EventBookingSeats\SeatingPage.cshtml" />
+    <Content Include="Views\Events\_Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

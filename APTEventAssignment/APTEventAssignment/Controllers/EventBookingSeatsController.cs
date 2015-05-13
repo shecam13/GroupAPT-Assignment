@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using APTEventAssignment.Models;
 using APTEventAssignment.SeatingPlan;
+using APTEventAssignment.ViewModels;
 
 namespace APTEventAssignment.Controllers
 {
@@ -21,22 +22,102 @@ namespace APTEventAssignment.Controllers
             var eventBookingSeat = db.EventBookingSeat.Include(e => e.EventBooking);
             return View(eventBookingSeat.ToList());
         }
-       
+
+        int venueID = 1;
+        String venueCode = "L";
+
+        List<VenueZone> venueZones = null;
+
+        public List<SelectListItem> GetPerformances(List<EventPerformance> performances)
+        {
+            //SelectListItem performanceListItem = new SelectListItem();
+            List<SelectListItem> performanceList = new List<SelectListItem>();
+
+            if (performances.Count == 0)
+            {
+                return performanceList = null;
+            }
+            else
+            {
+                foreach (var p in performances)
+                {
+                    SelectListItem performanceListItem = new SelectListItem { Value = p.EventPerformance_ID.ToString(), Text = p.EventPerformance_Date.ToString() };
+                    //performanceListItem = new SelectListItem { 0, "Hello"};
+                    performanceList.Add(performanceListItem);
+                }
+
+                //performanceList = new SelectList((SelectListItem) performanceListItem, "Value", "Text");
+
+                return performanceList;
+            }
+            
+        }
+
+
         public ActionResult SeatingPage()
         {
-            var eventBookingSeat = db.EventBookingSeat.Include(e => e.EventBooking);
-            return View(eventBookingSeat.ToList());
+            var eventDetails = this.Session["EventDetails"] as EventsDetailsViewModel;
+            List<EventPerformance> performances = eventDetails.Event_Performances;
+
+            var viewmodel = new EventBookingSeatsViewModel
+            {
+                Performances = GetPerformances(performances)
+            };
+
+            //List<DateTime> dates = new List<DateTime>();
+            
+            //foreach (var p in performances)
+            //{
+            //    dates.Add((DateTime)p.EventPerformance_Date);
+            //}
+
+
+
+            //var viewmodel = new EventBookingSeatsViewModel
+            //{
+                
+            //    Performances = new SelectList(dates)
+            //};
+
+            //List<String> rows = new List<String>();
+            //List<String> cols = new List<String>();
+            //List<String> codes = new List<String>();
+
+            //var query = (from e in db.VenueZone
+            //             where e.VenueZone_VenueID == venueID
+            //             select e);
+
+            //venueZones = query.ToList();
+
+            //foreach (var v in venueZones)
+            //{
+            //    rows.Add(v.VenueZone_Rows.ToString());
+            //    cols.Add(v.VenueZone_Rows.ToString());
+            //    codes.Add(v.VenueZone_Rows.ToString());
+            //}
+
+            //WEB web = new WEB();
+            //web.setZoneDetails(rows, cols, codes);
+            
+            //ViewBag.venueZones = query.ToList();
+
+            //var eventBookingSeat = db.EventBookingSeat.Include(e => e.EventBooking);
+            //return View(eventBookingSeat.ToList());
+            //ViewBag.date = dates;
+            
+            return View(viewmodel);
+
         }
 
-        String[] seatsArray = new String[10];
-        int number = 0;
-        public void GetSeats()
-        {
-            WEB web = new WEB();
-            //seatsArray = web.getSeats();
-            seatsArray = web.getSeats();
+        //String[] seatsArray = new String[10];
+        //int number = 0;
+        //public void GetSeats()
+        //{
+        //    WEB web = new WEB();
+        //    //seatsArray = web.getSeats();
+        //    seatsArray = web.getSeats();
 
-        }
+        //}
 
         //int venueID = 1;
         //public void GetRow()

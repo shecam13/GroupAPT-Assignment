@@ -37,6 +37,7 @@ namespace APTEventAssignment.Controllers
 
             return View(viewmodel.ToList());
         }
+
         private void UpdateEvent(Event e, AddEventViewModel addviewmodel)
         {
             e.Event_ID = addviewmodel.Event_ID;
@@ -44,8 +45,10 @@ namespace APTEventAssignment.Controllers
             e.Event_VenueID = addviewmodel.Event_VenueID;
             e.Event_Rating = addviewmodel.Event_Rating;
             e.Event_CategoryID = addviewmodel.Event_CategoryID;
+            e.Event_Image = addviewmodel.Event_Image;
         }
 
+        // [HttpPost]
         public ActionResult EventsDetailsPage(int? id)
         {
 
@@ -91,6 +94,9 @@ namespace APTEventAssignment.Controllers
             };
 
             viewmodel.Event_Performances = performances;
+
+            // pass the view model to the seating page
+            this.Session["EventDetails"] = viewmodel;
 
             return View(viewmodel);
         }
@@ -184,6 +190,11 @@ namespace APTEventAssignment.Controllers
         public ActionResult Create(AddEventViewModel addviewmodel, HttpPostedFileBase file)
         {
             //var id = addviewmodel.Event_Image;
+            //if (Request.Files.Count == 0)
+            //{
+            //    return View();
+            //}
+
 
             if (ModelState.IsValid)
             {

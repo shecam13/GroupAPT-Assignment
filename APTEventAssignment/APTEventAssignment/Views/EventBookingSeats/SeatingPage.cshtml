@@ -1,12 +1,25 @@
-﻿
+﻿@model APTEventAssignment.ViewModels.EventBookingSeatsViewModel
+
 @{
     ViewBag.Title = "SeatingPage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>SeatingPage</h2>
+<div class="container">
+    <h2>SeatingPage</h2>
 
+    <div class="form-group">
+        <p>Choose date:  @Html.DropDownListFor(model => model.SelectPerformanceId, Model.Performances)</p>
+        @*@Html.DropDownListFor(model => model.SelectPerformanceId, Model.Performances, "Choose... ")*@
+       
+    </div>
 
-<iframe src="@Url.Action("ViewSeatingPlan", "EventBookingSeats")" width="1000" height="400"></iframe>
+    @*@foreach (var item in (List<VenueZone>) ViewData["venueZones"])
+    {
+        @item.VenueZone_Rows;
+    }*@
 
-<input type='button' value='Button' onclick='window.location = "@Url.Action("GetSeats", "EventBookingSeats")";' />
+    <iframe src="@Url.Action("ViewSeatingPlan", "EventBookingSeats")" width="1000" height="400"></iframe>
+
+    <input type='button' class="btn btn-primary" value='Book Tickets' onclick='window.location = "@Url.Action("IndexBooking", "EventBookings")";' />
+</div>
