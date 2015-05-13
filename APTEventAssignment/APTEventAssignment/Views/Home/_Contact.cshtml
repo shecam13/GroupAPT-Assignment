@@ -1,0 +1,49 @@
+﻿@model APTEventAssignment.Models.EmailFormModel
+
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { role = "form", action = "/#contact" }))
+{      
+    @Html.AntiForgeryToken()      
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <form name="sentMessage" id="contactForm">
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.FromName, new { @class = "form-control", @placeholder = "Your Name *"})
+                            @Html.ValidationMessageFor(m => m.FromName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.FromEmail, new { @class = "form-control", @placeholder = "Your Email *" })
+                            @Html.ValidationMessageFor(m => m.FromEmail, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", @placeholder = "Your Phone *" })
+                            @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.TextAreaFor(m => m.Message, new { @class = "form-control", @placeholder = "Your Message *" })
+                            @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>                 
+                    <div class="col-lg-12 text-center">
+                        <div id="success"></div>
+                        <button type="submit" class="btn btn-xl">Send Message</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

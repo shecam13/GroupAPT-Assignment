@@ -9,6 +9,8 @@ using System.Data.Entity;
 using System.Net;
 using System.IO;
 using System.Data.SqlClient;
+using System.Net.Mail;
+using System.Threading.Tasks;
 
 namespace APTEventAssignment.Controllers
 {
@@ -42,26 +44,40 @@ namespace APTEventAssignment.Controllers
 
             return View(eventList);
         }
-
-        //public ActionResult AllEvents()
-        //{
-        //    // get the most recent events including the event name and image
-        //    var Event = from e in db.Event
-        //                join p in db.EventPerformance on e.Event_ID equals p.EventPerformance_EventID
-        //                orderby p.EventPerformance_Date descending
-        //                select e;
-
-        //    //foreach ()
-
-        //    //var Event = db.Event.Include(x => x.EventPerformance).OrderByDescending(x => x.EventPerformance_Date);
-        //    return View(Event.ToList());
-        //}
       
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
+        }
+
+        public ActionResult _Contact()
+        {
+            EmailFormModel efm = new EmailFormModel();
+            return View(efm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult _Contact(EmailFormModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var body = "<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>";
+                var message = new MailMessage();
+                message.To.Add(new MailAddress("groupapt2015@gmail.com"));
+                message.Subject = "Contact";
+                message.Body = string.Format(body, model.FromName, model.FromEmail, model.Message);
+                message.IsBodyHtml = true;
+
+                using (var smtp = new SmtpClient())
+                {
+                    smtp.Send(message);              
+                    return View(model);
+                }
+            }
+            return View(model);
         }
 
         public ActionResult Contact()
