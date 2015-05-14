@@ -74,17 +74,25 @@ namespace APTEventAssignment.ViewModels
         [Display(Name = "Event Name")]
         public string Event_Name { get; set; }
 
-        [Display(Name = "Event Rating")]
-        public string Event_Rating { get; set; }
+        //[HiddenInput(DisplayValue = false)]
+        //public int Event_VenueID { get; set; }
 
         [Display(Name = "Venue")]
         public string Event_VenueName { get; set; }
+
+        [Display(Name = "Event Rating")]
+        public string Event_Rating { get; set; }
+
+        //[HiddenInput(DisplayValue = false)]
+        //public int Event_CategoryID { get; set; }
 
         [Display(Name = "Category")]
         public string Event_CategoryName { get; set; }
 
         public byte[] Event_Image { get; set; }
 
-        public Nullable<System.DateTime> EventPerformance_Date { get; set; }
+        public List<EventPerformance> Event_Performances { get; set; }
+        //public List<System.DateTime> Event_Performances { get; set; }
+        //public Nullable<System.DateTime> EventPerformance_Date { get; set; }
     }
 }

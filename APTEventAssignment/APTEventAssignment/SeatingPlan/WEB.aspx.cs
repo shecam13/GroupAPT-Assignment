@@ -9,6 +9,10 @@ namespace APTEventAssignment.SeatingPlan
 {
 	public partial class WEB : System.Web.UI.Page
 	{
+        List<String> rows = new List<String>();
+        List<String> cols = new List<String>();
+        List<String> codes = new List<String>();
+
         public enum Seating
         {
             Code = 0,
@@ -17,6 +21,12 @@ namespace APTEventAssignment.SeatingPlan
             Columns = 3
         }
 
+        public void setZoneDetails(List<String> row, List<String> col, List<String> code)
+        {
+            rows = row;
+            cols = col;
+            codes = code;
+        }
 
         int intZoneCount;
         string[,] arrSeating = new string[1, 6];
@@ -182,36 +192,70 @@ namespace APTEventAssignment.SeatingPlan
             }
         }
 
-        int row, col;
+        //int row, col;
 
-        public void setRow(int row)
-        {
-            this.row = row;
-        }
+        //public void setRow(int row)
+        //{
+        //    this.row = row;
+        //}
 
         protected override void OnPreInit(EventArgs e)
         {
+
+            //DrawSeatingMap(arrSeating);
+            //break;
+
+                //Three Zones
+            //    intZoneCount = 3;
+            //arrSeating = new string[intZoneCount, 6];
+
+            //arrSeating[0, (int)Seating.Code] = "L";
+            //arrSeating[0, (int)Seating.Title] = "LEFT WING";
+            //arrSeating[0, (int)Seating.Rows] = "20";
+            //arrSeating[0, (int)Seating.Columns] = "10";
+
+            //arrSeating[1, (int)Seating.Code] = "M";
+            //arrSeating[1, (int)Seating.Title] = "MIDDLE";
+            //arrSeating[1, (int)Seating.Rows] = "14";
+            //arrSeating[1, (int)Seating.Columns] = "12";
+
+            //arrSeating[2, (int)Seating.Code] = "R";
+            //arrSeating[2, (int)Seating.Title] = "RIGHT WING";
+            //arrSeating[2, (int)Seating.Rows] = "14";
+            //arrSeating[2, (int)Seating.Columns] = "6";
+
+
             switch (Request.QueryString["V"])
             {
                 case "A":
                     //Three Zones
                     intZoneCount = 3;
                     arrSeating = new string[intZoneCount, 6];
+                    
+                    for (int i = 0; i < 3; i++)
+                    {
+                        arrSeating[i, (int)Seating.Code] = codes[i];
+                        arrSeating[i, (int)Seating.Title] = "LEFT WING";
+                        arrSeating[i, (int)Seating.Rows] = rows[i];
+                        arrSeating[i, (int)Seating.Columns] = cols[i];
 
-                    arrSeating[0, (int)Seating.Code] = "L";
-                    arrSeating[0, (int)Seating.Title] = "LEFT WING";
-                    arrSeating[0, (int)Seating.Rows] = "20";
-                    arrSeating[0, (int)Seating.Columns] = "10";
+                    }
+                    
 
-                    arrSeating[1, (int)Seating.Code] = "M";
-                    arrSeating[1, (int)Seating.Title] = "MIDDLE";
-                    arrSeating[1, (int)Seating.Rows] = "14";
-                    arrSeating[1, (int)Seating.Columns] = "12";
+                    //arrSeating[0, (int)Seating.Code] = "L";
+                    //arrSeating[0, (int)Seating.Title] = "LEFT WING";
+                    //arrSeating[0, (int)Seating.Rows] = "20";
+                    //arrSeating[0, (int)Seating.Columns] = "10";
 
-                    arrSeating[2, (int)Seating.Code] = "R";
-                    arrSeating[2, (int)Seating.Title] = "RIGHT WING";
-                    arrSeating[2, (int)Seating.Rows] = "14";
-                    arrSeating[2, (int)Seating.Columns] = "6";
+                    //arrSeating[1, (int)Seating.Code] = "M";
+                    //arrSeating[1, (int)Seating.Title] = "MIDDLE";
+                    //arrSeating[1, (int)Seating.Rows] = "14";
+                    //arrSeating[1, (int)Seating.Columns] = "12";
+
+                    //arrSeating[2, (int)Seating.Code] = "R";
+                    //arrSeating[2, (int)Seating.Title] = "RIGHT WING";
+                    //arrSeating[2, (int)Seating.Rows] = "14";
+                    //arrSeating[2, (int)Seating.Columns] = "6";
 
                     DrawSeatingMap(arrSeating);
                     break;
@@ -394,6 +438,9 @@ namespace APTEventAssignment.SeatingPlan
             }
         }
 
+       
+        
+        
         
         public String[] getSeats()
         {

@@ -52,7 +52,8 @@
         <div class="col-md-10">
             @Html.DisplayName("Image")
             @*@Html.HiddenFor(model => model.Event_Image)*@
-            <input type="file" name="file" id="file" style="width: 100%;" /> 
+            bytes = File.ReadAllBytes(HttpContext.Current.Server.MapPath("~/Images/add.png"));
+            <input type="file" name="file" id="file" style="width: 100%;" />
             @*<input type="submit" value="Upload" class="submit" />*@
         </div>
     </div>

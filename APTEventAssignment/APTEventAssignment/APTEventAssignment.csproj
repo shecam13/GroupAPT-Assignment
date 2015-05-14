@@ -40,6 +40,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ActionMailer.Net">
+      <HintPath>..\packages\ActionMailer.0.7.4\lib\Net40\ActionMailer.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="ActionMailer.Net.Mvc">
+      <HintPath>..\packages\ActionMailer.0.7.4\lib\Net40\ActionMailer.Net.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
@@ -249,6 +256,7 @@
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>APTEventModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmailFormModel.cs" />
     <Compile Include="Models\Event.cs">
       <DependentUpon>APTEventModel.tt</DependentUpon>
     </Compile>
@@ -294,7 +302,6 @@
       <DependentUpon>WEB.aspx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\CategoriesViewModel.cs" />
     <Compile Include="ViewModels\EventBookingViewModel.cs" />
     <Compile Include="ViewModels\EventImageViewModel.cs" />
     <Compile Include="ViewModels\EventPerformancesViewModel.cs" />
@@ -440,19 +447,11 @@
     <Content Include="Views\EventBookingSeats\Edit.cshtml" />
     <Content Include="Views\EventBookingSeats\Index.cshtml" />
     <Content Include="Views\EventBookingSeats\SeatingPage.cshtml" />
-    <Content Include="Views\Events\_Form.cshtml" />
-    <Content Include="Views\Events\Checkout.cshtml" />
-    <Content Include="Views\EventBookings\Checkout.cshtml" />
-    <Content Include="Views\EventBookings\_Form.cshtml" />
-    <Content Include="Views\AspNetUsers\Create.cshtml" />
-    <Content Include="Views\AspNetUsers\Delete.cshtml" />
-    <Content Include="Views\AspNetUsers\Details.cshtml" />
-    <Content Include="Views\AspNetUsers\Edit.cshtml" />
-    <Content Include="Views\AspNetUsers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\ImageData\" />
+    <Folder Include="Views\Mail\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
