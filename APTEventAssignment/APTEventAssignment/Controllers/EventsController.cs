@@ -18,7 +18,7 @@ namespace APTEventAssignment.Controllers
         private APTEventsEntities db = new APTEventsEntities();
 
         // GET: Events
-        public ActionResult Index()
+        public ActionResult Index(string SearchEvent)
         {
             //var Event = db.Event.Include(E => E.Venue).Include(E => E.Category);
             //return View(Event.ToList());
@@ -35,7 +35,15 @@ namespace APTEventAssignment.Controllers
                                  Event_CategoryName = cid.Category_Name,
                              });
 
-            return View(viewmodel.ToList());
+
+            if (!String.IsNullOrEmpty(SearchEvent))
+            {
+                viewmodel = viewmodel.Where(s => s.Event_Name.Contains(SearchEvent));
+            }
+
+            return View(viewmodel);
+            //return View(viewmodel.ToList());
+            
         }
 
         private void UpdateEvent(Event e, AddEventViewModel addviewmodel)

@@ -23,10 +23,10 @@ namespace APTEventAssignment.Controllers
             return View(eventBookingSeat.ToList());
         }
 
-        int venueID = 1;
-        String venueCode = "L";
+        //int venueID = 1;
+        //String venueCode = "L";
 
-        List<VenueZone> venueZones = null;
+        //List<VenueZone> venueZones = null;
 
         public List<SelectListItem> GetPerformances(List<EventPerformance> performances)
         {

@@ -12,6 +12,14 @@
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
+        @using (Html.BeginForm())
+        {
+        <p>
+            Title: @Html.TextBox("SearchEvent") <br />
+            <input type="submit" value="Filter" />
+        </p>
+        }
+        
     <table class="table">
         <tr>
             <th>

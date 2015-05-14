@@ -102,16 +102,19 @@ namespace APTEventAssignment.Controllers
             return View(viewmodel);
         }
 
-        
+
         public ActionResult Checkout()
         {
             ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID");
             return View();
         }
-        
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Checkout([Bind(Include = "EventBooking_Date,EventBooking_EventPerformanceID,EventBooking_Deleted")] EventBooking eventBooking)
         {
-           if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 db.EventBooking.Add(eventBooking);
                 db.SaveChanges();
