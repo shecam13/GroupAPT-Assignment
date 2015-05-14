@@ -4,8 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-<h2>Index</h2>
 <div class="container">
     <h2>Ticket Details</h2>
     <h5>Please confirm the following details for booking</h5>
@@ -60,8 +58,5 @@
     <div class="form-group">
         <div class="col-md-offset-5 col-md-12">
             <h4>@Html.ActionLink("Confirm Details", "Create")</h4>
-            <input type='button' value='Button' onclick='window.location = "@Url.Action("Index", "Home")";' />
-            @*<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i>Book Your Seats!</button>*@
-            <button type='button' value='Book Your Seats!' onclick='window.location = "@Url.Action("Index", "Home")";' />
         </div>
     </div>

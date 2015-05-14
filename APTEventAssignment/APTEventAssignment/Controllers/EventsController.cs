@@ -110,7 +110,7 @@ namespace APTEventAssignment.Controllers
                 Event_Name = e.Event_Name,
                 Event_VenueName = e.Venue.Venue_Name,
                 Event_Rating = e.Event_Rating,
-                Event_CategoryName = e.Category.Category_Name,
+                Event_CategoryName = e.Category.Category_Name
             };
             return View(viewmodel);
         }
