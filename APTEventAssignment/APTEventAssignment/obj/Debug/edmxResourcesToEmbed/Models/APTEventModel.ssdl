@@ -106,8 +106,8 @@
     </Key>
     <Property Name="EventPerformance_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="EventPerformance_EventID" Type="int" />
-    <Property Name="EventPerformance_Date" Type="datetime" />
-    <Property Name="EventPerformance_Time" Type="datetime" />
+    <Property Name="EventPerformance_Date" Type="date" />
+    <Property Name="EventPerformance_Time" Type="time" Precision="7" />
     <Property Name="EventPerformance_Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="EventVenueZone">

@@ -108,3 +108,9 @@ C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bi
 C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\obj\Debug\APTEventAssignment.csprojResolveAssemblyReference.cache
 C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\obj\Debug\APTEventAssignment.dll
 C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\obj\Debug\APTEventAssignment.pdb
+C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\ActionMailer.Net.dll
+C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\ActionMailer.Net.Mvc.dll
+C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\ActionMailer.Net.pdb
+C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\ActionMailer.Net.xml
+C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\ActionMailer.Net.Mvc.pdb
+C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\ActionMailer.Net.Mvc.xml

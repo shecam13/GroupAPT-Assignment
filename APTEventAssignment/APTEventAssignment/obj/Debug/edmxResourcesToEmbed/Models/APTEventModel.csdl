@@ -29,8 +29,8 @@
     </Key>
     <Property Name="EventPerformance_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="EventPerformance_EventID" Type="Int32" />
-    <Property Name="EventPerformance_Date" Type="DateTime" Precision="3" />
-    <Property Name="EventPerformance_Time" Type="DateTime" Precision="3" />
+    <Property Name="EventPerformance_Date" Type="DateTime" Precision="0" />
+    <Property Name="EventPerformance_Time" Type="Time" />
     <Property Name="EventPerformance_Deleted" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="EventBooking" Relationship="Self.FK_EventBooking_EventPerformance" FromRole="EventPerformance" ToRole="EventBooking" />
     <NavigationProperty Name="Event" Relationship="APTEventsModel.FK_EventPerformance_Event" FromRole="EventPerformance" ToRole="Event" />
