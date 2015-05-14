@@ -22,7 +22,7 @@ namespace APTEventAssignment.Models
         public int EventPerformance_ID { get; set; }
         public Nullable<int> EventPerformance_EventID { get; set; }
         public Nullable<System.DateTime> EventPerformance_Date { get; set; }
-        public Nullable<System.DateTime> EventPerformance_Time { get; set; }
+        public Nullable<System.TimeSpan> EventPerformance_Time { get; set; }
         public bool EventPerformance_Deleted { get; set; }
     
         public virtual ICollection<EventBooking> EventBooking { get; set; }

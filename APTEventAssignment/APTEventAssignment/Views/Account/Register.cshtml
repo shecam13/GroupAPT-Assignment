@@ -8,7 +8,7 @@
 <div class="container">
     <div class="row">
         <h2>@ViewBag.Title</h2>
-        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        @using (Html.BeginForm(null, null, FormMethod.Post, new {@action="/#contact"}))
         {
             @Html.AntiForgeryToken()
             <h4>Create a new account</h4>

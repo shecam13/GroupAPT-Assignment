@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using APTEventAssignment.Models;
 using Microsoft.AspNet.Identity;
+using APTEventAssignment.ViewModels;
 
 namespace APTEventAssignment.Controllers
 {
@@ -18,30 +19,46 @@ namespace APTEventAssignment.Controllers
         // GET: EventBookings
         public ActionResult Index()
         {
-            var userId = User.Identity.GetUserId();
-            List<EventBooking> bookings = null;
+            //var userId = User.Identity.GetUserId();
+            //List<EventBooking> bookings = null;
 
-            //var query = ( from 
+            ////var query = ( from 
                 
                 
                 
-            //    )
+            ////    )
                 
                 
-            //    "SELECT UserName, EventBooking_Date, Event_Name, EventPerformance_Date " +
-            //            "FROM EventBooking "+
-            //            "INNER JOIN EventBooking eb "
+            ////    "SELECT UserName, EventBooking_Date, Event_Name, EventPerformance_Date " +
+            ////            "FROM EventBooking "+
+            ////            "INNER JOIN EventBooking eb "
 
-            if (User.IsInRole("admin"))
-            {
-                bookings = db.EventBooking.Include(e => e.EventPerformance).ToList(); //get all evnets of all users
-            }
-            else
-            {
-                bookings = db.EventBooking.Include(e => e.EventPerformance).Where(e => e.EventBooking_UserID == userId).ToList(); // get all event bookings of a particular user
-            }
+            //if (User.IsInRole("admin"))
+            //{
+            //    bookings = db.EventBooking.Include(e => e.EventPerformance).ToList(); //get all evnets of all users
+            //}
+            //else
+            //{
+            //    bookings = db.EventBooking.Include(e => e.EventPerformance).Where(e => e.EventBooking_UserID == userId).ToList(); // get all event bookings of a particular user
+            //}
 
-            return View(bookings); // return the list
+            //return View(bookings); // return the list
+
+            var viewmodel = (from eb in db.EventBooking
+                             join pd in db.EventPerformance on eb.EventBooking_EventPerformanceID equals pd.EventPerformance_ID
+                             join en in db.EventPerformance on eb.EventPerformance.EventPerformance_EventID equals en.Event.Event_ID
+                             join u in db.EventBooking on eb.EventBooking_UserID equals u.AspNetUsers.Id
+                             select new EventBookingViewModel()
+                             {
+                                 EventBooking_Date = eb.EventBooking_Date,
+                                 EventBooking_ID = eb.EventBooking_ID,
+                                 PerformanceDate = pd.EventPerformance_Date,
+                                 EventName = en.Event.Event_Name,
+                                 UserName = u.AspNetUsers.UserName
+
+                             });
+
+            return View(viewmodel.ToList());     
         }
 
         public ActionResult IndexBooking(int? id)
@@ -53,6 +70,13 @@ namespace APTEventAssignment.Controllers
             return View(bookings);
         }
 
+        private void UpdateEventBooking(EventBooking eb, AddEventBookingViewModel addviewmodel)
+        {
+            eb.EventBooking_ID = addviewmodel.EventBooking_ID;
+            eb.EventBooking_Date = addviewmodel.EventBooking_Date;
+            eb.EventBooking_UserID = addviewmodel.EventBooking_UserID;
+            eb.EventBooking_EventPerformanceID = addviewmodel.EventBooking_EventPerformanceID;
+        }
         // GET: EventBookings/Details/5
         public ActionResult Details(int? id)
         {
@@ -60,11 +84,41 @@ namespace APTEventAssignment.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EventBooking eventBooking = db.EventBooking.Find(id);
-            if (eventBooking == null)
+            EventBooking eb = db.EventBooking.Find(id);
+            if (eb == null)
             {
                 return HttpNotFound();
             }
+
+            var viewmodel = new EventBookingViewModel
+            {
+                EventBooking_Date = eb.EventBooking_Date,
+                EventBooking_ID = eb.EventBooking_ID,
+                PerformanceDate = eb.EventPerformance.EventPerformance_Date,
+                EventName = eb.EventPerformance.Event.Event_Name,
+                UserName = eb.AspNetUsers.UserName
+            };
+
+            return View(viewmodel);
+        }
+
+        
+        public ActionResult Checkout()
+        {
+            ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID");
+            return View();
+        }
+        
+        public ActionResult Checkout([Bind(Include = "EventBooking_Date,EventBooking_EventPerformanceID,EventBooking_Deleted")] EventBooking eventBooking)
+        {
+           if (ModelState.IsValid)
+            {
+                db.EventBooking.Add(eventBooking);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID", eventBooking.EventBooking_EventPerformanceID);
             return View(eventBooking);
         }
 
@@ -72,7 +126,8 @@ namespace APTEventAssignment.Controllers
         public ActionResult Create()
         {
             ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID");
-            return View();
+            //return View();
+            return View(new AddEventBookingViewModel());
         }
 
         // POST: EventBookings/Create
@@ -83,18 +138,24 @@ namespace APTEventAssignment.Controllers
 
         // in the Bind(Include = ...) put those fields only that will be returned by the view 
         //EventBooking_ID,EventBooking_Date,EventBooking_UserID,EventBooking_EventPerformanceID,EventBooking_Deleted
-        public ActionResult Create([Bind(Include = "EventBooking_Date,EventBooking_EventPerformanceID,EventBooking_Deleted")] EventBooking eventBooking)
+        //public ActionResult Create([Bind(Include = "EventBooking_Date,EventBooking_EventPerformanceID,EventBooking_Deleted")] EventBooking eventBooking)
+        public ActionResult Create(AddEventBookingViewModel addviewmodel)
         {
             if (ModelState.IsValid)
             {
-                eventBooking.EventBooking_UserID = User.Identity.GetUserId();
-                db.EventBooking.Add(eventBooking);
+                //eventBooking.EventBooking_UserID = User.Identity.GetUserId();
+              
+                var eb = new EventBooking();
+
+                UpdateEventBooking(eb, addviewmodel);
+
+                db.EventBooking.Add(eb);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID", eventBooking.EventBooking_EventPerformanceID);
-            return View(eventBooking);
+            ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID", addviewmodel.EventBooking_EventPerformanceID);
+            return View(addviewmodel);
         }
 
         // GET: EventBookings/Edit/5
@@ -104,14 +165,23 @@ namespace APTEventAssignment.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EventBooking eventBooking = db.EventBooking.Find(id);
-            if (eventBooking == null)
+            EventBooking eb = db.EventBooking.Find(id);
+            if (eb == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID", eventBooking.EventBooking_EventPerformanceID);
+
+            var addviewmodel = new AddEventBookingViewModel
+            {
+                EventBooking_ID = eb.EventBooking_ID,
+                EventBooking_Date = eb.EventBooking_Date,
+                EventBooking_UserID = eb.EventBooking_UserID,
+                EventBooking_EventPerformanceID = eb.EventBooking_EventPerformanceID,
+            };
+
+            ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID", addviewmodel.EventBooking_EventPerformanceID);
             //ViewBag.EventBooking_UserID = new SelectList(db.User, "User_ID", "User_Login", eventBooking.EventBooking_UserID);
-            return View(eventBooking);
+            return View(addviewmodel);
         }
 
         // POST: EventBookings/Edit/5
@@ -119,18 +189,24 @@ namespace APTEventAssignment.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EventBooking_Date,EventBooking_EventPerformanceID,EventBooking_Deleted")] EventBooking eventBooking)
+        //public ActionResult Edit([Bind(Include = "EventBooking_Date,EventBooking_EventPerformanceID,EventBooking_Deleted")] EventBooking eventBooking)
+        public ActionResult Edit(AddEventBookingViewModel addviewmodel)
         {
             if (ModelState.IsValid)
             {
-                eventBooking.EventBooking_UserID = User.Identity.GetUserId();
-                db.Entry(eventBooking).State = EntityState.Modified;
+                //eventBooking.EventBooking_UserID = User.Identity.GetUserId();
+                //db.Entry(eventBooking).State = EntityState.Modified;
+                //db.SaveChanges();
+                var existingBooking = db.EventBooking.Find(addviewmodel.EventBooking_ID);
+                UpdateEventBooking(existingBooking, addviewmodel);
+
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
-            ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID", eventBooking.EventBooking_EventPerformanceID);
+            ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID", addviewmodel.EventBooking_EventPerformanceID);
 
-            return View(eventBooking);
+            return View(addviewmodel);
         }
 
         // GET: EventBookings/Delete/5
@@ -140,12 +216,22 @@ namespace APTEventAssignment.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            EventBooking eventBooking = db.EventBooking.Find(id);
-            if (eventBooking == null)
+            EventBooking eb = db.EventBooking.Find(id);
+            if (eb == null)
             {
                 return HttpNotFound();
             }
-            return View(eventBooking);
+
+            var viewmodel = new EventBookingViewModel
+            {
+                EventBooking_Date = eb.EventBooking_Date,
+                EventBooking_ID = eb.EventBooking_ID,
+                PerformanceDate = eb.EventPerformance.EventPerformance_Date,
+                EventName = eb.EventPerformance.Event.Event_Name,
+                UserName = eb.AspNetUsers.UserName
+            };
+
+            return View(viewmodel);
         }
 
         // POST: EventBookings/Delete/5
@@ -153,8 +239,8 @@ namespace APTEventAssignment.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            EventBooking eventBooking = db.EventBooking.Find(id);
-            db.EventBooking.Remove(eventBooking);
+            EventBooking eb = db.EventBooking.Find(id);
+            db.EventBooking.Remove(eb);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

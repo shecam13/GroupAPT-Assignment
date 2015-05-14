@@ -65,6 +65,7 @@ namespace APTEventAssignment.ViewModels
         public int Event_CategoryID { get; set; }
 
         public byte[] Event_Image { get; set; }
+
     }
 
     public class EventsDetailsViewModel
