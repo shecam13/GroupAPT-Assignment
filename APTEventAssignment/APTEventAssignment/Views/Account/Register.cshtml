@@ -36,7 +36,8 @@
             <div class="form-group">
                 @Html.LabelFor(m => m.DOB, new { @class = "col-md-2 control-label" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(m => m.DOB, new { @class = "form-control", placeholder = "dd-MM-yyyy" })
+                    @*@Html.TextBoxFor(m => m.DOB, new { @class = "form-control", placeholder = "dd-MM-yyyy" })*@
+                    @Html.EditorFor(m => m.DOB, new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group">

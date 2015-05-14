@@ -170,41 +170,6 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Checkout\CheckoutCancel.aspx.cs">
-      <DependentUpon>CheckoutCancel.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Checkout\CheckoutCancel.aspx.designer.cs">
-      <DependentUpon>CheckoutCancel.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Checkout\CheckoutComplete.aspx.cs">
-      <DependentUpon>CheckoutComplete.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Checkout\CheckoutComplete.aspx.designer.cs">
-      <DependentUpon>CheckoutComplete.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Checkout\CheckoutError.aspx.cs">
-      <DependentUpon>CheckoutError.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Checkout\CheckoutError.aspx.designer.cs">
-      <DependentUpon>CheckoutError.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Checkout\CheckoutReview.aspx.cs">
-      <DependentUpon>CheckoutReview.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Checkout\CheckoutReview.aspx.designer.cs">
-      <DependentUpon>CheckoutReview.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Checkout\CheckoutStart.aspx.cs">
-      <DependentUpon>CheckoutStart.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Checkout\CheckoutStart.aspx.designer.cs">
-      <DependentUpon>CheckoutStart.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AspNetUsersController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
@@ -302,6 +267,8 @@
       <DependentUpon>WEB.aspx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\CategoriesViewModel.cs" />
+    <Compile Include="ViewModels\EventBookingSeatsViewModel.cs" />
     <Compile Include="ViewModels\EventBookingViewModel.cs" />
     <Compile Include="ViewModels\EventImageViewModel.cs" />
     <Compile Include="ViewModels\EventPerformancesViewModel.cs" />
@@ -309,17 +276,46 @@
     <Compile Include="ViewModels\VenueViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Checkout\CheckoutCancel.aspx" />
-    <Content Include="Checkout\CheckoutComplete.aspx" />
-    <Content Include="Checkout\CheckoutError.aspx" />
-    <Content Include="Checkout\CheckoutReview.aspx" />
-    <Content Include="Checkout\CheckoutStart.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\about\1.jpg" />
+    <Content Include="img\about\2.jpg" />
+    <Content Include="img\about\3.jpg" />
+    <Content Include="img\about\4.jpg" />
+    <Content Include="img\header-bg.jpg" />
+    <Content Include="img\home-1.jpg" />
+    <Content Include="img\logos\aetuts.jpg" />
+    <Content Include="img\logos\creative-market.jpg" />
+    <Content Include="img\logos\designmodo.jpg" />
+    <Content Include="img\logos\envato.jpg" />
+    <Content Include="img\logos\microlancer.jpg" />
+    <Content Include="img\logos\themeforest.jpg" />
+    <Content Include="img\logos\wordpress.jpg" />
+    <Content Include="img\map-image.png" />
+    <Content Include="img\portfolio\dreams-preview.png" />
+    <Content Include="img\portfolio\dreams.png" />
+    <Content Include="img\portfolio\escape-preview.png" />
+    <Content Include="img\portfolio\escape.png" />
+    <Content Include="img\portfolio\event1.png" />
+    <Content Include="img\portfolio\event2.png" />
+    <Content Include="img\portfolio\event3.png" />
+    <Content Include="img\portfolio\event4.png" />
+    <Content Include="img\portfolio\event5.png" />
+    <Content Include="img\portfolio\golden-preview.png" />
+    <Content Include="img\portfolio\golden.png" />
+    <Content Include="img\portfolio\roundicons-free.png" />
+    <Content Include="img\portfolio\roundicons.png" />
+    <Content Include="img\portfolio\startup-framework-preview.png" />
+    <Content Include="img\portfolio\startup-framework.png" />
+    <Content Include="img\portfolio\treehouse-preview.png" />
+    <Content Include="img\portfolio\treehouse.png" />
+    <Content Include="img\team\1.jpg" />
+    <Content Include="img\team\2.jpg" />
+    <Content Include="img\team\3.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\APTEventModel.edmx">
@@ -339,8 +335,6 @@
       <DependentUpon>APTEventModel.edmx</DependentUpon>
       <LastGenOutput>APTEventModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Checkout\Web.config" />
-    <Content Include="Checkout\ViewPage1.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -447,6 +441,10 @@
     <Content Include="Views\EventBookingSeats\Edit.cshtml" />
     <Content Include="Views\EventBookingSeats\Index.cshtml" />
     <Content Include="Views\EventBookingSeats\SeatingPage.cshtml" />
+    <Content Include="Views\Home\_Contact.cshtml" />
+    <Content Include="Views\Events\_Form.cshtml" />
+    <Content Include="Views\EventBookings\_Form.cshtml" />
+    <Content Include="Views\EventBookings\Checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
