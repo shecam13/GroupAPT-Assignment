@@ -46,10 +46,6 @@ namespace APTEventAssignment.Controllers
             
         }
 
-<<<<<<< HEAD
-        
-=======
->>>>>>> origin/master
         private void UpdateEvent(Event e, AddEventViewModel addviewmodel)
         {
             e.Event_ID = addviewmodel.Event_ID;

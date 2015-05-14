@@ -40,8 +40,8 @@ namespace APTEventAssignment.Controllers
         {
             ep.EventPerformance_EventID = addviewmodel.EventPerformance_EventID;
             ep.EventPerformance_ID = addviewmodel.EventPerformance_ID;
-            ep.EventPerformance_Date = addviewmodel.EventPerformance_Date;
-            ep.EventPerformance_Time = addviewmodel.EventPerformance_Time;
+            ep.EventPerformance_Date = (DateTime) addviewmodel.EventPerformance_Date;
+            ep.EventPerformance_Time = (TimeSpan) addviewmodel.EventPerformance_Time;
         }
 
         // GET: EventPerformances/Details/5
