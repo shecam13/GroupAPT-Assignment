@@ -29,8 +29,8 @@
     </Key>
     <Property Name="EventPerformance_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="EventPerformance_EventID" Type="Int32" />
-    <Property Name="EventPerformance_Date" Type="DateTime" Precision="3" />
-    <Property Name="EventPerformance_Time" Type="DateTime" Precision="3" />
+    <Property Name="EventPerformance_Date" Type="DateTime" Precision="3" Nullable="false" />
+    <Property Name="EventPerformance_Time" Type="Time" Precision="7" Nullable="false" />
     <Property Name="EventPerformance_Deleted" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="EventBooking" Relationship="Self.FK_EventBooking_EventPerformance" FromRole="EventPerformance" ToRole="EventBooking" />
     <NavigationProperty Name="Event" Relationship="APTEventsModel.FK_EventPerformance_Event" FromRole="EventPerformance" ToRole="Event" />
@@ -52,7 +52,7 @@
       <PropertyRef Name="Venue_ID" />
     </Key>
     <Property Name="Venue_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Venue_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Venue_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Venue_VenueTypeID" Type="Int32" />
     <Property Name="Venue_Capacity" Type="Int32" />
     <Property Name="Venue_Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
