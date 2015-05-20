@@ -39,11 +39,11 @@
                 </dd>*@
 
             <dt>
-                @Html.DisplayNameFor(model => model.Image)
+                @Html.DisplayNameFor(model => model.Event_Image)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Image)
+                @Html.DisplayFor(model => model.Event_Image)
             </dd>
 
             <dt>
@@ -69,7 +69,7 @@
             @Html.AntiForgeryToken()
 
             <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" /> |
+                <input type="submit" value="Delete" class="btn btn-warning" /> |
                 @Html.ActionLink("Back to List", "Index")
             </div>
         }

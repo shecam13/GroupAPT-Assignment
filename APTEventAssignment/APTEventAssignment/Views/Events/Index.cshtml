@@ -7,21 +7,23 @@
 }
 
 <div class="container">
-    <h2>Index</h2>
+    <h2>Events</h2>
 
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New Event", "Create")
+        <br />
+        @Html.ActionLink("Create New Performance Times", "Create", "EventPerformances", null, null)
     </p>
-        @using (Html.BeginForm())
-        {
+    @using (Html.BeginForm())
+    {
         <p>
-            Title: @Html.TextBox("SearchEvent") <br />
+            Event Name: @Html.TextBox("SearchEvent") 
             <input type="submit" value="Filter" />
         </p>
-        }
-        
-    <table class="table">
-        <tr>
+    }
+
+    <table class="table table-hover">
+        <tr class="h3 warning">
             <th>
                 @Html.DisplayNameFor(model => model.Event_Name)
             </th>
@@ -32,8 +34,8 @@
                     @Html.DisplayNameFor(model => model.Event_Deleted)
                 </th>*@
             @*<th>
-                @Html.DisplayNameFor(model => model.Event_Image)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.Event_Image)
+                </th>*@
             <th>
                 @*@Html.DisplayNameFor(model => model.Venue.Venue_Name)*@
                 @Html.DisplayNameFor(model => model.Event_VenueName)
@@ -58,8 +60,8 @@
                         @Html.DisplayFor(modelItem => item.Event_Deleted)
                     </td>*@
                 @*<td>
-                    @Html.DisplayFor(modelItem => item.Event_Image)
-                </td>*@
+                        @Html.DisplayFor(modelItem => item.Event_Image)
+                    </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Event_VenueName)
                 </td>
@@ -67,9 +69,10 @@
                     @Html.DisplayFor(modelItem => item.Event_CategoryName)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Event_ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Event_ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Event_ID })
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Event_ID, idEP = item.EventPerformance_ID }, null) |*@
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Event_ID}, null) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Event_ID }, null) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Event_ID}, null)
                 </td>
             </tr>
         }
@@ -77,3 +80,4 @@
     </table>
 
 </div>
+

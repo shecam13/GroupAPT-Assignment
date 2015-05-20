@@ -38,6 +38,8 @@ namespace APTEventAssignment.ViewModels
 
         public byte[] Event_Image { get; set; }
 
+        public List<EventPerformance> Event_Performances { get; set; }
+
         //public virtual Venue Venue { get; set; }
         //public virtual ICollection<EventPerformance> EventPerformance { get; set; }
         //public virtual ICollection<EventVenueZone> EventVenueZone { get; set; }
