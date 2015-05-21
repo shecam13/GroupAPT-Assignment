@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0b7bd80adb234adb85e8266d72950e4a" Name="Diagram1" ZoomLevel="75">
+      <Diagram DiagramId="0b7bd80adb234adb85e8266d72950e4a" Name="Diagram1" ZoomLevel="108">
         <EntityTypeShape EntityType="APTEventsModel.EventBooking" Width="2.125" PointX="10" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="APTEventsModel.EventBookingSeat" Width="1.5" PointX="13" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="APTEventsModel.EventPerformance" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
@@ -33,6 +33,10 @@
         <AssociationConnector Association="APTEventsModel.FK_Event_Venue" />
         <AssociationConnector Association="APTEventsModel.FK_EventPerformance_Event" />
         <AssociationConnector Association="APTEventsModel.FK_EventVenueZone_Event" />
+        <AssociationConnector Association="APTEventsModel.FK_Categoty_Categoty" />
+        <AssociationConnector Association="APTEventsModel.FK_Event_Event" />
+        <AssociationConnector Association="APTEventsModel.FK_EventBooking_EventPerformance1" />
+        <AssociationConnector Association="APTEventsModel.FK_EventPerformance_EventPerformance" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -187,6 +187,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelperRepository\Images\ImageHelper.cs" />
+    <Compile Include="Message\CreateSms.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\APTEventModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -267,6 +268,7 @@
       <DependentUpon>WEB.aspx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\BigViewModel.cs" />
     <Compile Include="ViewModels\CategoriesViewModel.cs" />
     <Compile Include="ViewModels\EventBookingSeatsViewModel.cs" />
     <Compile Include="ViewModels\EventBookingViewModel.cs" />
@@ -282,6 +284,44 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\about\1.jpg" />
+    <Content Include="img\about\2.jpg" />
+    <Content Include="img\about\3.jpg" />
+    <Content Include="img\about\4.jpg" />
+    <Content Include="img\BookingsPerMonth.png" />
+    <Content Include="img\EventsPerMonth.png" />
+    <Content Include="img\EventTicketSales.png" />
+    <Content Include="img\header-bg.jpg" />
+    <Content Include="img\home-1.jpg" />
+    <Content Include="img\logos\aetuts.jpg" />
+    <Content Include="img\logos\creative-market.jpg" />
+    <Content Include="img\logos\designmodo.jpg" />
+    <Content Include="img\logos\envato.jpg" />
+    <Content Include="img\logos\microlancer.jpg" />
+    <Content Include="img\logos\themeforest.jpg" />
+    <Content Include="img\logos\wordpress.jpg" />
+    <Content Include="img\map-image.png" />
+    <Content Include="img\portfolio\dreams-preview.png" />
+    <Content Include="img\portfolio\dreams.png" />
+    <Content Include="img\portfolio\escape-preview.png" />
+    <Content Include="img\portfolio\escape.png" />
+    <Content Include="img\portfolio\event1.png" />
+    <Content Include="img\portfolio\event2.png" />
+    <Content Include="img\portfolio\event3.png" />
+    <Content Include="img\portfolio\event4.png" />
+    <Content Include="img\portfolio\event5.png" />
+    <Content Include="img\portfolio\golden-preview.png" />
+    <Content Include="img\portfolio\golden.png" />
+    <Content Include="img\portfolio\roundicons-free.png" />
+    <Content Include="img\portfolio\roundicons.png" />
+    <Content Include="img\portfolio\startup-framework-preview.png" />
+    <Content Include="img\portfolio\startup-framework.png" />
+    <Content Include="img\portfolio\treehouse-preview.png" />
+    <Content Include="img\portfolio\treehouse.png" />
+    <Content Include="img\team\1.jpg" />
+    <Content Include="img\team\2.jpg" />
+    <Content Include="img\team\3.jpg" />
+    <Content Include="img\UserSubcriptions.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\APTEventModel.edmx">
@@ -301,6 +341,7 @@
       <DependentUpon>APTEventModel.edmx</DependentUpon>
       <LastGenOutput>APTEventModel.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\TEST.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -416,6 +457,7 @@
     <Content Include="Views\Home\_Contact.cshtml" />
     <Content Include="Views\EventBookings\_Form.cshtml" />
     <Content Include="Views\EventBookings\Checkout.cshtml" />
+    <Content Include="Views\Events\EventSearchPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -431,6 +473,17 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AXMMCFGLib">
+      <Guid>{93F64861-3B31-413C-BB5E-34A7D542BD76}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

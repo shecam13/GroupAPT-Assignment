@@ -24,9 +24,11 @@ namespace APTEventAssignment.Controllers
             //var Event = db.Event.Include(E => E.Venue).Include(E => E.Category);
             //return View(Event.ToList());
 
-            var viewmodel = (from e in db.Event
+            var viewmodel = (from e in db.Event 
                              join cid in db.Category on e.Event_CategoryID equals cid.Category_ID
                              join vt in db.Venue on e.Event_VenueID equals vt.Venue_ID
+                             //join ep in db.EventPerformance on e.Event_ID equals ep.EventPerformance_EventID
+                             //join en in db.Event on ep.EventPerformance_EventID equals en.Event_ID
                              select new EventsViewModel()
                              {
                                  Event_ID = e.Event_ID,
@@ -34,7 +36,14 @@ namespace APTEventAssignment.Controllers
                                  Event_VenueName = vt.Venue_Name,
                                  Event_Rating = e.Event_Rating,
                                  Event_CategoryName = cid.Category_Name,
-                             });
+                                 //EventPerformance_ID = ep.EventPerformance_ID,
+                                 //EventPerformance_Date = ep.EventPerformance_Date,
+                                 //EventPerformance_Time = ep.EventPerformance_Time,
+                                 //EventPerformance_EventID = en.Event_ID,
+                             }).Distinct();
+
+            //viewmodel.Distinct().OrderBy(item => item.Event_ID).First();
+;
 
 
             if (!String.IsNullOrEmpty(SearchEvent))
@@ -47,6 +56,56 @@ namespace APTEventAssignment.Controllers
             
         }
 
+        // GET: Events
+        public ActionResult EventSearchPage(string search, string category)
+        {
+
+
+            var CategoryList = new List<string>();
+
+            var CatQuery = from d in db.Category
+                           orderby d.Category_Name
+                           select d.Category_Name;
+
+            CategoryList.AddRange(CatQuery.Distinct());
+            ViewBag.Genre = new SelectList(CategoryList);
+
+
+                var viewmodel = (from e in db.Event
+                                 join cid in db.Category on e.Event_CategoryID equals cid.Category_ID
+                                 join vt in db.Venue on e.Event_VenueID equals vt.Venue_ID
+                                 select new EventsViewModel()
+                                 {
+                                     Event_ID = e.Event_ID,
+                                     Event_Name = e.Event_Name,
+                                     Event_VenueName = vt.Venue_Name,
+                                     Event_Rating = e.Event_Rating,
+                                     Event_CategoryName = cid.Category_Name,
+                                     Event_Image = e.Event_Image,
+                                 });
+
+
+                if (!String.IsNullOrEmpty(search))
+                {
+                    viewmodel = viewmodel.Where(s => s.Event_Name.Contains(search));
+                    
+                }
+
+                if (!string.IsNullOrEmpty(category))
+                {
+                    viewmodel = viewmodel.Where(x => x.Event_CategoryName == category);
+                }
+
+
+                
+
+                return View(viewmodel);
+           
+
+            }
+            
+        
+
         private void UpdateEvent(Event e, AddEventViewModel addviewmodel)
         {
             e.Event_ID = addviewmodel.Event_ID;
@@ -55,6 +114,10 @@ namespace APTEventAssignment.Controllers
             e.Event_Rating = addviewmodel.Event_Rating;
             e.Event_CategoryID = addviewmodel.Event_CategoryID;
             e.Event_Image = addviewmodel.Event_Image;
+            //ep.EventPerformance_EventID = addviewmodel.Event_ID;
+            //ep.EventPerformance_ID = addviewmodel.EventPerformance_ID;
+            //ep.EventPerformance_Date = (DateTime)addviewmodel.EventPerformance_Date;
+            //ep.EventPerformance_Time = (TimeSpan)addviewmodel.EventPerformance_Time;
         }
 
         // [HttpPost]
@@ -146,22 +209,40 @@ namespace APTEventAssignment.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Event e = db.Event.Find(id);
+            //EventPerformance ep = db.EventPerformance.Find(idEP);
             if (e == null)
             {
                 return HttpNotFound();
             }
+
+            
+            List<EventPerformance> performances = null;
+
+            // get the list of performances for a particular event
+            var query = from ep in db.EventPerformance
+                        where ep.EventPerformance_EventID == id
+                        select ep;
+
+            performances = query.ToList();
 
             var viewmodel = new EventsViewModel
             {
                 Event_ID = e.Event_ID,
                 Event_Name = e.Event_Name,
                 Event_VenueID = e.Event_VenueID,
-                //Event_VenueName = e.Venue.Venue_Name,
+                Event_VenueName = e.Venue.Venue_Name,
                 Event_Rating = e.Event_Rating,
                 Event_CategoryID = e.Event_CategoryID,
-                //Event_CategoryName = e.Category.Category_Name,
+                Event_CategoryName = e.Category.Category_Name,
+                //EventPerformance_EventID = ep.Event.Event_ID,
+                //EventPerformance_ID = ep.EventPerformance_ID,
+                //EventPerformance_Date = ep.EventPerformance_Date,
+                //EventPerformance_Time = ep.EventPerformance_Time
             };
+
+            viewmodel.Event_Performances = performances;
 
             return View(viewmodel);
         }
@@ -171,6 +252,7 @@ namespace APTEventAssignment.Controllers
         {
             ViewBag.Event_VenueID = new SelectList(db.Venue, "Venue_ID", "Venue_Name");
             ViewBag.Event_CategoryID = new SelectList(db.Category, "Category_ID", "Category_Name");
+            //ViewBag.EventPerformance_EventID = new SelectList(db.Event, "Event_ID", "Event_Name");
             return View(new AddEventViewModel());
         }
 
@@ -202,7 +284,7 @@ namespace APTEventAssignment.Controllers
         [HttpPost]
         //[ValidateAntiForgeryToken]
         //public ActionResult Create([Bind(Include = "Event_ID,Event_Name,Event_VenueID,Event_Rating,Event_Deleted,Event_CategoryID,Image")] Event @event)
-        public ActionResult Create(AddEventViewModel addviewmodel, HttpPostedFileBase file)
+        public ActionResult Create(AddEventViewModel addviewmodel)//, HttpPostedFileBase file)
         {
             //var id = addviewmodel.Event_Image;
             //if (Request.Files.Count == 0)
@@ -218,16 +300,17 @@ namespace APTEventAssignment.Controllers
                 int BytestoRead;
                 int numBytesRead;
 
-                if(file != null)
+                if(addviewmodel.Upload != null)
                 {
-                    filename = Path.GetFileName(file.FileName);
-                    bytes = new byte[file.ContentLength];
-                    BytestoRead = (int)file.ContentLength;
+
+                    filename = Path.GetFileName(addviewmodel.Upload.FileName);
+                    bytes = new byte[addviewmodel.Upload.ContentLength];
+                    BytestoRead = (int)addviewmodel.Upload.ContentLength;
                     numBytesRead = 0;
 
                     while(BytestoRead > 0)
                     {
-                        int n = file.InputStream.Read(bytes, numBytesRead, BytestoRead);
+                        int n = addviewmodel.Upload.InputStream.Read(bytes, numBytesRead, BytestoRead);
                         if (n == 0) break;
 
                         numBytesRead += n;
@@ -240,16 +323,19 @@ namespace APTEventAssignment.Controllers
                 //db.Event.Add(addviewmodel);
                 //db.SaveChanges();
                 var e = new Event();
+                var ep = new EventPerformance();
 
                 UpdateEvent(e, addviewmodel);
 
                 db.Event.Add(e);
+                //db.EventPerformance.Add(ep);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.Event_VenueID = new SelectList(db.Venue, "Venue_ID", "Venue_Name", addviewmodel.Event_VenueID);
             ViewBag.Event_CategoryID = new SelectList(db.Category, "Category_ID", "Category_Name", addviewmodel.Event_CategoryID);
+            //ViewBag.EventPerformance_EventID = new SelectList(db.Event, "Event_ID", "Event_Name", addviewmodel.EventPerformance_EventID);
             return View(addviewmodel);
         }
 
@@ -261,6 +347,7 @@ namespace APTEventAssignment.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Event e = db.Event.Find(id);
+            //EventPerformance ep = db.EventPerformance.Find(id);
             if (e == null)
             {
                 return HttpNotFound();
@@ -273,10 +360,15 @@ namespace APTEventAssignment.Controllers
                 Event_VenueID = e.Event_VenueID,
                 Event_Rating = e.Event_Rating,
                 Event_CategoryID = e.Event_CategoryID,
+                //EventPerformance_EventID = ep.Event.Event_ID,
+                //EventPerformance_ID = ep.EventPerformance_ID,
+                //EventPerformance_Date = ep.EventPerformance_Date,
+                //EventPerformance_Time = ep.EventPerformance_Time,
             };
 
             ViewBag.Event_VenueID = new SelectList(db.Venue, "Venue_ID", "Venue_Name", e.Event_VenueID);
             ViewBag.Event_CategoryID = new SelectList(db.Category, "Category_ID", "Category_Name", e.Event_CategoryID);
+            //ViewBag.EventPerformance_EventID = new SelectList(db.Event, "Event_ID", "Event_Name", ep.EventPerformance_EventID);
             return View(addviewmodel);
         }
 
@@ -290,6 +382,8 @@ namespace APTEventAssignment.Controllers
             if (ModelState.IsValid)
             {
                 var existingEvent = db.Event.Find(addviewmodel.Event_ID);
+                //var existingEP = db.EventPerformance.Find(addviewmodel.EventPerformance_ID);
+
                 UpdateEvent(existingEvent, addviewmodel);
 
                 //db.Entry(@event).State = EntityState.Modified;
@@ -298,6 +392,7 @@ namespace APTEventAssignment.Controllers
             }
             ViewBag.Event_VenueID = new SelectList(db.Venue, "Venue_ID", "Venue_Name", addviewmodel.Event_VenueID);
             ViewBag.Event_CategoryID = new SelectList(db.Category, "Category_ID", "Category_Name", addviewmodel.Event_CategoryID);
+            //ViewBag.EventPerformance_EventID = new SelectList(db.Event, "Event_ID", "Event_Name", addviewmodel.EventPerformance_EventID);
             return View(addviewmodel);
         }
 
@@ -309,6 +404,7 @@ namespace APTEventAssignment.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Event e = db.Event.Find(id);
+            //EventPerformance ep = db.EventPerformance.Find(id);
             if (e == null)
             {
                 return HttpNotFound();
@@ -321,6 +417,10 @@ namespace APTEventAssignment.Controllers
                 Event_VenueName = e.Venue.Venue_Name,
                 Event_Rating = e.Event_Rating,
                 Event_CategoryName = e.Category.Category_Name,
+                //EventPerformance_EventID = ep.Event.Event_ID,
+                //EventPerformance_ID = ep.EventPerformance_ID,
+                //EventPerformance_Date = ep.EventPerformance_Date,
+                //EventPerformance_Time = ep.EventPerformance_Time,
             };
             return View(viewmodel);
         }
@@ -332,6 +432,10 @@ namespace APTEventAssignment.Controllers
         {
             Event e = db.Event.Find(id);
             db.Event.Remove(e);
+
+            //EventPerformance ep = db.EventPerformance.Find(id);
+            //db.EventPerformance.Remove(ep);
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,0 +1,63 @@
+﻿@*@model IEnumerable<APTEventAssignment.Models.Event>*@
+@model IEnumerable<APTEventAssignment.ViewModels.EventsViewModel>
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="searchBar">
+        @using (Html.BeginForm())
+        {
+            <p>
+
+                 Search: @Html.TextBox("search")
+                <button type="submit" class="btn btn-default">Filter</button>
+                <br />
+
+                Genre :  @Html.DropDownList("Genre", "All")
+            </p>
+        }
+    </div>
+    <br />
+
+     <div class="row">
+        
+         <br />
+        @foreach (var item in Model)
+        {
+
+            if (item.Event_Image != null)
+            {
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href='@Url.Action("EventsDetailsPage", "Events", new { id = item.Event_ID })' class=" portfolio-link" data-toggle="modal">
+
+
+                        @{
+                var base64 = Convert.ToBase64String(item.Event_Image);
+                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                        }
+
+                        <img src="@imgSrc" class="img-responsive" alt="">
+
+                    </a>
+
+                    <div class="portfolio-caption">
+                        <h4>@Html.DisplayFor(modelItem => item.Event_Name)</h4>
+                        <p class="text-muted"></p>
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</div>
+
+
+
+
+
+
+
+

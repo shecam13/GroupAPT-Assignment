@@ -1,5 +1,10 @@
 ﻿@model APTEventAssignment.ViewModels.AddEventViewModel
 
+
+@using (Html.BeginForm("Create", "Events", FormMethod.Post,
+                    new { enctype = "multipart/form-data" }))
+{
+
 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 @Html.HiddenFor(model => model.Event_ID)
 
@@ -45,23 +50,42 @@
     </div>
 </div>
 
-@using (Html.BeginForm("Create", "Events", FormMethod.Post,
-                    new { enctype = "multipart/form-data" }))
-{
+
+
+
+
     <div class="form-group">
         <div class="col-md-10">
             @Html.DisplayName("Image")
             @*@Html.HiddenFor(model => model.Event_Image)*@
-            bytes = File.ReadAllBytes(HttpContext.Current.Server.MapPath("~/Images/add.png"));
-            <input type="file" name="file" id="file" style="width: 100%;" />
+            @*bytes = File.ReadAllBytes(HttpContext.Current.Server.MapPath("~/Images/add.png"));*@
+            <input type="file" name="Upload" id="Upload" style="width: 100%;" />
             @*<input type="submit" value="Upload" class="submit" />*@
         </div>
     </div>
-}
+
 
 @*<form name="datapluspics" method="post" enctype="multipart/form-data">
 
         <input type="file" id="file" name="file"/>
 
     </form>*@
+
+
+
+
+
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Create" class="btn btn-warning" />
+    </div>
+</div>
+}
+
+
+
+
+
+
 

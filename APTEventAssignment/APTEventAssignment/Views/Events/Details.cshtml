@@ -28,14 +28,6 @@
                 @Html.DisplayFor(model => model.Event_Rating)
             </dd>
 
-            @*<dt>
-                    @Html.DisplayNameFor(model => model.Event_Deleted)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Event_Deleted)
-                </dd>*@
-
             <dt>
                 @Html.DisplayNameFor(model => model.Event_Image)
             </dt>
@@ -62,8 +54,29 @@
 
         </dl>
     </div>
+
+        @foreach (var item in Model.Event_Performances)
+        {
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("Date:")
+                </dt>
+                <dd>
+                    @item.EventPerformance_Date.ToShortDateString()
+                </dd>
+                <dt>
+                    @Html.DisplayName("Time:")
+                </dt>
+                <dd>
+                    @item.EventPerformance_Time
+                </dd>
+
+            </dl>
+
+        }
+
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Event_ID }) |
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Event_ID}, null) |
         @Html.ActionLink("Back to List", "Index")
     </p>
 

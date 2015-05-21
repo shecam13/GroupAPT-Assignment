@@ -38,6 +38,10 @@ namespace APTEventAssignment.ViewModels
 
         public byte[] Event_Image { get; set; }
 
+        public List<EventPerformance> Event_Performances { get; set; }
+
+        public HttpPostedFileBase Upload { get; set; }
+
         //public virtual Venue Venue { get; set; }
         //public virtual ICollection<EventPerformance> EventPerformance { get; set; }
         //public virtual ICollection<EventVenueZone> EventVenueZone { get; set; }
@@ -66,6 +70,8 @@ namespace APTEventAssignment.ViewModels
 
         public byte[] Event_Image { get; set; }
 
+        public HttpPostedFileBase Upload { get; set; }
+
     }
 
     public class EventsDetailsViewModel
@@ -76,6 +82,10 @@ namespace APTEventAssignment.ViewModels
 
         //[HiddenInput(DisplayValue = false)]
         //public int Event_VenueID { get; set; }
+
+        
+                [Display(Name = "Event_ID")]
+                public int Event_ID { get; set; }
 
         [Display(Name = "Venue")]
         public string Event_VenueName { get; set; }
@@ -94,5 +104,7 @@ namespace APTEventAssignment.ViewModels
         public List<EventPerformance> Event_Performances { get; set; }
         //public List<System.DateTime> Event_Performances { get; set; }
         //public Nullable<System.DateTime> EventPerformance_Date { get; set; }
+
+        public HttpPostedFileBase Upload { get; set; }
     }
 }

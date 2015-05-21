@@ -16,13 +16,16 @@ namespace APTEventAssignment.ViewModels
         [HiddenInput(DisplayValue = false)]
         public Nullable<int> EventPerformance_EventID { get; set; }
 
-        //[Display(Name = "Event")]
-        //public string EventPerformance_EventName { get; set; }  since this will be a partial view to the event creation..... don't need to show the event again 
+        [Display(Name = "Event")]
+        public string EventPerformance_EventName { get; set; } // since this will be a partial view to the event creation..... don't need to show the event again 
 
+        [Display(Name = "Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> EventPerformance_Date { get; set; }
 
+
+        [Display(Name = "Time")]
         //[Required(ErrorMessage = "Is required field. Format HH:MM (24 hour time)")]
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
         public Nullable<System.TimeSpan> EventPerformance_Time { get; set; }
@@ -41,15 +44,22 @@ namespace APTEventAssignment.ViewModels
         [HiddenInput(DisplayValue = false)]
         public Nullable<int> EventPerformance_EventID { get; set; }
 
-        //[Display(Name = "Event")]
-        //public string EventPerformance_EventName { get; set; }  since this will be a partial view to the event creation..... don't need to show the event again 
+        [Display(Name = "Event")]
+        public string EventPerformance_EventName { get; set; }  //since this will be a partial view to the event creation..... don't need to show the event again 
 
+         [Display(Name = "Date")]
         [DataType(DataType.Date)]
         //[DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> EventPerformance_Date { get; set; }
 
-        [Required(ErrorMessage = "Is required field. Format HH:MM (24 hour time)")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
+        //[Required(ErrorMessage = "Is required field. Format HH:MM (24 hour time)")]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
+        //public Nullable<System.TimeSpan> EventPerformance_Time { get; set; }
+
+
+        [Display(Name = "Time")]
+        [Required(ErrorMessage = "Is required field. Format hh:mm (24 hour time)")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = @"{0:hh\:mm\:ss}")]
         public Nullable<System.TimeSpan> EventPerformance_Time { get; set; }
     }
 }
