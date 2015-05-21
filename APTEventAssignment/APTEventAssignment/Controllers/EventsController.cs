@@ -46,6 +46,56 @@ namespace APTEventAssignment.Controllers
             
         }
 
+        // GET: Events
+        public ActionResult EventSearchPage(string search, string category)
+        {
+
+
+            var CategoryList = new List<string>();
+
+            var CatQuery = from d in db.Category
+                           orderby d.Category_Name
+                           select d.Category_Name;
+
+            CategoryList.AddRange(CatQuery.Distinct());
+            ViewBag.Genre = new SelectList(CategoryList);
+
+
+                var viewmodel = (from e in db.Event
+                                 join cid in db.Category on e.Event_CategoryID equals cid.Category_ID
+                                 join vt in db.Venue on e.Event_VenueID equals vt.Venue_ID
+                                 select new EventsViewModel()
+                                 {
+                                     Event_ID = e.Event_ID,
+                                     Event_Name = e.Event_Name,
+                                     Event_VenueName = vt.Venue_Name,
+                                     Event_Rating = e.Event_Rating,
+                                     Event_CategoryName = cid.Category_Name,
+                                     Event_Image = e.Event_Image,
+                                 });
+
+
+                if (!String.IsNullOrEmpty(search))
+                {
+                    viewmodel = viewmodel.Where(s => s.Event_Name.Contains(search));
+                    
+                }
+
+                if (!string.IsNullOrEmpty(category))
+                {
+                    viewmodel = viewmodel.Where(x => x.Event_CategoryName == category);
+                }
+
+
+                
+
+                return View(viewmodel);
+           
+
+            }
+            
+        
+
         private void UpdateEvent(Event e, AddEventViewModel addviewmodel)
         {
             e.Event_ID = addviewmodel.Event_ID;

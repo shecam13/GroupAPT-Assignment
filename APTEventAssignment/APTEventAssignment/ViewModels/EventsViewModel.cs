@@ -77,6 +77,10 @@ namespace APTEventAssignment.ViewModels
         //[HiddenInput(DisplayValue = false)]
         //public int Event_VenueID { get; set; }
 
+        
+                [Display(Name = "Event_ID")]
+                public int Event_ID { get; set; }
+
         [Display(Name = "Venue")]
         public string Event_VenueName { get; set; }
 

@@ -23,5 +23,7 @@ namespace APTEventAssignment.Models
         public string Category_Name { get; set; }
     
         public virtual ICollection<Event> Event { get; set; }
+        public virtual Category Category1 { get; set; }
+        public virtual Category Category2 { get; set; }
     }
 }

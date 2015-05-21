@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using APTEventAssignment.Models;
 using APTEventAssignment.SeatingPlan;
 using APTEventAssignment.ViewModels;
+using APTEventAssignment.Message;
 
 namespace APTEventAssignment.Controllers
 {
@@ -63,6 +64,9 @@ namespace APTEventAssignment.Controllers
             {
                 Performances = GetPerformances(performances)
             };
+
+            CreateSms cs = new CreateSms();
+            cs.CreateMain();
 
             //List<DateTime> dates = new List<DateTime>();
             
