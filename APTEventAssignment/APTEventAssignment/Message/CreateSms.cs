@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using AXMMCFGLib;
@@ -8,7 +7,7 @@ namespace APTEventAssignment.Message
 {
     class CreateSms
     {
-        public void CreateMain()
+        public void SendSMS()
         {
         //static void Main(string[] args)
         //{
@@ -17,10 +16,10 @@ namespace APTEventAssignment.Message
 
             string strRecipient, strBody;
 
-            Console.WriteLine("API Module: {0}\nAPI Build: {1}\n", objMessageDB.Module, objMessageDB.Build);
+            //Console.WriteLine("API Module: {0}\nAPI Build: {1}\n", objMessageDB.Module, objMessageDB.Build);
 
             objMessageDB.Open(true);
-            Console.WriteLine("Open, result: {0} ({1})", objMessageDB.LastError, objMessageDB.GetErrorDescription(objMessageDB.LastError));
+            //Console.WriteLine("Open, result: {0} ({1})", objMessageDB.LastError, objMessageDB.GetErrorDescription(objMessageDB.LastError));
             if (objMessageDB.LastError != 0)
                 return;
 
@@ -49,14 +48,14 @@ namespace APTEventAssignment.Message
             objMessage.Body = strBody;
 
             objMessageDB.Save(ref ob);
-            Console.WriteLine("Save, result: {0} ({1})", objMessageDB.LastError, objMessageDB.GetErrorDescription(objMessageDB.LastError));
+            //Console.WriteLine("Save, result: {0} ({1})", objMessageDB.LastError, objMessageDB.GetErrorDescription(objMessageDB.LastError));
             if (objMessageDB.LastError == 0)
                 PrintMessage(objMessage);
 
             objMessageDB.Close();
-            Console.WriteLine("Closed.");
+            //Console.WriteLine("Closed.");
 
-            Console.WriteLine("Ready.");
+            //Console.WriteLine("Ready.");
         }
 
         static void PrintMessage(IXMessage objMessage)
