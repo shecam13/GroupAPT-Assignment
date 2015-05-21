@@ -12,6 +12,7 @@ using APTEventAssignment.ViewModels;
 
 namespace APTEventAssignment.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class EventPerformancesController : Controller
     {
         private APTEventsEntities db = new APTEventsEntities();

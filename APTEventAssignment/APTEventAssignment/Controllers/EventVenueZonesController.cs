@@ -11,6 +11,7 @@ using APTEventAssignment.Models;
 
 namespace APTEventAssignment.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class EventVenueZonesController : Controller
     {
         private APTEventsEntities db = new APTEventsEntities();
