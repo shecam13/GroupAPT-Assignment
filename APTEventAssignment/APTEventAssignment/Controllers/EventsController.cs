@@ -227,7 +227,7 @@ namespace APTEventAssignment.Controllers
         [HttpPost]
         //[ValidateAntiForgeryToken]
         //public ActionResult Create([Bind(Include = "Event_ID,Event_Name,Event_VenueID,Event_Rating,Event_Deleted,Event_CategoryID,Image")] Event @event)
-        public ActionResult Create(AddEventViewModel addviewmodel, HttpPostedFileBase file)
+        public ActionResult Create(AddEventViewModel addviewmodel)//, HttpPostedFileBase file)
         {
             //var id = addviewmodel.Event_Image;
             //if (Request.Files.Count == 0)
@@ -243,16 +243,17 @@ namespace APTEventAssignment.Controllers
                 int BytestoRead;
                 int numBytesRead;
 
-                if(file != null)
+                if(addviewmodel.Upload != null)
                 {
-                    filename = Path.GetFileName(file.FileName);
-                    bytes = new byte[file.ContentLength];
-                    BytestoRead = (int)file.ContentLength;
+
+                    filename = Path.GetFileName(addviewmodel.Upload.FileName);
+                    bytes = new byte[addviewmodel.Upload.ContentLength];
+                    BytestoRead = (int)addviewmodel.Upload.ContentLength;
                     numBytesRead = 0;
 
                     while(BytestoRead > 0)
                     {
-                        int n = file.InputStream.Read(bytes, numBytesRead, BytestoRead);
+                        int n = addviewmodel.Upload.InputStream.Read(bytes, numBytesRead, BytestoRead);
                         if (n == 0) break;
 
                         numBytesRead += n;
