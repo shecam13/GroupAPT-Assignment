@@ -6,16 +6,9 @@
 }
 
 <div class="container">
-    <h2>Index</h2>
-
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            @*<th>
-                @Html.DisplayNameFor(model => model.EventBooking_UserID)
-            </th>*@
+    <h2>Event Bookings</h2>
+    <table class="table table-hover">
+        <tr class="h3 warning">
             <th>
                 @Html.DisplayNameFor(model => model.UserName)
             </th>
@@ -28,24 +21,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.PerformanceDate)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.EventBooking_Deleted)
-                </th>*@
-            @*<th>
-                    @Html.DisplayNameFor(model => model.EventPerformance.EventPerformance_ID)
-                </th>*@
-            @*<th>
-                    @Html.DisplayNameFor(model => model.User.User_Login)
-                </th>*@
-            
+
         </tr>
 
         @foreach (var item in Model)
         {
             <tr>
-                <th>
-                    @Html.DisplayFor(modelItem => item.EventBooking_UserID)
-                </th>
                 <th>
                     @Html.DisplayFor(modelItem => item.UserName)
                 </th>
@@ -58,23 +39,12 @@
                 <th>
                     @Html.DisplayFor(modelItem => item.PerformanceDate)
                 </th>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.EventBooking_Date)
-                    </td>*@
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.EventBooking_Deleted)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EventPerformance.EventPerformance_ID)
-                    </td>*@
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.User.User_Login)
-                    </td>*@
-                @*<td>
-                        @Html.ActionLink("Edit", "Edit", new { id=item.EventBooking_ID }) |
+
+                <td>
+                        @*@Html.ActionLink("Edit", "Edit", new { id=item.EventBooking_ID }) |*@
                         @Html.ActionLink("Details", "Details", new { id=item.EventBooking_ID }) |
                         @Html.ActionLink("Delete", "Delete", new { id=item.EventBooking_ID })
-                    </td>*@
+                    </td>
             </tr>
         }
 

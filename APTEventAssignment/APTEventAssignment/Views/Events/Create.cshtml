@@ -19,18 +19,22 @@
 
             @Html.Partial("_Form")
 
-            
-
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Create" class="btn btn-warning" />
                 </div>
             </div>
+
+            @*@Html.Partial("~/Views/EventPerformances/Create.cshtml")*@
+
+            
         </div>
     }
 
     <div>
         @Html.ActionLink("Back to List", "Index")
+        <br />
+        @Html.ActionLink("Create New Performance Dates & Times", "Create", "EventPerformances", null, null)
     </div>
 
 </div>

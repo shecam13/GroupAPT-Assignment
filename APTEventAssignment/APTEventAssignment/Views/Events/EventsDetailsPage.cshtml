@@ -28,7 +28,7 @@
                 <ul class="list-inline">
                     @foreach (var item in Model.Event_Performances)
                     {
-                        <li><strong>Date:</strong> @item.EventPerformance_Date</li>
+                        <li><strong>Date:</strong> @item.EventPerformance_Date.ToShortDateString()</li>
                     }
                 </ul>
 

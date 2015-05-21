@@ -2,13 +2,19 @@
 
 @{
     ViewBag.Title = "Dates";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
 }
 
 <div class="container">
     <h2>Dates</h2>
 
-    <table class="table">
-        <tr>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    <table class="table table-hover">
+        <tr class="h3 warning">
             <th>
                 @Html.DisplayNameFor(model => model.EventPerformance_Date)
             </th>
@@ -18,9 +24,9 @@
             @*<th>
                     @Html.DisplayNameFor(model => model.EventPerformance_Deleted)
                 </th>*@
-            @*<th>
-                    @Html.DisplayNameFor(model => model.EventPerformance_EventID) @*//Event.Event_Name
-                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.EventPerformance_EventName) @*//Event.Event_Name*@
+            </th>
             <th></th>
         </tr>
 
@@ -37,9 +43,9 @@
                 @*<td>
                         @Html.DisplayFor(modelItem => item.EventPerformance_Deleted)
                     </td>*@
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.EventPerformance_EventID)
-                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventPerformance_EventName)
+                </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.EventPerformance_ID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.EventPerformance_ID }) |

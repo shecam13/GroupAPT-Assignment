@@ -21,13 +21,13 @@
             @Html.DisplayFor(model => model.EventBooking_Date)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.EventBooking_Deleted)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.EventBooking_Deleted)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.EventPerformance.EventPerformance_ID)
@@ -37,13 +37,13 @@
             @Html.DisplayFor(model => model.EventPerformance.EventPerformance_ID)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.User.User_Login)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.User.User_Login)
-        </dd>
+        </dd>*@
 
     </dl>
 
@@ -51,7 +51,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Delete" class="btn btn-warning" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

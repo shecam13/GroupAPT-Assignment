@@ -10,7 +10,7 @@ using APTEventAssignment.Models;
 
 namespace APTEventAssignment.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles="Admin")]
     public class AspNetUsersController : Controller
     {
         private APTEventsEntities db = new APTEventsEntities();

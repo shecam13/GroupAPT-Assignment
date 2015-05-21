@@ -23,21 +23,24 @@ namespace APTEventAssignment.Controllers
             //return View(await eventPerformance.ToListAsync());
 
             var viewmodel = (from ep in db.EventPerformance
-                             //join en in db.Event on ep.EventPerformance_EventID equals en.Event_ID
+                             join en in db.Event on ep.EventPerformance_EventID equals en.Event_ID
 
                              select new EventPerformancesViewModel()
                              {
                                  EventPerformance_ID = ep.EventPerformance_ID,
                                  EventPerformance_Date = ep.EventPerformance_Date,
                                  EventPerformance_Time = ep.EventPerformance_Time,
-                                 EventPerformance_EventID = ep.EventPerformance_EventID
+                                 EventPerformance_EventID = en.Event_ID,
+                                 EventPerformance_EventName = ep.Event.Event_Name,
+                                 
                              });
 
             return View(viewmodel.ToList());
         }
 
-        private void UpdateEventPerformance (EventPerformance ep, AddEventPerformanceViewModel addviewmodel)
+        private void UpdateEventPerformance(EventPerformance ep, AddEventPerformanceViewModel addviewmodel)
         {
+            //ep.Event.Event_Name = addviewmodel.EventPerformance_EventName;
             ep.EventPerformance_EventID = addviewmodel.EventPerformance_EventID;
             ep.EventPerformance_ID = addviewmodel.EventPerformance_ID;
             ep.EventPerformance_Date = (DateTime) addviewmodel.EventPerformance_Date;
@@ -59,7 +62,8 @@ namespace APTEventAssignment.Controllers
 
             var viewmodel = new EventPerformancesViewModel
             {
-                EventPerformance_EventID = ep.EventPerformance_EventID,
+                EventPerformance_EventName = ep.Event.Event_Name,
+                EventPerformance_EventID = ep.Event.Event_ID,
                 EventPerformance_ID = ep.EventPerformance_ID,
                 EventPerformance_Date = ep.EventPerformance_Date,
                 EventPerformance_Time = ep.EventPerformance_Time
@@ -85,6 +89,8 @@ namespace APTEventAssignment.Controllers
         {
             if (ModelState.IsValid)
             {
+
+
                 var ep = new EventPerformance();
                 UpdateEventPerformance(ep, addviewmodel);
 
@@ -112,7 +118,8 @@ namespace APTEventAssignment.Controllers
 
             var addviewmodel = new AddEventPerformanceViewModel
             {
-                EventPerformance_EventID = ep.EventPerformance_EventID,
+                EventPerformance_EventName = ep.Event.Event_Name,
+                EventPerformance_EventID = ep.Event.Event_ID,
                 EventPerformance_ID = ep.EventPerformance_ID,
                 EventPerformance_Date = ep.EventPerformance_Date,
                 EventPerformance_Time = ep.EventPerformance_Time,
@@ -127,7 +134,7 @@ namespace APTEventAssignment.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
        // public async Task<ActionResult> Edit([Bind(Include = "EventPerformance_ID,EventPerformance_EventID,EventPerformance_Date,EventPerformance_Time,EventPerformance_Deleted")] EventPerformance eventPerformance)
-       public ActionResult Edit(AddEventPerformanceViewModel addviewmodel) 
+        public ActionResult Edit(AddEventPerformanceViewModel addviewmodel) 
        {
             if (ModelState.IsValid)
             {
@@ -159,7 +166,8 @@ namespace APTEventAssignment.Controllers
 
             var viewmodel = new EventPerformancesViewModel
             {
-                EventPerformance_EventID = ep.EventPerformance_EventID,
+                EventPerformance_EventName = ep.Event.Event_Name,
+                EventPerformance_EventID = ep.Event.Event_ID,
                 EventPerformance_ID = ep.EventPerformance_ID,
                 EventPerformance_Date = ep.EventPerformance_Date,
                 EventPerformance_Time = ep.EventPerformance_Time,
