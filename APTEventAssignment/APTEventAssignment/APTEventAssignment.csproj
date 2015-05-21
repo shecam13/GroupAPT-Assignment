@@ -187,6 +187,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelperRepository\Images\ImageHelper.cs" />
+    <Compile Include="Message\CreateSms.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\APTEventModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -456,6 +457,7 @@
     <Content Include="Views\Home\_Contact.cshtml" />
     <Content Include="Views\EventBookings\_Form.cshtml" />
     <Content Include="Views\EventBookings\Checkout.cshtml" />
+    <Content Include="Views\Events\EventSearchPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -471,6 +473,17 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AXMMCFGLib">
+      <Guid>{93F64861-3B31-413C-BB5E-34A7D542BD76}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

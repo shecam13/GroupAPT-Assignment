@@ -34,7 +34,7 @@ namespace APTEventAssignment.Models
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
-        public System.DateTime DOB { get; set; }
+        public Nullable<System.DateTime> DOB { get; set; }
     
         public virtual ICollection<EventBooking> EventBooking { get; set; }
         public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }

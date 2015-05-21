@@ -32,5 +32,7 @@ namespace APTEventAssignment.Models
         public virtual Venue Venue { get; set; }
         public virtual ICollection<EventPerformance> EventPerformance { get; set; }
         public virtual ICollection<EventVenueZone> EventVenueZone { get; set; }
+        public virtual Event Event1 { get; set; }
+        public virtual Event Event2 { get; set; }
     }
 }

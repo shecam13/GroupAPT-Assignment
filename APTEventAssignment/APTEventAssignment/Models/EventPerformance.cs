@@ -27,5 +27,8 @@ namespace APTEventAssignment.Models
     
         public virtual ICollection<EventBooking> EventBooking { get; set; }
         public virtual Event Event { get; set; }
+        public virtual EventBooking EventBooking1 { get; set; }
+        public virtual EventPerformance EventPerformance1 { get; set; }
+        public virtual EventPerformance EventPerformance2 { get; set; }
     }
 }
