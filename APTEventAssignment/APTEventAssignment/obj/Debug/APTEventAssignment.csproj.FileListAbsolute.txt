@@ -177,3 +177,12 @@ C:\Users\Ian Seychell\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssign
 C:\Users\Ian Seychell\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\obj\Debug\Interop.AXMMCFGLib.dll
 C:\Users\Ian Seychell\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\obj\Debug\APTEventAssignment.csproj.ResolveComReference.cache
 C:\Users\Ian Seychell\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\obj\Debug\APTEventAssignment.csprojResolveAssemblyReference.cache
+C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\obj\Debug\APTEventAssignment.csproj.ResolveComReference.cache
+C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\ActionMailer.Net.dll
+C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\ActionMailer.Net.Mvc.dll
+C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\ActionMailer.Net.pdb
+C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\ActionMailer.Net.xml
+C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\ActionMailer.Net.Mvc.pdb
+C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\ActionMailer.Net.Mvc.xml
+C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\ImageResizer.dll
+C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\ImageResizer.xml
