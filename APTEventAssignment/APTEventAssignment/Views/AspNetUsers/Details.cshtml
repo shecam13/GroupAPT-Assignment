@@ -31,7 +31,8 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.DOB)
+                @*@Html.DisplayFor(model => model.DOB)*@
+                @String.Format("{0:dd MMMM yyyy}", Model.DOB)
             </dd>
 
         </dl>
