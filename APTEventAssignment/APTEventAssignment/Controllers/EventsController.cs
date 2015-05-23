@@ -285,7 +285,6 @@ namespace APTEventAssignment.Controllers
             //    return View();
             //}
 
-
             if (ModelState.IsValid)
             {
                 string filename = "";
@@ -293,7 +292,7 @@ namespace APTEventAssignment.Controllers
                 int BytestoRead;
                 int numBytesRead;
 
-                if(addviewmodel.Upload != null)
+                if (addviewmodel.Upload != null)
                 {
 
                     filename = Path.GetFileName(addviewmodel.Upload.FileName);
@@ -301,7 +300,7 @@ namespace APTEventAssignment.Controllers
                     BytestoRead = (int)addviewmodel.Upload.ContentLength;
                     numBytesRead = 0;
 
-                    while(BytestoRead > 0)
+                    while (BytestoRead > 0)
                     {
                         int n = addviewmodel.Upload.InputStream.Read(bytes, numBytesRead, BytestoRead);
                         if (n == 0) break;

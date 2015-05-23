@@ -23,12 +23,16 @@ namespace APTEventAssignment.ViewModels
         public string UserName { get; set; }
        
         [Display(Name = "Date of Booking")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> EventBooking_Date { get; set; }
 
         [Display(Name = "Event")]
         public string EventName { get; set; }
 
         [Display(Name = "Date of Event")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> PerformanceDate { get; set; }
 
         

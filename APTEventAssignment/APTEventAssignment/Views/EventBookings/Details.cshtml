@@ -1,4 +1,4 @@
-﻿@model APTEventAssignment.Models.EventBooking
+﻿@model APTEventAssignment.ViewModels.EventBookingViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -6,47 +6,50 @@
 }
 }
 
-<h2>Details</h2>
+<div class="container">
+    <h2>Details</h2>
 
-<div>
-    <h4>EventBooking</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.EventBooking_Date)
-        </dt>
+    <div>
+        <h4>EventBooking</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.EventBooking_Date)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EventBooking_Date)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.EventBooking_Date)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EventBooking_Deleted)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.EventName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EventBooking_Deleted)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.EventName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EventPerformance.EventPerformance_ID)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.PerformanceDate)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EventPerformance.EventPerformance_ID)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PerformanceDate)
+            </dd>
 
-        @*<dt>
-            @Html.DisplayNameFor(model => model.User.User_Login)
-        </dt>
+            <dt>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.User.User_Login)
-        </dd>*@
+                <dd>
+                    @Html.DisplayFor(model => model.UserName)
+                </dd>
 
-    </dl>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.EventBooking_ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.EventBooking_ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
