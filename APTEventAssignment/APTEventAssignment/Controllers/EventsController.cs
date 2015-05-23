@@ -17,6 +17,7 @@ namespace APTEventAssignment.Controllers
     {
         private APTEventsEntities db = new APTEventsEntities();
 
+        [Authorize(Roles = "Admin")]
         // GET: Events
         public ActionResult Index(string SearchEvent)
         {
@@ -149,9 +150,15 @@ namespace APTEventAssignment.Controllers
             // get the list of performances for a particular event
             var query = from ep in db.EventPerformance
                         where ep.EventPerformance_EventID == id
+                        orderby ep.EventPerformance_Date ascending
                         select ep;
 
             performances = query.ToList();
+
+            if (@event.Event_Rating == null)
+            {
+                @event.Event_Rating = "N/A";
+            };
 
             var viewmodel = new EventsDetailsViewModel
             {

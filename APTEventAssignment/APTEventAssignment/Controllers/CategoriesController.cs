@@ -10,6 +10,7 @@ using APTEventAssignment.Models;
 
 namespace APTEventAssignment.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CategoriesController : Controller
     {
         private APTEventsEntities db = new APTEventsEntities();

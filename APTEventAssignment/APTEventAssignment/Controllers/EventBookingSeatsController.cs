@@ -9,10 +9,10 @@ using System.Web.Mvc;
 using APTEventAssignment.Models;
 using APTEventAssignment.SeatingPlan;
 using APTEventAssignment.ViewModels;
-using APTEventAssignment.Message;
 
 namespace APTEventAssignment.Controllers
 {
+    [Authorize]
     public class EventBookingSeatsController : Controller
     {
         private APTEventsEntities db = new APTEventsEntities();
@@ -43,6 +43,7 @@ namespace APTEventAssignment.Controllers
                 foreach (var p in performances)
                 {
                     SelectListItem performanceListItem = new SelectListItem { Value = p.EventPerformance_ID.ToString(), Text = p.EventPerformance_Date.ToString() };
+                   
                     //performanceListItem = new SelectListItem { 0, "Hello"};
                     performanceList.Add(performanceListItem);
                 }
@@ -54,7 +55,6 @@ namespace APTEventAssignment.Controllers
             
         }
 
-
         public ActionResult SeatingPage()
         {
             var eventDetails = this.Session["EventDetails"] as EventsDetailsViewModel;
@@ -62,11 +62,12 @@ namespace APTEventAssignment.Controllers
 
             var viewmodel = new EventBookingSeatsViewModel
             {
+                Event_Name = eventDetails.Event_Name,
+                Event_VenueName = eventDetails.Event_VenueName,
                 Performances = GetPerformances(performances)
             };
 
-            CreateSms cs = new CreateSms();
-            cs.CreateMain();
+            ViewData["PerformanceList"] = performances;
 
             //List<DateTime> dates = new List<DateTime>();
             
@@ -111,6 +112,23 @@ namespace APTEventAssignment.Controllers
             
             return View(viewmodel);
 
+        }
+
+        [HttpPost]   
+        [ValidateAntiForgeryToken]
+        public ActionResult SeatingPage(EventBookingSeatsViewModel viewmodel)
+        {
+            //IEnumerable<SelectListItem> item = db.EventPerformance.Select(x => new SelectListItem{ Text = x.EventPerformance_Date.ToString() }).Where(?? == viewmodel.SelectPerformanceId);
+            var eventDetails = this.Session["EventDetails"] as EventsDetailsViewModel;
+            List<EventPerformance> performances = eventDetails.Event_Performances;
+
+            viewmodel.Performances = GetPerformances(performances);           
+
+            // pass the view model to the index booking page
+            this.Session["BookingDetails"] = viewmodel;
+
+            return RedirectToAction("IndexBooking", "EventBookings");
+            //return View(viewmodel);
         }
 
         //String[] seatsArray = new String[10];

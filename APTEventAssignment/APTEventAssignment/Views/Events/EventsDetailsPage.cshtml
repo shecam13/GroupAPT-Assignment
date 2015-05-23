@@ -1,5 +1,4 @@
-﻿@*@model APTEventAssignment.Models.Event*@
-@model APTEventAssignment.ViewModels.EventsDetailsViewModel
+﻿@model APTEventAssignment.ViewModels.EventsDetailsViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -8,24 +7,25 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
-            
-                <!-- Project Details Go Here -->
-                <h2>@Html.DisplayFor(model => model.Event_Name)</h2>
-                <p class="item-intro text-muted">@Html.DisplayFor(model => model.Event_VenueName)</p>
-
+        <div class="col-lg-8 col-lg-offset-2">           
                 
+            <center>
+                <h2>@Html.DisplayFor(model => model.Event_Name)</h2>
+                <h4>@Html.DisplayFor(model => model.Event_VenueName)</h4>
+                
+                <p></p>
+
                 @{
                     var base64 = Convert.ToBase64String(Model.Event_Image);
                     var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
                 }
 
                 <img src="@imgSrc" class="img-responsive" alt="">
-                
+
                 <p><strong>Rating:</strong> @Html.DisplayFor(model => model.Event_Rating)</p>
                 <p><strong>Category:</strong> @Html.DisplayFor(model => model.Event_CategoryName)</p>
 
-                <ul class="list-inline">
+                <ul style="list-style-type:none">
                     @foreach (var item in Model.Event_Performances)
                     {
                         <li><strong>Date:</strong> @item.EventPerformance_Date.ToShortDateString()</li>
@@ -34,7 +34,7 @@
 
                 @*<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>*@
                 <input type='button' class="btn btn-primary" value='Book Tickets' onclick='window.location = "@Url.Action("SeatingPage", "EventBookingSeats")";' />
-            
+            </center>
         </div>
     </div>
 </div>

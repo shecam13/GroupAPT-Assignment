@@ -1,4 +1,4 @@
-﻿@model IEnumerable<APTEventAssignment.Models.EventBooking>
+﻿@model APTEventAssignment.ViewModels.EventBookingViewModel
 @{
     ViewBag.Title = "IndexBooking";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,35 +7,41 @@
 <div class="container">
     <h2>Ticket Details</h2>
     <h5>Please confirm the following details for booking</h5>
+    <br><br><br>
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
     <table class="table">
         <tr>
-            <th>
-                @*@Html.DisplayNameFor(model => model.EventBooking_Date)*@
-                @Html.DisplayName("Time of Booking")
-            </th>
-                @*@Html.DisplayNameFor(model => model.EventPerformance.EventPerformance_ID)*@
-                @Html.DisplayName("Event Booking Seat")
-            </th>
             <th>
                 @Html.DisplayName("Event Name")
             </th>
             <th>
-                @Html.DisplayName("Venue Name")
+                @Html.DisplayFor(modelItem => modelItem.EventName)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayName("Date of Event")
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.EventBooking_UserID)*@
-                @Html.DisplayName("Date")
+                @Html.DisplayFor(modelItem => modelItem.PerformanceDate)
             </th>
-            <th></th>
         </tr>
-        @foreach (var item in Model) {
+        <tr>
+            <th>
+                @Html.DisplayName("Total Price")
+            </th>
+            <th>
+                @Html.DisplayName("???")
+            </th>
+            
+        </tr>
+        
+
+        @*@foreach (var item in Model)
+        {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.EventPerformance.EventPerformance_Time)  @*getting the time of the performance*@
+                    @Html.DisplayFor(modelItem => item.EventPerformance.EventPerformance_Time)  //getting the time of the performance
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.EventBookingSeat)
@@ -49,18 +55,36 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.EventPerformance.EventPerformance_Date)
                 </td>
-              </tr>
-                  
-            }
+            </tr>
 
-        </table>
-    </div>
+        }*@
+
+    </table>
+
     <div class="form-group">
         <div class="col-md-offset-5 col-md-12">
             @*<h4>@Html.ActionLink("Confirm Details", "Create")</h4>
-            <input type='button' value='Button' onclick='window.location = "@Url.Action("Index", "Home")";' />*@
+                <input type='button' value='Button' onclick='window.location = "@Url.Action("Index", "Home")";' />*@
             @*<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i>Book Your Seats!</button>*@
             @*<button type='button' value='Book Your Seats!' onclick='window.location = "@Url.Action("Index", "Home")";' />*@
-            <input type='button' class="btn btn-primary" value='Confirm Details' onclick='window.location = "@Url.Action("Checkout", "EventBookings")";' />
+            <div class="form-group">
+                @*<div class="col-md-offset-4 col-md-10">*@
+                    <h2>   </h2>
+                <a href="https://www.paypal.com/" target="_blank"> <img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;"> </a>
+                    @*<input type="submit" value="Confirm Checkout" class="btn btn-default" />*@
+                @*</div>*@
+            </div>
         </div>
     </div>
+@using (Html.BeginForm("IndexBooking", "EventBookings", FormMethod.Post, new { role = "form" })) //redirects back to the controller to handle post request
+    {
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <div class="col-md-offset-5 col-md-12">
+            <br>
+            <input type="submit" class="btn btn-primary" value="Confirm Checkout" onclick='@Url.Action("IndexBooking", "EventBookings")' />           
+        </div>
+    </div>
+}
+</div>
