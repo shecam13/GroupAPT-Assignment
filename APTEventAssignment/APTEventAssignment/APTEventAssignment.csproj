@@ -272,7 +272,6 @@
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\BigViewModel.cs" />
-    <Compile Include="ViewModels\CategoriesViewModel.cs" />
     <Compile Include="ViewModels\EventBookingSeatsViewModel.cs" />
     <Compile Include="ViewModels\EventBookingViewModel.cs" />
     <Compile Include="ViewModels\EventImageViewModel.cs" />
@@ -344,6 +343,7 @@
       <DependentUpon>APTEventModel.edmx</DependentUpon>
       <LastGenOutput>APTEventModel.cs</LastGenOutput>
     </Content>
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Properties\PublishProfiles\TEST.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

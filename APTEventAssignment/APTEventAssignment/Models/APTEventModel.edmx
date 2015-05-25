@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="APTEventsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="APTEventsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -54,7 +54,6 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="DOB" Type="datetime" />
           <Property Name="Email" Type="nvarchar" MaxLength="256" />
           <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
           <Property Name="PasswordHash" Type="nvarchar(max)" />
@@ -66,12 +65,13 @@
           <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="DOB" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Category_ID" />
           </Key>
-          <Property Name="Category_ID" Type="int" Nullable="false" />
+          <Property Name="Category_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Category_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Event">
@@ -90,7 +90,7 @@
           <Key>
             <PropertyRef Name="EventBooking_ID" />
           </Key>
-          <Property Name="EventBooking_ID" Type="int" Nullable="false" />
+          <Property Name="EventBooking_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EventBooking_Date" Type="datetime" />
           <Property Name="EventBooking_UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="EventBooking_EventPerformanceID" Type="int" />
@@ -100,7 +100,7 @@
           <Key>
             <PropertyRef Name="EventBookingSeat_ID" />
           </Key>
-          <Property Name="EventBookingSeat_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EventBookingSeat_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EventBookingSeat_EventBookingID" Type="int" />
           <Property Name="EventBookingSeat_SeatIdentifier" Type="nvarchar" MaxLength="255" />
           <Property Name="EventBookingSeat_Deleted" Type="bit" Nullable="false" />
@@ -109,7 +109,7 @@
           <Key>
             <PropertyRef Name="EventPerformance_ID" />
           </Key>
-          <Property Name="EventPerformance_ID" Type="int" Nullable="false" />
+          <Property Name="EventPerformance_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EventPerformance_EventID" Type="int" />
           <Property Name="EventPerformance_Date" Type="date" Nullable="false" />
           <Property Name="EventPerformance_Time" Type="time" Precision="7" Nullable="false" />
@@ -119,7 +119,7 @@
           <Key>
             <PropertyRef Name="EventVenueZone_ID" />
           </Key>
-          <Property Name="EventVenueZone_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EventVenueZone_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EventVenueZone_EventID" Type="int" />
           <Property Name="EventVenueZone_VenueZoneID" Type="int" />
           <Property Name="EventVenueZone_Price" Type="int" />
@@ -139,7 +139,7 @@
           <Key>
             <PropertyRef Name="Venue_ID" />
           </Key>
-          <Property Name="Venue_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Venue_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Venue_Name" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Venue_VenueTypeID" Type="int" />
           <Property Name="Venue_Capacity" Type="int" />
@@ -150,7 +150,7 @@
           <Key>
             <PropertyRef Name="VenueType_ID" />
           </Key>
-          <Property Name="VenueType_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VenueType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VenueType_Name" Type="nvarchar" MaxLength="255" />
           <Property Name="VenueType_Deleted" Type="bit" Nullable="false" />
         </EntityType>
@@ -158,7 +158,7 @@
           <Key>
             <PropertyRef Name="VenueZone_ID" />
           </Key>
-          <Property Name="VenueZone_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VenueZone_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VenueZone_Name" Type="nvarchar" MaxLength="255" />
           <Property Name="VenueZone_VenueID" Type="int" />
           <Property Name="VenueZone_Code" Type="nvarchar" MaxLength="255" />
@@ -166,18 +166,6 @@
           <Property Name="VenueZone_Columns" Type="int" />
           <Property Name="VenueZone_Deleted" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Categoty_Categoty">
-          <End Role="Category" Type="Self.Category" Multiplicity="1" />
-          <End Role="Category1" Type="Self.Category" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="Category_ID" />
-            </Principal>
-            <Dependent Role="Category1">
-              <PropertyRef Name="Category_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -234,27 +222,53 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Event_Event">
-          <End Role="Event" Type="Self.Event" Multiplicity="1" />
-          <End Role="Event1" Type="Self.Event" Multiplicity="0..1" />
+        <Association Name="FK_Event_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Event">
-              <PropertyRef Name="Event_ID" />
+            <Principal Role="Category">
+              <PropertyRef Name="Category_ID" />
             </Principal>
-            <Dependent Role="Event1">
-              <PropertyRef Name="Event_ID" />
+            <Dependent Role="Event">
+              <PropertyRef Name="Event_CategoryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_EventBooking_EventPerformance1">
-          <End Role="EventPerformance" Type="Self.EventPerformance" Multiplicity="1" />
-          <End Role="EventBooking" Type="Self.EventBooking" Multiplicity="0..1" />
+        <Association Name="FK_Event_Venue">
+          <End Role="Venue" Type="Self.Venue" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venue">
+              <PropertyRef Name="Venue_ID" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="Event_VenueID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventBooking_AspNetUsers1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="EventBooking" Type="Self.EventBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EventBooking">
+              <PropertyRef Name="EventBooking_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventBooking_EventPerformance">
+          <End Role="EventPerformance" Type="Self.EventPerformance" Multiplicity="0..1" />
+          <End Role="EventBooking" Type="Self.EventBooking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EventPerformance">
               <PropertyRef Name="EventPerformance_ID" />
             </Principal>
             <Dependent Role="EventBooking">
-              <PropertyRef Name="EventBooking_ID" />
+              <PropertyRef Name="EventBooking_EventPerformanceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -270,15 +284,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_EventPerformance_EventPerformance">
-          <End Role="EventPerformance" Type="Self.EventPerformance" Multiplicity="1" />
-          <End Role="EventPerformance1" Type="Self.EventPerformance" Multiplicity="0..1" />
+        <Association Name="FK_EventPerformance_Event">
+          <End Role="Event" Type="Self.Event" Multiplicity="0..1" />
+          <End Role="EventPerformance" Type="Self.EventPerformance" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="EventPerformance">
-              <PropertyRef Name="EventPerformance_ID" />
+            <Principal Role="Event">
+              <PropertyRef Name="Event_ID" />
             </Principal>
-            <Dependent Role="EventPerformance1">
-              <PropertyRef Name="EventPerformance_ID" />
+            <Dependent Role="EventPerformance">
+              <PropertyRef Name="EventPerformance_EventID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -315,6 +329,18 @@
             </Principal>
             <Dependent Role="Venue">
               <PropertyRef Name="Venue_VenueTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VenueZone_Venue">
+          <End Role="Venue" Type="Self.Venue" Multiplicity="0..1" />
+          <End Role="VenueZone" Type="Self.VenueZone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venue">
+              <PropertyRef Name="Venue_ID" />
+            </Principal>
+            <Dependent Role="VenueZone">
+              <PropertyRef Name="VenueZone_VenueID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -366,10 +392,6 @@
           <EntitySet Name="Venue" EntityType="Self.Venue" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VenueType" EntityType="Self.VenueType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VenueZone" EntityType="Self.VenueZone" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Categoty_Categoty" Association="Self.FK_Categoty_Categoty">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Category1" EntitySet="Category" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -386,11 +408,19 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
-          <AssociationSet Name="FK_Event_Event" Association="Self.FK_Event_Event">
+          <AssociationSet Name="FK_Event_Category" Association="Self.FK_Event_Category">
+            <End Role="Category" EntitySet="Category" />
             <End Role="Event" EntitySet="Event" />
-            <End Role="Event1" EntitySet="Event" />
           </AssociationSet>
-          <AssociationSet Name="FK_EventBooking_EventPerformance1" Association="Self.FK_EventBooking_EventPerformance1">
+          <AssociationSet Name="FK_Event_Venue" Association="Self.FK_Event_Venue">
+            <End Role="Venue" EntitySet="Venue" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventBooking_AspNetUsers1" Association="Self.FK_EventBooking_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="EventBooking" EntitySet="EventBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventBooking_EventPerformance" Association="Self.FK_EventBooking_EventPerformance">
             <End Role="EventPerformance" EntitySet="EventPerformance" />
             <End Role="EventBooking" EntitySet="EventBooking" />
           </AssociationSet>
@@ -398,9 +428,9 @@
             <End Role="EventBooking" EntitySet="EventBooking" />
             <End Role="EventBookingSeat" EntitySet="EventBookingSeat" />
           </AssociationSet>
-          <AssociationSet Name="FK_EventPerformance_EventPerformance" Association="Self.FK_EventPerformance_EventPerformance">
+          <AssociationSet Name="FK_EventPerformance_Event" Association="Self.FK_EventPerformance_Event">
+            <End Role="Event" EntitySet="Event" />
             <End Role="EventPerformance" EntitySet="EventPerformance" />
-            <End Role="EventPerformance1" EntitySet="EventPerformance" />
           </AssociationSet>
           <AssociationSet Name="FK_EventVenueZone_Event" Association="Self.FK_EventVenueZone_Event">
             <End Role="Event" EntitySet="Event" />
@@ -414,25 +444,15 @@
             <End Role="VenueType" EntitySet="VenueType" />
             <End Role="Venue" EntitySet="Venue" />
           </AssociationSet>
+          <AssociationSet Name="FK_VenueZone_Venue" Association="Self.FK_VenueZone_Venue">
+            <End Role="Venue" EntitySet="Venue" />
+            <End Role="VenueZone" EntitySet="VenueZone" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="APTEventsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="EventBooking">
-          <Key>
-            <PropertyRef Name="EventBooking_ID" />
-          </Key>
-          <Property Name="EventBooking_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EventBooking_Date" Type="DateTime" Precision="3" />
-          <Property Name="EventBooking_UserID" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-          <Property Name="EventBooking_EventPerformanceID" Type="Int32" />
-          <Property Name="EventBooking_Deleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="EventPerformance" Relationship="Self.FK_EventBooking_EventPerformance" FromRole="EventBooking" ToRole="EventPerformance" />
-          <NavigationProperty Name="EventBookingSeat" Relationship="Self.FK_EventBookingSeat_EventBooking" FromRole="EventBooking" ToRole="EventBookingSeat" />
-          <NavigationProperty Name="AspNetUsers" Relationship="APTEventsModel.FK_EventBooking_AspNetUsers1" FromRole="EventBooking" ToRole="AspNetUsers" />
-          <NavigationProperty Name="EventPerformance1" Relationship="APTEventsModel.FK_EventBooking_EventPerformance1" FromRole="EventBooking" ToRole="EventPerformance" />
-        </EntityType>
         <EntityType Name="EventBookingSeat">
           <Key>
             <PropertyRef Name="EventBookingSeat_ID" />
@@ -441,7 +461,7 @@
           <Property Name="EventBookingSeat_EventBookingID" Type="Int32" />
           <Property Name="EventBookingSeat_SeatIdentifier" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="EventBookingSeat_Deleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="EventBooking" Relationship="Self.FK_EventBookingSeat_EventBooking" FromRole="EventBookingSeat" ToRole="EventBooking" />
+          <NavigationProperty Name="EventBooking" Relationship="APTEventsModel.FK_EventBookingSeat_EventBooking" FromRole="EventBookingSeat" ToRole="EventBooking" />
         </EntityType>
         <EntityType Name="EventPerformance">
           <Key>
@@ -452,11 +472,10 @@
           <Property Name="EventPerformance_Date" Type="DateTime" Precision="0" Nullable="false" />
           <Property Name="EventPerformance_Time" Type="Time" Precision="7" Nullable="false" />
           <Property Name="EventPerformance_Deleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="EventBooking" Relationship="Self.FK_EventBooking_EventPerformance" FromRole="EventPerformance" ToRole="EventBooking" />
           <NavigationProperty Name="Event" Relationship="APTEventsModel.FK_EventPerformance_Event" FromRole="EventPerformance" ToRole="Event" />
-          <NavigationProperty Name="EventBooking1" Relationship="APTEventsModel.FK_EventBooking_EventPerformance1" FromRole="EventPerformance" ToRole="EventBooking" />
           <NavigationProperty Name="EventPerformance1" Relationship="APTEventsModel.FK_EventPerformance_EventPerformance" FromRole="EventPerformance" ToRole="EventPerformance1" />
           <NavigationProperty Name="EventPerformance2" Relationship="APTEventsModel.FK_EventPerformance_EventPerformance" FromRole="EventPerformance1" ToRole="EventPerformance" />
+          <NavigationProperty Name="EventBooking" Relationship="APTEventsModel.FK_EventBooking_EventPerformance" FromRole="EventPerformance" ToRole="EventBooking" />
         </EntityType>
         <EntityType Name="EventVenueZone">
           <Key>
@@ -507,30 +526,6 @@
           <NavigationProperty Name="EventVenueZone" Relationship="Self.FK_EventVenueZone_VenueZone" FromRole="VenueZone" ToRole="EventVenueZone" />
           <NavigationProperty Name="Venue" Relationship="Self.FK_VenueZone_Venue" FromRole="VenueZone" ToRole="Venue" />
         </EntityType>
-        <Association Name="FK_EventBooking_EventPerformance">
-          <End Role="EventPerformance" Type="Self.EventPerformance" Multiplicity="0..1" />
-          <End Role="EventBooking" Type="Self.EventBooking" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EventPerformance">
-              <PropertyRef Name="EventPerformance_ID" />
-            </Principal>
-            <Dependent Role="EventBooking">
-              <PropertyRef Name="EventBooking_EventPerformanceID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EventBookingSeat_EventBooking">
-          <End Role="EventBooking" Type="Self.EventBooking" Multiplicity="0..1" />
-          <End Role="EventBookingSeat" Type="Self.EventBookingSeat" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EventBooking">
-              <PropertyRef Name="EventBooking_ID" />
-            </Principal>
-            <Dependent Role="EventBookingSeat">
-              <PropertyRef Name="EventBookingSeat_EventBookingID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_EventVenueZone_VenueZone">
           <End Role="VenueZone" Type="Self.VenueZone" Multiplicity="0..1" />
           <End Role="EventVenueZone" Type="Self.EventVenueZone" Multiplicity="*" />
@@ -568,21 +563,12 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="APTEventsEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="EventBooking" EntityType="Self.EventBooking" />
           <EntitySet Name="EventBookingSeat" EntityType="Self.EventBookingSeat" />
           <EntitySet Name="EventPerformance" EntityType="Self.EventPerformance" />
           <EntitySet Name="EventVenueZone" EntityType="Self.EventVenueZone" />
           <EntitySet Name="Venue" EntityType="Self.Venue" />
           <EntitySet Name="VenueType" EntityType="Self.VenueType" />
           <EntitySet Name="VenueZone" EntityType="Self.VenueZone" />
-          <AssociationSet Name="FK_EventBooking_EventPerformance" Association="Self.FK_EventBooking_EventPerformance">
-            <End Role="EventPerformance" EntitySet="EventPerformance" />
-            <End Role="EventBooking" EntitySet="EventBooking" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EventBookingSeat_EventBooking" Association="Self.FK_EventBookingSeat_EventBooking">
-            <End Role="EventBooking" EntitySet="EventBooking" />
-            <End Role="EventBookingSeat" EntitySet="EventBookingSeat" />
-          </AssociationSet>
           <AssociationSet Name="FK_EventVenueZone_VenueZone" Association="Self.FK_EventVenueZone_VenueZone">
             <End Role="VenueZone" EntitySet="VenueZone" />
             <End Role="EventVenueZone" EntitySet="EventVenueZone" />
@@ -597,10 +583,6 @@
           </AssociationSet>
           <EntitySet Name="Category" EntityType="APTEventsModel.Category" />
           <EntitySet Name="AspNetUsers" EntityType="APTEventsModel.AspNetUsers" />
-          <AssociationSet Name="FK_EventBooking_AspNetUsers1" Association="APTEventsModel.FK_EventBooking_AspNetUsers1">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="EventBooking" EntitySet="EventBooking" />
-          </AssociationSet>
           <EntitySet Name="C__MigrationHistory" EntityType="APTEventsModel.C__MigrationHistory" />
           <EntitySet Name="AspNetRoles" EntityType="APTEventsModel.AspNetRoles" />
           <EntitySet Name="AspNetUserClaims" EntityType="APTEventsModel.AspNetUserClaims" />
@@ -673,13 +655,22 @@
             <End Role="Event" EntitySet="Event" />
             <End Role="Event1" EntitySet="Event" />
           </AssociationSet>
-          <AssociationSet Name="FK_EventBooking_EventPerformance1" Association="APTEventsModel.FK_EventBooking_EventPerformance1">
-            <End Role="EventPerformance" EntitySet="EventPerformance" />
-            <End Role="EventBooking" EntitySet="EventBooking" />
-          </AssociationSet>
           <AssociationSet Name="FK_EventPerformance_EventPerformance" Association="APTEventsModel.FK_EventPerformance_EventPerformance">
             <End Role="EventPerformance" EntitySet="EventPerformance" />
             <End Role="EventPerformance1" EntitySet="EventPerformance" />
+          </AssociationSet>
+          <EntitySet Name="EventBooking" EntityType="APTEventsModel.EventBooking" />
+          <AssociationSet Name="FK_EventBooking_AspNetUsers1" Association="APTEventsModel.FK_EventBooking_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="EventBooking" EntitySet="EventBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventBooking_EventPerformance" Association="APTEventsModel.FK_EventBooking_EventPerformance">
+            <End Role="EventPerformance" EntitySet="EventPerformance" />
+            <End Role="EventBooking" EntitySet="EventBooking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventBookingSeat_EventBooking" Association="APTEventsModel.FK_EventBookingSeat_EventBooking">
+            <End Role="EventBooking" EntitySet="EventBooking" />
+            <End Role="EventBookingSeat" EntitySet="EventBookingSeat" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Category">
@@ -708,24 +699,12 @@
           <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="DOB" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="EventBooking" Relationship="APTEventsModel.FK_EventBooking_AspNetUsers1" FromRole="AspNetUsers" ToRole="EventBooking" />
+          <Property Name="DOB" Type="DateTime" Precision="3" Nullable="false" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="APTEventsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="APTEventsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetRoles" Relationship="APTEventsModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="EventBooking" Relationship="APTEventsModel.FK_EventBooking_AspNetUsers1" FromRole="AspNetUsers" ToRole="EventBooking" />
         </EntityType>
-        <Association Name="FK_EventBooking_AspNetUsers1">
-          <End Type="APTEventsModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
-          <End Type="APTEventsModel.EventBooking" Role="EventBooking" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="EventBooking">
-              <PropertyRef Name="EventBooking_UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -910,18 +889,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_EventBooking_EventPerformance1">
-          <End Type="APTEventsModel.EventPerformance" Role="EventPerformance" Multiplicity="1" />
-          <End Type="APTEventsModel.EventBooking" Role="EventBooking" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="EventPerformance">
-              <PropertyRef Name="EventPerformance_ID" />
-            </Principal>
-            <Dependent Role="EventBooking">
-              <PropertyRef Name="EventBooking_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_EventPerformance_EventPerformance">
           <End Type="APTEventsModel.EventPerformance" Role="EventPerformance" Multiplicity="1" />
           <End Type="APTEventsModel.EventPerformance" Role="EventPerformance1" Multiplicity="0..1" />
@@ -934,23 +901,61 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="EventBooking">
+          <Key>
+            <PropertyRef Name="EventBooking_ID" />
+          </Key>
+          <Property Name="EventBooking_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventBooking_Date" Type="DateTime" Precision="3" />
+          <Property Name="EventBooking_UserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="EventBooking_EventPerformanceID" Type="Int32" />
+          <Property Name="EventBooking_Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="APTEventsModel.FK_EventBooking_AspNetUsers1" FromRole="EventBooking" ToRole="AspNetUsers" />
+          <NavigationProperty Name="EventPerformance" Relationship="APTEventsModel.FK_EventBooking_EventPerformance" FromRole="EventBooking" ToRole="EventPerformance" />
+          <NavigationProperty Name="EventBookingSeat" Relationship="APTEventsModel.FK_EventBookingSeat_EventBooking" FromRole="EventBooking" ToRole="EventBookingSeat" />
+        </EntityType>
+        <Association Name="FK_EventBooking_AspNetUsers1">
+          <End Type="APTEventsModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+          <End Type="APTEventsModel.EventBooking" Role="EventBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EventBooking">
+              <PropertyRef Name="EventBooking_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventBooking_EventPerformance">
+          <End Type="APTEventsModel.EventPerformance" Role="EventPerformance" Multiplicity="0..1" />
+          <End Type="APTEventsModel.EventBooking" Role="EventBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventPerformance">
+              <PropertyRef Name="EventPerformance_ID" />
+            </Principal>
+            <Dependent Role="EventBooking">
+              <PropertyRef Name="EventBooking_EventPerformanceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventBookingSeat_EventBooking">
+          <End Type="APTEventsModel.EventBooking" Role="EventBooking" Multiplicity="0..1" />
+          <End Type="APTEventsModel.EventBookingSeat" Role="EventBookingSeat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventBooking">
+              <PropertyRef Name="EventBooking_ID" />
+            </Principal>
+            <Dependent Role="EventBookingSeat">
+              <PropertyRef Name="EventBookingSeat_EventBookingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="APTEventsModelStoreContainer" CdmEntityContainer="APTEventsEntities">
-          <EntitySetMapping Name="EventBooking">
-            <EntityTypeMapping TypeName="APTEventsModel.EventBooking">
-              <MappingFragment StoreEntitySet="EventBooking">
-                <ScalarProperty Name="EventBooking_ID" ColumnName="EventBooking_ID" />
-                <ScalarProperty Name="EventBooking_Date" ColumnName="EventBooking_Date" />
-                <ScalarProperty Name="EventBooking_UserID" ColumnName="EventBooking_UserID" />
-                <ScalarProperty Name="EventBooking_EventPerformanceID" ColumnName="EventBooking_EventPerformanceID" />
-                <ScalarProperty Name="EventBooking_Deleted" ColumnName="EventBooking_Deleted" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="EventBookingSeat">
             <EntityTypeMapping TypeName="APTEventsModel.EventBookingSeat">
               <MappingFragment StoreEntitySet="EventBookingSeat">
@@ -1134,6 +1139,17 @@
                 <ScalarProperty Name="Event_VenueID" ColumnName="Event_VenueID" />
                 <ScalarProperty Name="Event_Name" ColumnName="Event_Name" />
                 <ScalarProperty Name="Event_ID" ColumnName="Event_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventBooking">
+            <EntityTypeMapping TypeName="APTEventsModel.EventBooking">
+              <MappingFragment StoreEntitySet="EventBooking">
+                <ScalarProperty Name="EventBooking_Deleted" ColumnName="EventBooking_Deleted" />
+                <ScalarProperty Name="EventBooking_EventPerformanceID" ColumnName="EventBooking_EventPerformanceID" />
+                <ScalarProperty Name="EventBooking_UserID" ColumnName="EventBooking_UserID" />
+                <ScalarProperty Name="EventBooking_Date" ColumnName="EventBooking_Date" />
+                <ScalarProperty Name="EventBooking_ID" ColumnName="EventBooking_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

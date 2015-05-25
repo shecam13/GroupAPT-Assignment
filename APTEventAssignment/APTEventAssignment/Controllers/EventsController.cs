@@ -43,7 +43,6 @@ namespace APTEventAssignment.Controllers
                              }).Distinct();
 
             //viewmodel.Distinct().OrderBy(item => item.Event_ID).First();
-;
 
 
             if (!String.IsNullOrEmpty(SearchEvent))
@@ -179,28 +178,6 @@ namespace APTEventAssignment.Controllers
             return View(viewmodel);
         }
 
-        //public ActionResult FileUpload(HttpPostedFileBase file)
-        //{
-
-        //    if (file != null)
-        //    {
-        //        string ImageName = System.IO.Path.GetFileName(file.FileName);
-        //        string physicalPath = Server.MapPath("~/images/" + ImageName);
-
-        //        // save image in folder
-        //        file.SaveAs(physicalPath);
-
-        //        //save new record in database
-        //        Event newRecord = new Event();
-        //        newRecord.Event_Image = ImageName;
-        //        db.Event.Add(newRecord);
-        //        db.SaveChanges();
-
-        //    }
-
-        //    Display records
-        //    return RedirectToAction("../home/Display/");
-        //}
 
         // GET: Events/Details/5
         public ActionResult Details(int? id)
@@ -256,35 +233,9 @@ namespace APTEventAssignment.Controllers
             return View(new AddEventViewModel());
         }
 
-        // POST: Events/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        ////public ActionResult Create([Bind(Include = "Event_ID,Event_Name,Event_VenueID,Event_Rating,Event_Deleted,Event_CategoryID,Image")] Event @event)
-        //public ActionResult Create(AddEventViewModel addviewmodel, HttpPostedFileBase file)
-        //{
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        var e = new Event();
-
-        //        UpdateEvent(e, addviewmodel);
-
-        //        db.Event.Add(e);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    ViewBag.Event_VenueID = new SelectList(db.Venue, "Venue_ID", "Venue_Name", addviewmodel.Event_VenueID);
-        //    ViewBag.Event_CategoryID = new SelectList(db.Category, "Category_ID", "Category_Name", addviewmodel.Event_CategoryID);
-        //    return View(addviewmodel);
-        //}
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "Event_ID,Event_Name,Event_VenueID,Event_Rating,Event_Deleted,Event_CategoryID,Image")] Event @event)
-        public ActionResult Create(AddEventViewModel addviewmodel)//, HttpPostedFileBase file)
+        public ActionResult Create(AddEventViewModel addviewmodel)
         {
             //var id = addviewmodel.Event_Image;
             //if (Request.Files.Count == 0)
@@ -303,26 +254,26 @@ namespace APTEventAssignment.Controllers
                 {
 
                     filename = Path.GetFileName(addviewmodel.Upload.FileName);
-                    bytes = new byte[addviewmodel.Upload.ContentLength];
-                    BytestoRead = (int)addviewmodel.Upload.ContentLength;
+                    bytes = new byte[addviewmodel.Upload.ContentLength]; //gets the size of the uploaded file in bytes. 
+                    BytestoRead = (int)addviewmodel.Upload.ContentLength; //typecasting the byte size to an int
                     numBytesRead = 0;
 
                     while (BytestoRead > 0)
                     {
-                        int n = addviewmodel.Upload.InputStream.Read(bytes, numBytesRead, BytestoRead);
+                        int n = addviewmodel.Upload.InputStream.Read(bytes, numBytesRead, BytestoRead); //reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read. 
                         if (n == 0) break;
 
                         numBytesRead += n;
                         BytestoRead -= n;
                     }
 
-                    addviewmodel.Event_Image = bytes;
+                    addviewmodel.Event_Image = bytes; //making the Event_Image attributes equal to the variable bytes.  
                 }
 
                 //db.Event.Add(addviewmodel);
                 //db.SaveChanges();
                 var e = new Event();
-                var ep = new EventPerformance();
+                //var ep = new EventPerformance();
 
                 UpdateEvent(e, addviewmodel);
 

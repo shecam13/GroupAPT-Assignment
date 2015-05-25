@@ -16,7 +16,7 @@
                 @Html.DisplayNameFor(model => model.UserName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DOB)
+                @Html.DisplayName("Date of Birth")
             </th>
 
             <th></th>
@@ -31,7 +31,6 @@
                     @Html.DisplayFor(modelItem => item.UserName)
                 </td>
                 <td>
-                    @*@Html.DisplayFor(modelItem => item.DOB)*@
                     @String.Format("{0:dd MMMM yyyy}", item.DOB)
                 </td>
 

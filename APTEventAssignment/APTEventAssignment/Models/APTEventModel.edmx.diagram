@@ -5,21 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="0b7bd80adb234adb85e8266d72950e4a" Name="Diagram1" ZoomLevel="108">
-        <EntityTypeShape EntityType="APTEventsModel.EventBooking" Width="2.125" PointX="10" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="APTEventsModel.EventBookingSeat" Width="1.5" PointX="13" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="APTEventsModel.EventPerformance" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="APTEventsModel.EventVenueZone" Width="1.5" PointX="7.5" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="APTEventsModel.Venue" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="APTEventsModel.VenueType" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="APTEventsModel.VenueZone" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
-        <AssociationConnector Association="APTEventsModel.FK_EventBooking_EventPerformance" ManuallyRouted="false" />
-        <AssociationConnector Association="APTEventsModel.FK_EventBookingSeat_EventBooking" ManuallyRouted="false" />
         <AssociationConnector Association="APTEventsModel.FK_EventVenueZone_VenueZone" ManuallyRouted="false" />
         <AssociationConnector Association="APTEventsModel.FK_Venue_VenueType" ManuallyRouted="false" />
         <AssociationConnector Association="APTEventsModel.FK_VenueZone_Venue" ManuallyRouted="false" />
         <EntityTypeShape EntityType="APTEventsModel.Category" Width="1.5" PointX="3" PointY="3.875" />
         <EntityTypeShape EntityType="APTEventsModel.AspNetUsers" Width="1.5" PointX="0.75" PointY="11" />
-        <AssociationConnector Association="APTEventsModel.FK_EventBooking_AspNetUsers1" />
         <EntityTypeShape EntityType="APTEventsModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="APTEventsModel.AspNetRoles" Width="1.5" PointX="1.125" PointY="16.375" />
         <EntityTypeShape EntityType="APTEventsModel.AspNetUserClaims" Width="1.5" PointX="3.375" PointY="13.375" />
@@ -35,8 +31,11 @@
         <AssociationConnector Association="APTEventsModel.FK_EventVenueZone_Event" />
         <AssociationConnector Association="APTEventsModel.FK_Categoty_Categoty" />
         <AssociationConnector Association="APTEventsModel.FK_Event_Event" />
-        <AssociationConnector Association="APTEventsModel.FK_EventBooking_EventPerformance1" />
         <AssociationConnector Association="APTEventsModel.FK_EventPerformance_EventPerformance" />
+        <EntityTypeShape EntityType="APTEventsModel.EventBooking" Width="1.5" PointX="9.75" PointY="9" />
+        <AssociationConnector Association="APTEventsModel.FK_EventBooking_AspNetUsers1" />
+        <AssociationConnector Association="APTEventsModel.FK_EventBooking_EventPerformance" />
+        <AssociationConnector Association="APTEventsModel.FK_EventBookingSeat_EventBooking" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

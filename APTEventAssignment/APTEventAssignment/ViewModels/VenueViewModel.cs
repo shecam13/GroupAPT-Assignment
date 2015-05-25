@@ -10,11 +10,6 @@ namespace APTEventAssignment.ViewModels
 {
     public class VenueViewModel
     {
-        //public VenueViewModel()
-        //{
-        //    this.Event = new HashSet<Event>();
-        //    this.VenueZone = new HashSet<VenueZone>();
-        //}
 
         [Key]
         public int Venue_ID { get; set; }
@@ -29,21 +24,11 @@ namespace APTEventAssignment.ViewModels
         [Display(Name = "Capacity")]
         public Nullable<int> Venue_Capacity { get; set; }
 
-        //[Display(Name = "Venue Type ID")]
-        //public Nullable<int> Venue_VenueTypeID { get; set; }
-
         [HiddenInput(DisplayValue = false)]
         public Nullable<int> Venue_VenueTypeID { get; set; }
 
         [Display(Name = "Venue Type")]
         public string VenueType_Name { get; set; }
-
-        //[Display(Name = "Deleted")]
-        //public bool Venue_Deleted { get; set; }
-
-        //public virtual ICollection<Event> Event { get; set; }
-        //public virtual VenueType VenueType { get; set; }
-        //public virtual ICollection<VenueZone> VenueZone { get; set; }
     }
 
     public class AddVenueViewModel
@@ -63,12 +48,6 @@ namespace APTEventAssignment.ViewModels
 
         [Display(Name = "Venue Type ID")]
         public Nullable<int> Venue_VenueTypeID { get; set; }
-
-        //[Display(Name = "Type")]
-        //public string VenueType_Name { get; set; }
-
-        //[Display(Name = "Deleted")]
-        //public bool Venue_Deleted { get; set; }
 
     }
 }
