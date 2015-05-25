@@ -10,6 +10,7 @@ namespace APTEventAssignment.ViewModels
 {
     public class EventBookingViewModel
     {
+        [Key]
         [Display(Name = "Booking Number")]
         public int EventBooking_ID { get; set; }
 
@@ -43,7 +44,9 @@ namespace APTEventAssignment.ViewModels
 
     public class AddEventBookingViewModel
     {
-        [Display(Name = "Booking Number")]
+        //[Display(Name = "Booking Number")]
+        //[HiddenInput(DisplayValue = false)]
+        [Key]
         public int EventBooking_ID { get; set; }
 
         [HiddenInput(DisplayValue = false)]

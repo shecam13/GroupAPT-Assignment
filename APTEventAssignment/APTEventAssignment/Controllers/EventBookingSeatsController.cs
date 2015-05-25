@@ -57,60 +57,67 @@ namespace APTEventAssignment.Controllers
 
         public ActionResult SeatingPage()
         {
-            var eventDetails = this.Session["EventDetails"] as EventsDetailsViewModel;
-            List<EventPerformance> performances = eventDetails.Event_Performances;
-
-            var viewmodel = new EventBookingSeatsViewModel
+            if (Session["EventDetails"] != null)
             {
-                Event_Name = eventDetails.Event_Name,
-                Event_VenueName = eventDetails.Event_VenueName,
-                Performances = GetPerformances(performances)
-            };
+                var eventDetails = this.Session["EventDetails"] as EventsDetailsViewModel;
+                List<EventPerformance> performances = eventDetails.Event_Performances;
 
-            ViewData["PerformanceList"] = performances;
+                var viewmodel = new EventBookingSeatsViewModel
+                {
+                    Event_Name = eventDetails.Event_Name,
+                    Event_VenueName = eventDetails.Event_VenueName,
+                    Performances = GetPerformances(performances)
+                };
 
-            //List<DateTime> dates = new List<DateTime>();
-            
-            //foreach (var p in performances)
-            //{
-            //    dates.Add((DateTime)p.EventPerformance_Date);
-            //}
+                ViewData["PerformanceList"] = performances;
+
+                //List<DateTime> dates = new List<DateTime>();
+
+                //foreach (var p in performances)
+                //{
+                //    dates.Add((DateTime)p.EventPerformance_Date);
+                //}
 
 
 
-            //var viewmodel = new EventBookingSeatsViewModel
-            //{
-                
-            //    Performances = new SelectList(dates)
-            //};
+                //var viewmodel = new EventBookingSeatsViewModel
+                //{
 
-            //List<String> rows = new List<String>();
-            //List<String> cols = new List<String>();
-            //List<String> codes = new List<String>();
+                //    Performances = new SelectList(dates)
+                //};
 
-            //var query = (from e in db.VenueZone
-            //             where e.VenueZone_VenueID == venueID
-            //             select e);
+                //List<String> rows = new List<String>();
+                //List<String> cols = new List<String>();
+                //List<String> codes = new List<String>();
 
-            //venueZones = query.ToList();
+                //var query = (from e in db.VenueZone
+                //             where e.VenueZone_VenueID == venueID
+                //             select e);
 
-            //foreach (var v in venueZones)
-            //{
-            //    rows.Add(v.VenueZone_Rows.ToString());
-            //    cols.Add(v.VenueZone_Rows.ToString());
-            //    codes.Add(v.VenueZone_Rows.ToString());
-            //}
+                //venueZones = query.ToList();
 
-            //WEB web = new WEB();
-            //web.setZoneDetails(rows, cols, codes);
-            
-            //ViewBag.venueZones = query.ToList();
+                //foreach (var v in venueZones)
+                //{
+                //    rows.Add(v.VenueZone_Rows.ToString());
+                //    cols.Add(v.VenueZone_Rows.ToString());
+                //    codes.Add(v.VenueZone_Rows.ToString());
+                //}
 
-            //var eventBookingSeat = db.EventBookingSeat.Include(e => e.EventBooking);
-            //return View(eventBookingSeat.ToList());
-            //ViewBag.date = dates;
-            
-            return View(viewmodel);
+                //WEB web = new WEB();
+                //web.setZoneDetails(rows, cols, codes);
+
+                //ViewBag.venueZones = query.ToList();
+
+                //var eventBookingSeat = db.EventBookingSeat.Include(e => e.EventBooking);
+                //return View(eventBookingSeat.ToList());
+                //ViewBag.date = dates;
+
+                return View(viewmodel);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
         }
 

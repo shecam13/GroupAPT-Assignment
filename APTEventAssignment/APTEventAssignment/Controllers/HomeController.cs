@@ -20,10 +20,9 @@ namespace APTEventAssignment.Controllers
 
         public ActionResult Index()
         {
-
             IList<Event> eventList = new List<Event>();
 
-            // get the most recent events including the event name and image
+            // get all the events having performance dates 
             var query = (from e in db.Event
                         join p in db.EventPerformance on e.Event_ID equals p.EventPerformance_EventID
                         orderby p.EventPerformance_Date ascending

@@ -68,17 +68,9 @@
 }*@
 
 <section id="portfolio" class="bg-light-gray">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Events</h2>
-                <h3 class="section-subheading text-muted"></h3>
-            </div>
-        </div>
         
         @Html.Partial("_AllEvents")
 
-    </div>
 </section>
 
 <!-- About Section -->
@@ -237,33 +229,7 @@
         </div>
     </div>
 </section>
-<!-- Clients Aside -->
-<aside class="clients">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-sm-6">
-                <a href="#">
-                    <img src="@Url.Content("~/img/logos/envato.jpg")" class="img-responsive img-centered" alt="">
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <a href="#">
-                    <img src="@Url.Content("~/img/logos/designmodo.jpg")" class="img-responsive img-centered" alt="">
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <a href="#">
-                    <img src="@Url.Content("~/img/logos/themeforest.jpg")" class="img-responsive img-centered" alt="">
-                </a>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <a href="#">
-                    <img src="@Url.Content("~/img/logos/creative-market.jpg")" class="img-responsive img-centered" alt="">
-                </a>
-            </div>
-        </div>
-    </div>
-</aside>
+
 <section id="contact">
     <div class="container">
         <div class="row">
@@ -274,6 +240,7 @@
         </div>
         
         @*@Html.Partial("_Contact", new EmailFormModel())*@
+
         @Html.Action("_Contact", "Home")
        
     </div>
