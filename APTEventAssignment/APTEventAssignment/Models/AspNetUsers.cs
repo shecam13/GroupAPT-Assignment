@@ -16,10 +16,10 @@ namespace APTEventAssignment.Models
     {
         public AspNetUsers()
         {
-            this.EventBooking = new HashSet<EventBooking>();
             this.AspNetUserClaims = new HashSet<AspNetUserClaims>();
             this.AspNetUserLogins = new HashSet<AspNetUserLogins>();
             this.AspNetRoles = new HashSet<AspNetRoles>();
+            this.EventBooking = new HashSet<EventBooking>();
         }
     
         public string Id { get; set; }
@@ -34,11 +34,11 @@ namespace APTEventAssignment.Models
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
-        public Nullable<System.DateTime> DOB { get; set; }
+        public System.DateTime DOB { get; set; }
     
-        public virtual ICollection<EventBooking> EventBooking { get; set; }
         public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }
+        public virtual ICollection<EventBooking> EventBooking { get; set; }
     }
 }

@@ -8,7 +8,7 @@
     <h2>Ticket Details</h2>
     <h5>Please confirm the following details for booking</h5>
     <br><br><br>
-
+    
     <table class="table">
         <tr>
             <th>
@@ -79,7 +79,7 @@
 @using (Html.BeginForm("IndexBooking", "EventBookings", FormMethod.Post, new { role = "form" })) //redirects back to the controller to handle post request
     {
     @Html.AntiForgeryToken()
-
+    @Html.HiddenFor(modelItem => modelItem.EventBooking_ID)
     <div class="form-group">
         <div class="col-md-offset-5 col-md-12">
             <br>

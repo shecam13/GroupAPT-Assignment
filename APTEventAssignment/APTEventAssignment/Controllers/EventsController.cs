@@ -120,7 +120,6 @@ namespace APTEventAssignment.Controllers
             //ep.EventPerformance_Time = (TimeSpan)addviewmodel.EventPerformance_Time;
         }
 
-        // [HttpPost]
         public ActionResult EventsDetailsPage(int? id)
         {
 

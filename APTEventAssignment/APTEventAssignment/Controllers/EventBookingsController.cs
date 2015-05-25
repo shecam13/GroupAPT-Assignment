@@ -66,99 +66,114 @@ namespace APTEventAssignment.Controllers
 
         public ActionResult IndexBooking(int? id)
         {
-            // Get all the details for the booking
-            var bookingDetails = this.Session["BookingDetails"] as EventBookingSeatsViewModel;
-            var currentDate = DateTime.Now;
-            var userId = User.Identity.GetUserId();
-            var username = User.Identity.GetUserName();
-
-            var query = (from ep in db.EventPerformance where ep.EventPerformance_ID == bookingDetails.SelectPerformanceId select ep.EventPerformance_Date).Single(); 
-            DateTime perfDate = Convert.ToDateTime(query);
-
-            var viewmodel = new EventBookingViewModel
+            if (Session["BookingDetails"] != null)
             {
-                EventBooking_UserID = userId,
-                EventBooking_EventPerformanceID = bookingDetails.SelectPerformanceId,
-                UserName = username,
-                EventBooking_Date = currentDate,
-                EventName = bookingDetails.Event_Name,
-                PerformanceDate = perfDate
-            };
+                // Get all the details for the booking
+                var bookingDetails = this.Session["BookingDetails"] as EventBookingSeatsViewModel;
+                var currentDate = DateTime.Now;
+                var userId = User.Identity.GetUserId();
+                var username = User.Identity.GetUserName();
 
-            //List<EventBooking> bookings = null;
-            //bookings = db.EventBooking.Include(e => e.EventPerformance).Where(e => e.EventBooking_UserID == userId).ToList();
+                var query = (from ep in db.EventPerformance where ep.EventPerformance_ID == bookingDetails.SelectPerformanceId select ep.EventPerformance_Date).Single();
+                DateTime perfDate = Convert.ToDateTime(query);
 
-            return View(viewmodel);
+                var viewmodel = new EventBookingViewModel
+                {
+                    EventBooking_UserID = userId,
+                    EventBooking_EventPerformanceID = bookingDetails.SelectPerformanceId,
+                    UserName = username,
+                    EventBooking_Date = currentDate,
+                    EventName = bookingDetails.Event_Name,
+                    PerformanceDate = perfDate
+                };
+
+                //List<EventBooking> bookings = null;
+                //bookings = db.EventBooking.Include(e => e.EventPerformance).Where(e => e.EventBooking_UserID == userId).ToList();
+
+                return View(viewmodel);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
-        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "None")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult IndexBooking()
         {
-            var bookingDetails = this.Session["BookingDetails"] as EventBookingSeatsViewModel;
-            var currentDate = DateTime.Now;
-            var userId = User.Identity.GetUserId();
-            var username = User.Identity.GetUserName();
-            var phoneNo = bookingDetails.PhoneNumber;
-            var bookingNo = generateBookingNo();
-
-            // get performance date according to the selected performance ID
-            var query = (from ep in db.EventPerformance where ep.EventPerformance_ID == bookingDetails.SelectPerformanceId select ep.EventPerformance_Date).Single();
-            DateTime perfDate = Convert.ToDateTime(query);
-
-            // Save changes in the db
-            var viewmodel = new AddEventBookingViewModel
+            if (Session["BookingDetails"] != null)
             {
-                EventBooking_UserID = userId,
-                EventBooking_EventPerformanceID = bookingDetails.SelectPerformanceId,
-                UserName = username,
-                EventBooking_Date = currentDate,
-                EventName = bookingDetails.Event_Name,
-                PerformanceDate = perfDate
-            };
+                var bookingDetails = this.Session["BookingDetails"] as EventBookingSeatsViewModel;
+                var currentDate = DateTime.Now;
+                var userId = User.Identity.GetUserId();
+                var username = User.Identity.GetUserName();
+                var phoneNo = bookingDetails.PhoneNumber;
+                var bookingNo = generateBookingNo();
 
-            // create booking record in db
-            Create(viewmodel);
+                // get performance date according to the selected performance ID
+                var query = (from ep in db.EventPerformance where ep.EventPerformance_ID == bookingDetails.SelectPerformanceId select ep.EventPerformance_Date).Single();
+                DateTime perfDate = Convert.ToDateTime(query);
 
-            // edit users table to include the phone number
-            var existingUser = db.AspNetUsers.Find(userId);
-            existingUser.PhoneNumber = phoneNo;
-
-            if (EditUser(existingUser) == false)
-            {
-                RedirectToAction("IndexBooking", "EventBookings");
-            }
-
-            //Send E-mail with ticket
-            var userEmail = User.Identity.GetUserName();
-
-            if (ModelState.IsValid)
-            {
-                var body = "<p><h1>{1}</h1><br><h3><u>Booking Details</u></h3><p><b>Booking Number:</b> {3}</p><p><b>Date of Booking:</b> {0}</p><p><b>Performance Date:</b> {2}</p><p><b>Seat number: </b></p><br><b>Thank you for booking with us!</b><br>Events in Malta";
-                var message = new MailMessage();
-                message.To.Add(new MailAddress(userEmail));
-                message.Subject = "Event Ticket Details";
-                message.Body = string.Format(body, viewmodel.EventBooking_Date, viewmodel.EventName, viewmodel.PerformanceDate, bookingNo);
-                message.IsBodyHtml = true;
-
-                using (var smtp = new SmtpClient())
+                // Save changes in the db
+                var viewmodel = new AddEventBookingViewModel
                 {
-                    smtp.Send(message);                   
+                    EventBooking_UserID = userId,
+                    EventBooking_EventPerformanceID = bookingDetails.SelectPerformanceId,
+                    UserName = username,
+                    EventBooking_Date = currentDate,
+                    EventName = bookingDetails.Event_Name,
+                    PerformanceDate = perfDate
+                };
+
+                // create booking record in db
+                Create(viewmodel);
+
+                // edit users table to include the phone number
+                var existingUser = db.AspNetUsers.Find(userId);
+                existingUser.PhoneNumber = phoneNo;
+
+                if (EditUser(existingUser) == false)
+                {
+                    RedirectToAction("IndexBooking", "EventBookings");
                 }
-            }
 
-            //Send SMS if phone number is provided
-            if (phoneNo != null)
+                //Send E-mail with ticket
+                var userEmail = User.Identity.GetUserName();
+
+                if (ModelState.IsValid)
+                {
+                    var body = "<p><h1>{1}</h1><br><h3><u>Booking Details</u></h3><p><b>Booking Number:</b> {3}</p><p><b>Date of Booking:</b> {0}</p><p><b>Performance Date:</b> {2}</p><p><b>Seat number: </b></p><br><b>Thank you for booking with us!</b><br>Events in Malta";
+                    var message = new MailMessage();
+                    message.To.Add(new MailAddress(userEmail));
+                    message.Subject = "Event Ticket Details";
+                    message.Body = string.Format(body, viewmodel.EventBooking_Date, viewmodel.EventName, viewmodel.PerformanceDate, bookingNo);
+                    message.IsBodyHtml = true;
+
+                    using (var smtp = new SmtpClient())
+                    {
+                        smtp.Send(message);
+                    }
+                }
+
+                //Send SMS if phone number is provided
+                //if (phoneNo != null)
+                //{
+                //    CreateSms cs = new CreateSms();
+                //    cs.SendSMS();
+                //}
+
+                // kill session
+                Session.Abandon();
+
+                return RedirectToAction("Checkout", "EventBookings");
+            }
+            else
             {
-                CreateSms cs = new CreateSms();
-                cs.SendSMS();
+                return RedirectToAction("Index", "Home");
             }
 
-            // kill session
-            //Session.Abandon();
-
-            return RedirectToAction("Checkout", "EventBookings");
+            
         }
 
         public String generateBookingNo()
@@ -172,14 +187,8 @@ namespace APTEventAssignment.Controllers
             return "EM"+num+checkdigit;
         }
 
-        private void UpdateEventBooking(EventBooking eb, AddEventBookingViewModel addviewmodel)
-        {
-            eb.EventBooking_ID = addviewmodel.EventBooking_ID;
-            eb.EventBooking_Date = addviewmodel.EventBooking_Date;
-            eb.EventBooking_UserID = addviewmodel.EventBooking_UserID;
-            eb.EventBooking_EventPerformanceID = addviewmodel.EventBooking_EventPerformanceID;
-        }
 
+        // used to include phone number 
         public bool EditUser([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,DOB")] AspNetUsers aspNetUsers)
         {
             if (ModelState.IsValid)
@@ -194,7 +203,6 @@ namespace APTEventAssignment.Controllers
             }
             
         }
-       
 
 
         // GET: EventBookings/Details/5
@@ -242,6 +250,14 @@ namespace APTEventAssignment.Controllers
 
             ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID", eventBooking.EventBooking_EventPerformanceID);
             return View(eventBooking);
+        }
+
+        private void UpdateEventBooking(EventBooking eb, AddEventBookingViewModel addviewmodel)
+        {
+            eb.EventBooking_ID = addviewmodel.EventBooking_ID;
+            eb.EventBooking_Date = addviewmodel.EventBooking_Date;
+            eb.EventBooking_UserID = addviewmodel.EventBooking_UserID;
+            eb.EventBooking_EventPerformanceID = addviewmodel.EventBooking_EventPerformanceID;
         }
 
         // GET: EventBookings/Create
