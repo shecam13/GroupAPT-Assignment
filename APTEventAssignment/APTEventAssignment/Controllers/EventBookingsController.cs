@@ -10,7 +10,7 @@ using APTEventAssignment.Models;
 using Microsoft.AspNet.Identity;
 using APTEventAssignment.ViewModels;
 using System.Net.Mail;
-using APTEventAssignment.Message;
+//using APTEventAssignment.Message;
 //using APTEventAssignment.Message;
 
 namespace APTEventAssignment.Controllers
