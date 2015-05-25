@@ -1,58 +1,60 @@
-﻿@model APTEventAssignment.Models.EventBooking
-
+﻿@model APTEventAssignment.ViewModels.EventBookingViewModel
 @{
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-}
 
-<h2>Delete</h2>
+<div class="container">
+    <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>EventBooking</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.EventBooking_Date)
-        </dt>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Event Booking</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.EventBooking_Date)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EventBooking_Date)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.EventBooking_Date)
+            </dd>
 
-        @*<dt>
-            @Html.DisplayNameFor(model => model.EventBooking_Deleted)
-        </dt>
+            @*<dt>
+                    @Html.DisplayNameFor(model => model.EventBooking_Deleted)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EventBooking_Deleted)
-        </dd>*@
+                <dd>
+                    @Html.DisplayFor(model => model.EventBooking_Deleted)
+                </dd>*@
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EventPerformance.EventPerformance_ID)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.PerformanceDate)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EventPerformance.EventPerformance_ID)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PerformanceDate)
+            </dd>
 
-        @*<dt>
-            @Html.DisplayNameFor(model => model.User.User_Login)
-        </dt>
+            @*<dt>
+                    @Html.DisplayNameFor(model => model.User.User_Login)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.User.User_Login)
-        </dd>*@
+                <dd>
+                    @Html.DisplayFor(model => model.User.User_Login)
+                </dd>*@
 
-    </dl>
+        </dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-warning" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-warning" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
 </div>
+

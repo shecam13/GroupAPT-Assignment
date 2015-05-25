@@ -42,7 +42,7 @@ namespace APTEventAssignment.Controllers
             {
                 foreach (var p in performances)
                 {
-                    SelectListItem performanceListItem = new SelectListItem { Value = p.EventPerformance_ID.ToString(), Text = p.EventPerformance_Date.ToString() };
+                    SelectListItem performanceListItem = new SelectListItem { Value = p.EventPerformance_ID.ToString(), Text = p.EventPerformance_Date.ToShortDateString() };
                    
                     //performanceListItem = new SelectListItem { 0, "Hello"};
                     performanceList.Add(performanceListItem);

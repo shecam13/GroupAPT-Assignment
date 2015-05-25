@@ -31,7 +31,8 @@
                     @Html.DisplayFor(modelItem => item.UserName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DOB)
+                    @*@Html.DisplayFor(modelItem => item.DOB)*@
+                    @String.Format("{0:dd MMMM yyyy}", item.DOB)
                 </td>
 
                 <td>

@@ -10,6 +10,7 @@ using APTEventAssignment.Models;
 using Microsoft.AspNet.Identity;
 using APTEventAssignment.ViewModels;
 using System.Net.Mail;
+using APTEventAssignment.Message;
 //using APTEventAssignment.Message;
 
 namespace APTEventAssignment.Controllers
@@ -273,7 +274,6 @@ namespace APTEventAssignment.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-
         // in the Bind(Include = ...) put those fields only that will be returned by the view 
         //EventBooking_ID,EventBooking_Date,EventBooking_UserID,EventBooking_EventPerformanceID,EventBooking_Deleted
         //public ActionResult Create([Bind(Include = "EventBooking_Date,EventBooking_EventPerformanceID,EventBooking_Deleted")] EventBooking eventBooking)
