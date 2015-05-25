@@ -1,17 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="APTEventsModelStoreContainer" CdmEntityContainer="APTEventsEntities">
-    <EntitySetMapping Name="EventBooking">
-      <EntityTypeMapping TypeName="APTEventsModel.EventBooking">
-        <MappingFragment StoreEntitySet="EventBooking">
-          <ScalarProperty Name="EventBooking_ID" ColumnName="EventBooking_ID" />
-          <ScalarProperty Name="EventBooking_Date" ColumnName="EventBooking_Date" />
-          <ScalarProperty Name="EventBooking_UserID" ColumnName="EventBooking_UserID" />
-          <ScalarProperty Name="EventBooking_EventPerformanceID" ColumnName="EventBooking_EventPerformanceID" />
-          <ScalarProperty Name="EventBooking_Deleted" ColumnName="EventBooking_Deleted" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="EventBookingSeat">
       <EntityTypeMapping TypeName="APTEventsModel.EventBookingSeat">
         <MappingFragment StoreEntitySet="EventBookingSeat">
@@ -195,6 +184,17 @@
           <ScalarProperty Name="Event_VenueID" ColumnName="Event_VenueID" />
           <ScalarProperty Name="Event_Name" ColumnName="Event_Name" />
           <ScalarProperty Name="Event_ID" ColumnName="Event_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventBooking">
+      <EntityTypeMapping TypeName="APTEventsModel.EventBooking">
+        <MappingFragment StoreEntitySet="EventBooking">
+          <ScalarProperty Name="EventBooking_Deleted" ColumnName="EventBooking_Deleted" />
+          <ScalarProperty Name="EventBooking_EventPerformanceID" ColumnName="EventBooking_EventPerformanceID" />
+          <ScalarProperty Name="EventBooking_UserID" ColumnName="EventBooking_UserID" />
+          <ScalarProperty Name="EventBooking_Date" ColumnName="EventBooking_Date" />
+          <ScalarProperty Name="EventBooking_ID" ColumnName="EventBooking_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
