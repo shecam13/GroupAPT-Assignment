@@ -17,7 +17,7 @@ namespace APTEventAssignment.ViewModels
         public string VenueZone_Name { get; set; }
 
         [HiddenInput(DisplayValue = false)]
-        public Nullable<int> VenueZone_VenueID { get; set; }
+        public int VenueZone_VenueID { get; set; }
 
         [Required]
         [Display(Name = "Venue")]
@@ -48,7 +48,7 @@ namespace APTEventAssignment.ViewModels
 
 
         [HiddenInput(DisplayValue = false)]
-        public Nullable<int> VenueZone_VenueID { get; set; }
+        public int VenueZone_VenueID { get; set; }
 
         //[Required]
         //[Display(Name = "Venue")]

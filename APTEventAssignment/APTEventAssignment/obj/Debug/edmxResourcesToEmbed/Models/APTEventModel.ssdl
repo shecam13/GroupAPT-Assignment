@@ -155,7 +155,7 @@
     </Key>
     <Property Name="VenueZone_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="VenueZone_Name" Type="nvarchar" MaxLength="255" />
-    <Property Name="VenueZone_VenueID" Type="int" />
+    <Property Name="VenueZone_VenueID" Type="int" Nullable="false" />
     <Property Name="VenueZone_Code" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="VenueZone_Rows" Type="int" Nullable="false" />
     <Property Name="VenueZone_Columns" Type="int" Nullable="false" />
@@ -332,7 +332,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_VenueZone_Venue">
-    <End Role="Venue" Type="Self.Venue" Multiplicity="0..1">
+    <End Role="Venue" Type="Self.Venue" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="VenueZone" Type="Self.VenueZone" Multiplicity="*" />
