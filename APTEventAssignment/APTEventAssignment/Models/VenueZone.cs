@@ -21,7 +21,7 @@ namespace APTEventAssignment.Models
     
         public int VenueZone_ID { get; set; }
         public string VenueZone_Name { get; set; }
-        public Nullable<int> VenueZone_VenueID { get; set; }
+        public int VenueZone_VenueID { get; set; }
         public string VenueZone_Code { get; set; }
         public int VenueZone_Rows { get; set; }
         public int VenueZone_Columns { get; set; }
