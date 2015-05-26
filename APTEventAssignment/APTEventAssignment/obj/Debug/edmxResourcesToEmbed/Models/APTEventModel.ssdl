@@ -156,9 +156,9 @@
     <Property Name="VenueZone_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="VenueZone_Name" Type="nvarchar" MaxLength="255" />
     <Property Name="VenueZone_VenueID" Type="int" />
-    <Property Name="VenueZone_Code" Type="nvarchar" MaxLength="255" />
-    <Property Name="VenueZone_Rows" Type="int" />
-    <Property Name="VenueZone_Columns" Type="int" />
+    <Property Name="VenueZone_Code" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="VenueZone_Rows" Type="int" Nullable="false" />
+    <Property Name="VenueZone_Columns" Type="int" Nullable="false" />
     <Property Name="VenueZone_Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -244,7 +244,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_EventBooking_AspNetUsers1">
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="EventBooking" Type="Self.EventBooking" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
@@ -280,7 +282,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_EventPerformance_Event">
-    <End Role="Event" Type="Self.Event" Multiplicity="0..1" />
+    <End Role="Event" Type="Self.Event" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="EventPerformance" Type="Self.EventPerformance" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Event">
@@ -328,7 +332,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_VenueZone_Venue">
-    <End Role="Venue" Type="Self.Venue" Multiplicity="0..1" />
+    <End Role="Venue" Type="Self.Venue" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="VenueZone" Type="Self.VenueZone" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Venue">
