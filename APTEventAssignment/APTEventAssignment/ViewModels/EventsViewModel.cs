@@ -97,6 +97,6 @@ namespace APTEventAssignment.ViewModels
         //public List<System.DateTime> Event_Performances { get; set; }
         //public Nullable<System.DateTime> EventPerformance_Date { get; set; }
 
-        public HttpPostedFileBase Upload { get; set; }
+        //public HttpPostedFileBase Upload { get; set; }
     }
 }

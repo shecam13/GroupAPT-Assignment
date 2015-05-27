@@ -9,8 +9,9 @@
 <div class="container">
     <h2>Edit</h2>
 
-    @using (Html.BeginForm())
-    {
+@using (Html.BeginForm("Edit", "Events", FormMethod.Post,
+                    new { enctype = "multipart/form-data" }))
+{
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">

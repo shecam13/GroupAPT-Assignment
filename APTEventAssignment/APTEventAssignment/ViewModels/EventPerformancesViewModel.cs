@@ -47,7 +47,7 @@ namespace APTEventAssignment.ViewModels
         [Display(Name = "Event")]
         public string EventPerformance_EventName { get; set; }  //since this will be a partial view to the event creation..... don't need to show the event again 
 
-         [Display(Name = "Date")]
+        [Display(Name = "Date")]
         [DataType(DataType.Date)]
         //[DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> EventPerformance_Date { get; set; }
