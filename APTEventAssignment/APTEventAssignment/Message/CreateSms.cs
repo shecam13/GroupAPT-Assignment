@@ -7,7 +7,7 @@ namespace APTEventAssignment.Message
 {
     class CreateSms
     {
-        public void SendSMS(String bookingDate, String eventName, String eventDate)
+        public void SendSMS(String phoneNum, String bookingDate, String eventName, String eventDate)
         {
        
             XMessageDB objMessageDB = new XMessageDB();
@@ -24,7 +24,7 @@ namespace APTEventAssignment.Message
 
             //Console.WriteLine("Enter recipient's mobile number (like: +4412345678): ");
             //strRecipient = Console.ReadLine();
-            strRecipient = "+35679201120";
+            strRecipient = "+356"+phoneNum;
 
             //Console.WriteLine("Enter body of the message: ");
             //strBody = Console.ReadLine();
