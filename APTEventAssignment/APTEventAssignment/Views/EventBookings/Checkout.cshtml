@@ -14,14 +14,11 @@
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @*@Html.LabelFor(m => m.EventBooking_Date, htmlAttributes: new { @class = "col-md-2 control-label" })*@
                 <div class="col-md-10">
-                    @*@Html.TextBoxFor(m => m.EventBooking_Date, new { htmlAttributes = new { @class = "form-control" } })*@
-                    @*@Html.ValidationMessageFor(m => m.EventBooking_Date, "", new { @class = "text-danger" })*@
                     <h6>Thank You for buying your tickets with us... an email and SMS will be sent to the details you sent us </h6>
                 </div>
             </div>
-            <br>
+            <div class="row row-space"></div>
             <div class="form-group">
                 <div class="col-md-offset-5 col-md-12">
                     <input type='button' class="btn btn-primary" value='Proceed to Events' onclick='window.location = "@Url.Action("Index", "Home")#portfolio";' />

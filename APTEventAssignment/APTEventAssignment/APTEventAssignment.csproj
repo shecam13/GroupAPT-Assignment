@@ -461,6 +461,7 @@
     <Content Include="Views\EventBookings\_Form.cshtml" />
     <Content Include="Views\EventBookings\Checkout.cshtml" />
     <Content Include="Views\Events\EventSearchPage.cshtml" />
+    <Content Include="Views\Shared\_SeatingPageLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

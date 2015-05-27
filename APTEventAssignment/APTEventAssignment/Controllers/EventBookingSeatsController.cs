@@ -55,7 +55,90 @@ namespace APTEventAssignment.Controllers
             
         }
 
-        public ActionResult SeatingPage()
+        enum Seating
+        {
+            Code = 0,
+            Title = 1,
+            Rows = 2,
+            Columns = 3
+        }
+
+
+        public Array getSeatingBookedForShow(long ShowID)
+        {
+            string[] arrBookings = new string[51];
+
+            arrBookings[0] = "L002";
+            arrBookings[1] = "L071";
+            arrBookings[2] = "M122";
+            arrBookings[3] = "M093";
+            arrBookings[4] = "M094";
+            arrBookings[5] = "M095";
+            arrBookings[6] = "R000";
+
+            return arrBookings;
+        }
+
+        public int getSeatingZoneCountForShow(string Code)
+        {
+            int intZoneCount = 0;
+
+            switch (Code)
+            {
+                case "A":
+                    intZoneCount = 3;
+                    break;
+                case "B":
+                    intZoneCount = 2;
+                    break;
+                case "C":
+                    intZoneCount = 4;
+                    break;
+            }
+            return intZoneCount;
+        }
+
+
+        public Array getSeatingPlanForShow(string Code)
+        {
+            int intZoneCount = 0;
+            string[,] arrSeating = new string[1, 6];
+            string[,] arrBookedSeats = new string[1, 3];
+
+            switch (Code)
+            {
+                case "A":
+                    //Define the Number of Vertical Zone 
+                    intZoneCount = 3;
+                    //Create the Array with the Zone Information
+                    arrSeating = new string[intZoneCount, 6];
+                    arrSeating[0, (int)Seating.Code] = "L";
+                    arrSeating[0, (int)Seating.Title] = "LEFT WING";
+                    arrSeating[0, (int)Seating.Rows] = "10";
+                    arrSeating[0, (int)Seating.Columns] = "5";
+
+                    arrSeating[1, (int)Seating.Code] = "M";
+                    arrSeating[1, (int)Seating.Title] = "MIDDLE";
+                    arrSeating[1, (int)Seating.Rows] = "10";
+                    arrSeating[1, (int)Seating.Columns] = "15";
+
+                    arrSeating[2, (int)Seating.Code] = "R";
+                    arrSeating[2, (int)Seating.Title] = "RIGHT WING";
+                    arrSeating[2, (int)Seating.Rows] = "10";
+                    arrSeating[2, (int)Seating.Columns] = "5";
+                    break;
+                case "B":
+
+                    break;
+                case "C":
+
+                    break;
+
+            }
+            return arrSeating;
+        }
+
+        public ActionResult SeatingPage(string Code)
         {
             if (Session["EventDetails"] != null)
             {
@@ -111,6 +194,12 @@ namespace APTEventAssignment.Controllers
                 //var eventBookingSeat = db.EventBookingSeat.Include(e => e.EventBooking);
                 //return View(eventBookingSeat.ToList());
                 //ViewBag.date = dates;
+
+                //for seating
+                ViewBag.Zones = getSeatingZoneCountForShow("A");
+                ViewBag.Layout = getSeatingPlanForShow("A");
+                ViewBag.Booked = getSeatingBookedForShow(1);
+
 
                 return View(viewmodel);
             }
