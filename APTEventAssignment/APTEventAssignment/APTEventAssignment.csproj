@@ -182,7 +182,6 @@
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\EventVenueZonesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ImageDataController.cs" />
     <Compile Include="Controllers\VenuesController.cs" />
     <Compile Include="Controllers\VenueTypesController.cs" />
     <Compile Include="Controllers\VenueZonesController.cs" />

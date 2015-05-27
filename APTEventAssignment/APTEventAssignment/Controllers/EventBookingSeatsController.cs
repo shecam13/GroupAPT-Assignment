@@ -26,12 +26,10 @@ namespace APTEventAssignment.Controllers
 
         //int venueID = 1;
         //String venueCode = "L";
-
         //List<VenueZone> venueZones = null;
 
         public List<SelectListItem> GetPerformances(List<EventPerformance> performances)
         {
-            //SelectListItem performanceListItem = new SelectListItem();
             List<SelectListItem> performanceList = new List<SelectListItem>();
 
             if (performances.Count == 0)
@@ -43,12 +41,9 @@ namespace APTEventAssignment.Controllers
                 foreach (var p in performances)
                 {
                     SelectListItem performanceListItem = new SelectListItem { Value = p.EventPerformance_ID.ToString(), Text = p.EventPerformance_Date.ToShortDateString() };
-                   
-                    //performanceListItem = new SelectListItem { 0, "Hello"};
+                                       
                     performanceList.Add(performanceListItem);
                 }
-
-                //performanceList = new SelectList((SelectListItem) performanceListItem, "Value", "Text");
 
                 return performanceList;
             }
@@ -62,7 +57,6 @@ namespace APTEventAssignment.Controllers
             Rows = 2,
             Columns = 3
         }
-
 
         public Array getSeatingBookedForShow(long ShowID)
         {

@@ -20,9 +20,6 @@ namespace APTEventAssignment.Controllers
         // GET: EventPerformances
         public ActionResult Index()
         {
-            //var eventPerformance = db.EventPerformance.Include(e => e.Event);
-            //return View(await eventPerformance.ToListAsync());
-
             var viewmodel = (from ep in db.EventPerformance
                              join en in db.Event on ep.EventPerformance_EventID equals en.Event_ID
 
@@ -41,7 +38,6 @@ namespace APTEventAssignment.Controllers
 
         private void UpdateEventPerformance(EventPerformance ep, AddEventPerformanceViewModel addviewmodel)
         {
-            //ep.Event.Event_Name = addviewmodel.EventPerformance_EventName;
             ep.EventPerformance_EventID = addviewmodel.EventPerformance_EventID;
             ep.EventPerformance_ID = addviewmodel.EventPerformance_ID;
             ep.EventPerformance_Date = (DateTime) addviewmodel.EventPerformance_Date;
@@ -85,13 +81,10 @@ namespace APTEventAssignment.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Create([Bind(Include = "EventPerformance_ID,EventPerformance_EventID,EventPerformance_Date,EventPerformance_Time,EventPerformance_Deleted")] EventPerformance eventPerformance)
         public ActionResult Create(AddEventPerformanceViewModel addviewmodel)
         {
             if (ModelState.IsValid)
             {
-
-
                 var ep = new EventPerformance();
                 UpdateEventPerformance(ep, addviewmodel);
 
