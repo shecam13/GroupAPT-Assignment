@@ -1,0 +1,129 @@
+﻿body {
+    margin-top: 0px;
+}
+
+.body-content {
+    padding-top: 10px;
+}
+
+.topBanner {
+    background-color:#222;
+    border-color:#080808;
+    height: 80px;
+}
+
+.topBannerHeader {
+    background-color:#222;
+    border-color:#080808;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left:15px
+}
+
+.topBannerTitle {
+    font-family: Verdana, Arial, 'Times New Roman';
+    font-size: 20px;
+    font-weight: bold;
+    color: #fefefe;
+    text-decoration: none;
+}
+
+.topBannerMenu {
+    background-color:#808080;
+    border-color:#808080;
+    height: 30px;
+    padding-top: 5px;
+}
+
+.menuOption, .menuOptionNoHover {
+    background-color:#808080;
+    border-color:#808080;
+    text-align: center;
+}
+
+.menuOption:hover {
+    background-color:#fab001;
+    border-color:#fab001;
+    text-align: center;
+}
+
+
+
+.menuOptionLink {
+    width:150px;
+    text-decoration: none;
+    font-family: Verdana, Arial, 'Times New Roman';
+    font-size: 12px;
+    font-weight: bold;
+    color: #fefefe;
+}
+
+
+.button100 {
+    border: 1px solid #808080;
+    }
+
+.buttonSize150 {
+    border: 1px solid #808080;
+    width: 150px;
+    }
+
+
+.seatingContainer {
+   
+    text-align: -webkit-center;
+}
+
+.seating {
+    font-family: Verdana, Arial, 'Times New Roman';
+    color: #000000;
+    font-size: 8px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    text-decoration : none;
+    width: 25px;
+    height: 25px;
+    border-style: none;
+    border: 0px solid;
+    margin: 0px 0px 0px 0px;
+}
+
+.seatingAvailableBg {
+    background-color : #d0eaa6; 
+    cursor: pointer;
+}
+
+.seatingBookedBg {
+    background-color : #971C1C;
+    cursor: not-allowed;
+}
+
+.seatingSelectedBg{
+    background-color: #7ea839;
+    cursor: not-allowed;
+}
+
+
+.seatingZoneTitle {
+    font-family: Verdana, Arial, 'Times New Roman';
+    color: #2C2C2C;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center; 
+    background-color: #c7c7c7;
+}
+
+.seatingPlan {
+    float: left;
+}
+
+.seatingSelected {
+    border: 1px solid #808080;   
+    float: right; 
+}
+
+.zoneBorder {
+    border: 1px solid #ededed;
+}
+

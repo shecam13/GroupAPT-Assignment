@@ -62,6 +62,7 @@ namespace APTEventAssignment.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult _Contact(EmailFormModel model)
         {
+            // if model is valid send e-mail
             if (ModelState.IsValid)
             {
                 var body = "<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>";

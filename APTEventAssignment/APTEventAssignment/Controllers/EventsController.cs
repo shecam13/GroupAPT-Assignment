@@ -58,8 +58,6 @@ namespace APTEventAssignment.Controllers
         // GET: Events
         public ActionResult EventSearchPage(string search, string category)
         {
-
-
             var CategoryList = new List<string>();
 
             var CatQuery = from d in db.Category
@@ -95,11 +93,7 @@ namespace APTEventAssignment.Controllers
                     viewmodel = viewmodel.Where(x => x.Event_CategoryName == category);
                 }
 
-
-                
-
-                return View(viewmodel);
-           
+                return View(viewmodel); 
 
             }
             
@@ -163,9 +157,7 @@ namespace APTEventAssignment.Controllers
                 Event_Name = @event.Event_Name,
                 Event_VenueName = venueName,
                 Event_Image = @event.Event_Image,
-                //Event_VenueID = @event.Event_ID,
                 Event_Rating = @event.Event_Rating,
-                //Event_CategoryID = @event.Event_CategoryID,
                 Event_CategoryName = categoryName
             };
 

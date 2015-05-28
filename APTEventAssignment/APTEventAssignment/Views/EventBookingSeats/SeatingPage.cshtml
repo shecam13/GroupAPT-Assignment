@@ -1,12 +1,12 @@
 ﻿@model APTEventAssignment.ViewModels.EventBookingSeatsViewModel
 
 @{
-    ViewBag.Title = "SeatingPage";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Seating";
+    Layout = "~/Views/Shared/_SeatingPageLayout.cshtml";
 }
 
 <div class="container">
-    <h2>SeatingPage</h2>
+    <h2>Seating</h2>
 
     @using (Html.BeginForm("SeatingPage", "EventBookingSeats", FormMethod.Post, new { role = "form" })) //redirects back to the controller to handle post request
     {
@@ -16,9 +16,7 @@
             <br>
             @Html.HiddenFor(x => x.Event_Name)
             @Html.HiddenFor(x => x.Event_VenueName)
-            @*<p>Choose date:  @Html.DropDownListFor(model => model.SelectPerformanceId, Model.Performances)</p>*@
             <p><b>Choose date:</b>  @Html.DropDownListFor(model => model.SelectPerformanceId, Model.Performances)</p>
-            @*@Html.DropDownListFor(model => model.SelectPerformanceId, Model.Performances, "Choose... ")*@
             <hr>
             
             <div class="form-group">
@@ -39,14 +37,167 @@
             @item.VenueZone_Rows;
         }*@
 
-   
-    
-        @*<iframe src="@Url.Action("ViewSeatingPlan", "EventBookingSeats")" width="1000" height="400"></iframe>*@
-    <div class="form-group">
-        @*<input type='submit' class="btn btn-primary" value='Book Tickets' onclick='window.location = "@Url.Action("IndexBooking", "EventBookings")";' />*@
-        <input type='submit' class="btn btn-primary" value='Book Tickets' />
+        //--------------- SEATING PLAN -------------------        
+               
+        string strSeatingPlan = "";
+        string strSelectedSeating = "";
+        long intZoneCount = -1;
+        string[,] arrSeating = new string[1, 6];
+
+        int intColumnCount = 0;
+        int intZoneWidth = 0;
+        int intZonePaddingWidth = 5;
+        int intSeatSize = 25;
+        long maxPixels = 0;
+
+        //Set the Seating Plan Array Size
+        intZoneCount = ViewBag.Zones;
+
+        List<string> lstBooked = new List<string>();
+        if (ViewBag.Booked.GetType().IsArray)
+        {
+            lstBooked.AddRange(ViewBag.Booked);
+        }
+
+
+        if (ViewBag.Layout.GetType().IsArray)
+        {
+            //Calculate Seating Width
+            for (int j = 0; j <= ViewBag.Layout.GetUpperBound(0); j++)
+            {
+                intColumnCount = intColumnCount + Convert.ToInt32(ViewBag.Layout[j, 3]);
+            }
+
+            strSeatingPlan = "<table id='tblZones' width='100%'>";
+            strSeatingPlan = strSeatingPlan + "<tr>";
+            for (int i = 0; i <= ViewBag.Layout.GetUpperBound(0); i++)
+            {
+                //intZoneWidth = (int)Math.Floor(((Convert.ToInt32(ViewBag.Layout[i, 3]) / intColumnCount)) * 100);
+                intZoneWidth = (int)((Convert.ToInt32(ViewBag.Layout[i, 3]) / intColumnCount) * 100);
+
+                strSeatingPlan = strSeatingPlan + "<td style='width:" + intZoneWidth + "%;' class='zoneBorder'>";
+                strSeatingPlan = strSeatingPlan + "<table id='tblZone_" + ViewBag.Layout[i, 1] + "' style='width:100%; vertical-align:top;'>";
+                //Zone Title
+                strSeatingPlan = strSeatingPlan + "<tr>";
+                strSeatingPlan = strSeatingPlan + "<td style='width:" + intZoneWidth + "%; height:26px;' class='seatingZoneTitle' colspan='" + ((Convert.ToInt32(ViewBag.Layout[i, 3]) * 2) - 1) + "'>";
+                strSeatingPlan = strSeatingPlan + ViewBag.Layout[i, 1];
+                strSeatingPlan = strSeatingPlan + "</td>";
+                strSeatingPlan = strSeatingPlan + "</tr>";
+
+                for (int Rows = 0; Rows <= Convert.ToInt32(ViewBag.Layout[i, 2]) - 1; Rows++)
+                {
+                    System.Web.UI.WebControls.TableRow trZoneRow = new System.Web.UI.WebControls.TableRow();
+                    strSeatingPlan = strSeatingPlan + "<tr>";
+                    trZoneRow.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+
+                    for (int cols = 0; cols <= Convert.ToInt32(ViewBag.Layout[i, 3]) - 1; cols++)
+                    {
+
+                        //Seating Code & Number
+                        string thisSeat = "000" + (Rows * Convert.ToInt32(ViewBag.Layout[i, 3]) + cols).ToString();
+                        thisSeat = ViewBag.Layout[i, 0] + thisSeat.Substring(thisSeat.Length - 3, 3);
+
+                        //   thisSeat = ViewBag.Layout[i, 0] + thisSeat.Substring(Rows * Convert.ToInt32(ViewBag.Layout[i, 3]) + cols, 3);
+
+                        //   Dim thisSeat = ViewBag.Layout(i, 0) & Strings.Right("000" & (Rows * ViewBag.Layout(i, 3) + cols).ToString(), 3)
+
+
+                        //Check if this Seat is Already Booked
+                        string seatStyle = "seatingAvailableBg";
+                        if (lstBooked.Contains(thisSeat))
+                        {
+                            seatStyle = "seatingBookedBg";
+                            strSeatingPlan = strSeatingPlan + "<td class='seatingContainer'><div id='" + thisSeat + "' class='seating " + seatStyle + "' enabled='false'>";
+                        }
+                        else
+                        {
+                            strSeatingPlan = strSeatingPlan + "<td class='seatingContainer'><div id='" + thisSeat + "' class='seating " + seatStyle + "' enabled='true' onClick=\"addSelectedSeat('" + thisSeat + "')\">";
+                        }
+
+
+                        strSeatingPlan = strSeatingPlan + thisSeat;
+
+                        strSeatingPlan = strSeatingPlan + "</div></td>";
+
+
+                    }
+                    strSeatingPlan = strSeatingPlan + "</tr>";
+
+                }
+
+                strSeatingPlan = strSeatingPlan + "</table>";
+                strSeatingPlan = strSeatingPlan + "</td>";
+                //Add Zone Spacing
+                if (i < ViewBag.Layout.GetUpperBound(0))
+                {
+                    strSeatingPlan = strSeatingPlan + "<td style='width:50px'>&nbsp;</td>";
+                }
+            }
+            strSeatingPlan = strSeatingPlan + "</tr>";
+            strSeatingPlan = strSeatingPlan + "</table>";
+
+        }
+
+        strSelectedSeating = strSelectedSeating + "<table id='tblSelectedSeating' style='width:100%;height:100%'>";
+        strSelectedSeating = strSelectedSeating + "<tr>";
+        strSelectedSeating = strSelectedSeating + "<td style='height:100%; vertical-align:top;' class='zoneBorder'>";
+
+        strSelectedSeating = strSelectedSeating + "<table style='width:100%; height:100%;'>";
+        strSelectedSeating = strSelectedSeating + "<tr>";
+        strSelectedSeating = strSelectedSeating + "<td style='height:25px;' class='seatingZoneTitle'>";
+        strSelectedSeating = strSelectedSeating + "SELECTED SEATS";
+        strSelectedSeating = strSelectedSeating + "</td>";
+        strSelectedSeating = strSelectedSeating + "</tr>";
+
+        strSelectedSeating = strSelectedSeating + "<tr>";
+        strSelectedSeating = strSelectedSeating + "<td style='height:100%;'>";
+        strSelectedSeating = strSelectedSeating + "<select size='10' style='height:200px; width:100%;' name='lstSelectedSeats' id='lstSelectedSeats'>";
+        strSelectedSeating = strSelectedSeating + "</select>";
+        strSelectedSeating = strSelectedSeating + "</td>";
+        strSelectedSeating = strSelectedSeating + "</tr>";
+        strSelectedSeating = strSelectedSeating + "<tr>";
+        strSelectedSeating = strSelectedSeating + "<td style='height:100%;'>";
         
-    </div>
-            @*<input type='submit' class="btn btn-primary" value='Book Tickets' />*@
+        //Buttons
+        strSelectedSeating = strSelectedSeating + "<table style='width:100%; height:100%;; border-collapse:collapse;'>";
+        strSelectedSeating = strSelectedSeating + "<td style='width:50%; text-align:left;'>";
+        strSelectedSeating = strSelectedSeating + "<input type='button' class='buttonSize150' onClick='removeAllSelected()' value='Remove All'>";
+        strSelectedSeating = strSelectedSeating + "</td>";
+        strSelectedSeating = strSelectedSeating + "<td style='width:50%; text-align:right;'>";
+        strSelectedSeating = strSelectedSeating + "<input type='button' class='buttonSize150' onClick='removeSelected()' value='Remove Selected'>";
+        strSelectedSeating = strSelectedSeating + "</td>";
+        strSelectedSeating = strSelectedSeating + "</tr>";
+        strSelectedSeating = strSelectedSeating + "</table>";
+
+        strSelectedSeating = strSelectedSeating + "</td>";
+        strSelectedSeating = strSelectedSeating + "</tr>";
+        strSelectedSeating = strSelectedSeating + "</table>";
+        strSelectedSeating = strSelectedSeating + "</td>";
+        strSelectedSeating = strSelectedSeating + "</tr>";
+        strSelectedSeating = strSelectedSeating + "</table>";
+
+        //Main View
+        string strView = "";
+        strView = strView + "<table id='tblView' width='100%'>";
+        strView = strView + "<tr>";
+        strView = strView + "<td style='width:75%; vertical-align:top;'>[$SeatingPlan$]</td>";
+        strView = strView + "<td style='width:25%; vertical-align:top;'>[$SelectedSeating$]</td>";
+        strView = strView + "</tr>";
+        strView = strView + "</table>";
+
+        strView = strView.Replace("[$SeatingPlan$]", strSeatingPlan);
+        strView = strView.Replace("[$SelectedSeating$]", strSelectedSeating);
+
+        @Html.Raw(strView)
+
+    <div class="row row-space"></div>
+
+    <center>
+       
+        <div class="form-group">          
+            <input type='submit' class="btn btn-primary" value='Book Tickets' />   
+        </div>
+    </center>
+            
     }
-    </div>
+</div>

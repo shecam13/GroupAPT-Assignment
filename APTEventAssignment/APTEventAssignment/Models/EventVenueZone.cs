@@ -20,7 +20,7 @@ namespace APTEventAssignment.Models
         public Nullable<int> EventVenueZone_Price { get; set; }
         public bool EventVenueZone_Deleted { get; set; }
     
-        public virtual VenueZone VenueZone { get; set; }
         public virtual Event Event { get; set; }
+        public virtual VenueZone VenueZone { get; set; }
     }
 }

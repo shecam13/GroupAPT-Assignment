@@ -182,7 +182,6 @@
     <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\EventVenueZonesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ImageDataController.cs" />
     <Compile Include="Controllers\VenuesController.cs" />
     <Compile Include="Controllers\VenueTypesController.cs" />
     <Compile Include="Controllers\VenueZonesController.cs" />
@@ -461,6 +460,7 @@
     <Content Include="Views\EventBookings\_Form.cshtml" />
     <Content Include="Views\EventBookings\Checkout.cshtml" />
     <Content Include="Views\Events\EventSearchPage.cshtml" />
+    <Content Include="Views\Shared\_SeatingPageLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

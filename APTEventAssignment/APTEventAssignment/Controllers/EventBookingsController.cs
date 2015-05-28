@@ -88,9 +88,6 @@ namespace APTEventAssignment.Controllers
                     PerformanceDate = perfDate
                 };
 
-                //List<EventBooking> bookings = null;
-                //bookings = db.EventBooking.Include(e => e.EventPerformance).Where(e => e.EventBooking_UserID == userId).ToList();
-
                 return View(viewmodel);
             }
             else
@@ -144,7 +141,7 @@ namespace APTEventAssignment.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    var body = "<p><h1>{1}</h1><br><h3><u>Booking Details</u></h3><p><b>Booking Number:</b> {3}</p><p><b>Date of Booking:</b> {0}</p><p><b>Performance Date:</b> {2}</p><p><b>Seat number: </b></p><br><b>Thank you for booking with us!</b><br>Events in Malta";
+                    var body = "<p><h1>{1}</h1><br><h3><u>Booking Details</u></h3><p><b>Booking Number:</b> {3}</p><p><b>Date of Booking:</b> {0}</p><p><b>Performance Date:</b> {2}</p><p><b>Seat numbers:</b> L22, L23, L24</p><p><b>Price:</b> 50 Euros</p><br><b>Thank you for booking with us!</b><br>Events in Malta";
                     var message = new MailMessage();
                     message.To.Add(new MailAddress(userEmail));
                     message.Subject = "Event Ticket Details";
@@ -158,11 +155,11 @@ namespace APTEventAssignment.Controllers
                 }
 
                 //Send SMS if phone number is provided
-                if (phoneNo != null)
-                {
-                    //CreateSms cs = new CreateSms();
-                    //cs.SendSMS(viewmodel.EventBooking_Date.ToString(), viewmodel.EventName, viewmodel.PerformanceDate.ToString());
-                }
+                //if (phoneNo != null)
+                //{
+                //    CreateSms cs = new CreateSms();
+                //    cs.SendSMS(viewmodel.EventBooking_Date.ToString(), viewmodel.EventName, viewmodel.PerformanceDate.ToString());
+                //}
 
                 // kill session
                 Session.Abandon();
@@ -233,25 +230,25 @@ namespace APTEventAssignment.Controllers
 
         public ActionResult Checkout()
         {
-            ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID");
+            //ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID");
             return View();
         }
 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Checkout([Bind(Include = "EventBooking_Date,EventBooking_EventPerformanceID,EventBooking_Deleted")] EventBooking eventBooking)
-        {
-            if (ModelState.IsValid)
-            {
-                db.EventBooking.Add(eventBooking);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Checkout([Bind(Include = "EventBooking_Date,EventBooking_EventPerformanceID,EventBooking_Deleted")] EventBooking eventBooking)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.EventBooking.Add(eventBooking);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID", eventBooking.EventBooking_EventPerformanceID);
-            return View(eventBooking);
-        }
+        //    ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID", eventBooking.EventBooking_EventPerformanceID);
+        //    return View(eventBooking);
+        //}
 
         private void UpdateEventBooking(EventBooking eb, AddEventBookingViewModel addviewmodel)
         {
