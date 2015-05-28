@@ -10,7 +10,10 @@
         <EntityTypeShape EntityType="APTEventsModel.EventVenueZone" Width="1.5" PointX="7.5" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="APTEventsModel.Venue" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="APTEventsModel.VenueType" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="APTEventsModel.VenueZone" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <AssociationConnector Association="APTEventsModel.FK_EventVenueZone_VenueZone" ManuallyRouted="false" />
         <AssociationConnector Association="APTEventsModel.FK_Venue_VenueType" ManuallyRouted="false" />
+        <AssociationConnector Association="APTEventsModel.FK_VenueZone_Venue" ManuallyRouted="false" />
         <EntityTypeShape EntityType="APTEventsModel.Category" Width="1.5" PointX="3" PointY="3.875" />
         <EntityTypeShape EntityType="APTEventsModel.AspNetUsers" Width="1.5" PointX="0.75" PointY="11" />
         <EntityTypeShape EntityType="APTEventsModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
@@ -33,9 +36,6 @@
         <AssociationConnector Association="APTEventsModel.FK_EventBooking_AspNetUsers1" />
         <AssociationConnector Association="APTEventsModel.FK_EventBooking_EventPerformance" />
         <AssociationConnector Association="APTEventsModel.FK_EventBookingSeat_EventBooking" />
-        <EntityTypeShape EntityType="APTEventsModel.VenueZone" Width="1.5" PointX="5.25" PointY="0.75" />
-        <AssociationConnector Association="APTEventsModel.FK_EventVenueZone_VenueZone" />
-        <AssociationConnector Association="APTEventsModel.FK_VenueZone_Venue" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

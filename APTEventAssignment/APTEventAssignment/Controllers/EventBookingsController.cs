@@ -160,7 +160,7 @@ namespace APTEventAssignment.Controllers
                 //Send SMS if phone number is provided
                 if (phoneNo != null)
                 {
-                   // CreateSms cs = new CreateSms();
+                    //CreateSms cs = new CreateSms();
                     //cs.SendSMS(viewmodel.EventBooking_Date.ToString(), viewmodel.EventName, viewmodel.PerformanceDate.ToString());
                 }
 

@@ -32,6 +32,7 @@ namespace APTEventAssignment.Models
         public virtual DbSet<EventVenueZone> EventVenueZone { get; set; }
         public virtual DbSet<Venue> Venue { get; set; }
         public virtual DbSet<VenueType> VenueType { get; set; }
+        public virtual DbSet<VenueZone> VenueZone { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
@@ -41,7 +42,6 @@ namespace APTEventAssignment.Models
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Event> Event { get; set; }
         public virtual DbSet<EventBooking> EventBooking { get; set; }
-        public virtual DbSet<VenueZone> VenueZone { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

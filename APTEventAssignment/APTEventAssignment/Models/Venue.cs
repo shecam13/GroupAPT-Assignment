@@ -16,8 +16,8 @@ namespace APTEventAssignment.Models
     {
         public Venue()
         {
-            this.Event = new HashSet<Event>();
             this.VenueZone = new HashSet<VenueZone>();
+            this.Event = new HashSet<Event>();
         }
     
         public int Venue_ID { get; set; }
@@ -28,7 +28,7 @@ namespace APTEventAssignment.Models
         public bool Venue_Deleted { get; set; }
     
         public virtual VenueType VenueType { get; set; }
-        public virtual ICollection<Event> Event { get; set; }
         public virtual ICollection<VenueZone> VenueZone { get; set; }
+        public virtual ICollection<Event> Event { get; set; }
     }
 }

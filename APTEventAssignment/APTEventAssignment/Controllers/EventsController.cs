@@ -236,11 +236,7 @@ namespace APTEventAssignment.Controllers
         [HttpPost]
         public ActionResult Create(AddEventViewModel addviewmodel)
         {
-            //var id = addviewmodel.Event_Image;
-            //if (Request.Files.Count == 0)
-            //{
-            //    return View();
-            //}
+
 
             if (ModelState.IsValid)
             {

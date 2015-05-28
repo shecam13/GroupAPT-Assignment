@@ -7,8 +7,8 @@ namespace APTEventAssignment.Message
 {
     class CreateSms
     {
-        public void SendSMS(String bookingDate, String eventName, String eventDate)
-        {
+        //public void SendSMS(String bookingDate, String eventName, String eventDate)
+        //{
        
         //    XMessageDB objMessageDB = new XMessageDB();
         //    XConstants objConstants = new XConstants();
@@ -74,7 +74,7 @@ namespace APTEventAssignment.Message
         //    Console.WriteLine("  BodyFormat       : {0}", objMessage.BodyFormatID);
         //    Console.WriteLine("  Body             : {0}", objMessage.Body);
         //    Console.WriteLine("  Trace            : {0}", objMessage.Trace);
-        }
+        //}
         
     }
 }

@@ -160,10 +160,10 @@
           </Key>
           <Property Name="VenueZone_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VenueZone_Name" Type="nvarchar" MaxLength="255" />
-          <Property Name="VenueZone_VenueID" Type="int" Nullable="false" />
-          <Property Name="VenueZone_Code" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="VenueZone_Rows" Type="int" Nullable="false" />
-          <Property Name="VenueZone_Columns" Type="int" Nullable="false" />
+          <Property Name="VenueZone_VenueID" Type="int" />
+          <Property Name="VenueZone_Code" Type="nvarchar" MaxLength="255" />
+          <Property Name="VenueZone_Rows" Type="int" />
+          <Property Name="VenueZone_Columns" Type="int" />
           <Property Name="VenueZone_Deleted" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -249,9 +249,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EventBooking_AspNetUsers1">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
           <End Role="EventBooking" Type="Self.EventBooking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
@@ -287,9 +285,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EventPerformance_Event">
-          <End Role="Event" Type="Self.Event" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Event" Type="Self.Event" Multiplicity="0..1" />
           <End Role="EventPerformance" Type="Self.EventPerformance" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Event">
@@ -337,9 +333,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_VenueZone_Venue">
-          <End Role="Venue" Type="Self.Venue" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="Venue" Type="Self.Venue" Multiplicity="0..1" />
           <End Role="VenueZone" Type="Self.VenueZone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Venue">
@@ -492,8 +486,8 @@
           <Property Name="EventVenueZone_VenueZoneID" Type="Int32" />
           <Property Name="EventVenueZone_Price" Type="Int32" />
           <Property Name="EventVenueZone_Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="VenueZone" Relationship="Self.FK_EventVenueZone_VenueZone" FromRole="EventVenueZone" ToRole="VenueZone" />
           <NavigationProperty Name="Event" Relationship="APTEventsModel.FK_EventVenueZone_Event" FromRole="EventVenueZone" ToRole="Event" />
-          <NavigationProperty Name="VenueZone" Relationship="APTEventsModel.FK_EventVenueZone_VenueZone" FromRole="EventVenueZone" ToRole="VenueZone" />
         </EntityType>
         <EntityType Name="Venue">
           <Key>
@@ -506,8 +500,8 @@
           <Property Name="Venue_Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Venue_Deleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="VenueType" Relationship="Self.FK_Venue_VenueType" FromRole="Venue" ToRole="VenueType" />
+          <NavigationProperty Name="VenueZone" Relationship="Self.FK_VenueZone_Venue" FromRole="Venue" ToRole="VenueZone" />
           <NavigationProperty Name="Event" Relationship="APTEventsModel.FK_Event_Venue" FromRole="Venue" ToRole="Event" />
-          <NavigationProperty Name="VenueZone" Relationship="APTEventsModel.FK_VenueZone_Venue" FromRole="Venue" ToRole="VenueZone" />
         </EntityType>
         <EntityType Name="VenueType">
           <Key>
@@ -518,6 +512,32 @@
           <Property Name="VenueType_Deleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Venue" Relationship="Self.FK_Venue_VenueType" FromRole="VenueType" ToRole="Venue" />
         </EntityType>
+        <EntityType Name="VenueZone">
+          <Key>
+            <PropertyRef Name="VenueZone_ID" />
+          </Key>
+          <Property Name="VenueZone_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VenueZone_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="VenueZone_VenueID" Type="Int32" />
+          <Property Name="VenueZone_Code" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="VenueZone_Rows" Type="Int32" />
+          <Property Name="VenueZone_Columns" Type="Int32" />
+          <Property Name="VenueZone_Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="EventVenueZone" Relationship="Self.FK_EventVenueZone_VenueZone" FromRole="VenueZone" ToRole="EventVenueZone" />
+          <NavigationProperty Name="Venue" Relationship="Self.FK_VenueZone_Venue" FromRole="VenueZone" ToRole="Venue" />
+        </EntityType>
+        <Association Name="FK_EventVenueZone_VenueZone">
+          <End Role="VenueZone" Type="Self.VenueZone" Multiplicity="0..1" />
+          <End Role="EventVenueZone" Type="Self.EventVenueZone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VenueZone">
+              <PropertyRef Name="VenueZone_ID" />
+            </Principal>
+            <Dependent Role="EventVenueZone">
+              <PropertyRef Name="EventVenueZone_VenueZoneID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Venue_VenueType">
           <End Role="VenueType" Type="Self.VenueType" Multiplicity="0..1" />
           <End Role="Venue" Type="Self.Venue" Multiplicity="*" />
@@ -530,15 +550,36 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_VenueZone_Venue">
+          <End Role="Venue" Type="Self.Venue" Multiplicity="0..1" />
+          <End Role="VenueZone" Type="Self.VenueZone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venue">
+              <PropertyRef Name="Venue_ID" />
+            </Principal>
+            <Dependent Role="VenueZone">
+              <PropertyRef Name="VenueZone_VenueID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="APTEventsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="EventBookingSeat" EntityType="Self.EventBookingSeat" />
           <EntitySet Name="EventPerformance" EntityType="Self.EventPerformance" />
           <EntitySet Name="EventVenueZone" EntityType="Self.EventVenueZone" />
           <EntitySet Name="Venue" EntityType="Self.Venue" />
           <EntitySet Name="VenueType" EntityType="Self.VenueType" />
+          <EntitySet Name="VenueZone" EntityType="Self.VenueZone" />
+          <AssociationSet Name="FK_EventVenueZone_VenueZone" Association="Self.FK_EventVenueZone_VenueZone">
+            <End Role="VenueZone" EntitySet="VenueZone" />
+            <End Role="EventVenueZone" EntitySet="EventVenueZone" />
+          </AssociationSet>
           <AssociationSet Name="FK_Venue_VenueType" Association="Self.FK_Venue_VenueType">
             <End Role="VenueType" EntitySet="VenueType" />
             <End Role="Venue" EntitySet="Venue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VenueZone_Venue" Association="Self.FK_VenueZone_Venue">
+            <End Role="Venue" EntitySet="Venue" />
+            <End Role="VenueZone" EntitySet="VenueZone" />
           </AssociationSet>
           <EntitySet Name="Category" EntityType="APTEventsModel.Category" />
           <EntitySet Name="AspNetUsers" EntityType="APTEventsModel.AspNetUsers" />
@@ -630,15 +671,6 @@
           <AssociationSet Name="FK_EventBookingSeat_EventBooking" Association="APTEventsModel.FK_EventBookingSeat_EventBooking">
             <End Role="EventBooking" EntitySet="EventBooking" />
             <End Role="EventBookingSeat" EntitySet="EventBookingSeat" />
-          </AssociationSet>
-          <EntitySet Name="VenueZone" EntityType="APTEventsModel.VenueZone" />
-          <AssociationSet Name="FK_EventVenueZone_VenueZone" Association="APTEventsModel.FK_EventVenueZone_VenueZone">
-            <End Role="VenueZone" EntitySet="VenueZone" />
-            <End Role="EventVenueZone" EntitySet="EventVenueZone" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VenueZone_Venue" Association="APTEventsModel.FK_VenueZone_Venue">
-            <End Role="Venue" EntitySet="Venue" />
-            <End Role="VenueZone" EntitySet="VenueZone" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Category">
@@ -918,46 +950,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="VenueZone">
-          <Key>
-            <PropertyRef Name="VenueZone_ID" />
-          </Key>
-          <Property Name="VenueZone_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VenueZone_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="VenueZone_VenueID" Type="Int32" Nullable="false" />
-          <Property Name="VenueZone_Code" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="VenueZone_Rows" Type="Int32" Nullable="false" />
-          <Property Name="VenueZone_Columns" Type="Int32" Nullable="false" />
-          <Property Name="VenueZone_Deleted" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="EventVenueZone" Relationship="APTEventsModel.FK_EventVenueZone_VenueZone" FromRole="VenueZone" ToRole="EventVenueZone" />
-          <NavigationProperty Name="Venue" Relationship="APTEventsModel.FK_VenueZone_Venue" FromRole="VenueZone" ToRole="Venue" />
-        </EntityType>
-        <Association Name="FK_EventVenueZone_VenueZone">
-          <End Type="APTEventsModel.VenueZone" Role="VenueZone" Multiplicity="0..1" />
-          <End Type="APTEventsModel.EventVenueZone" Role="EventVenueZone" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="VenueZone">
-              <PropertyRef Name="VenueZone_ID" />
-            </Principal>
-            <Dependent Role="EventVenueZone">
-              <PropertyRef Name="EventVenueZone_VenueZoneID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VenueZone_Venue">
-          <End Type="APTEventsModel.Venue" Role="Venue" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="APTEventsModel.VenueZone" Role="VenueZone" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Venue">
-              <PropertyRef Name="Venue_ID" />
-            </Principal>
-            <Dependent Role="VenueZone">
-              <PropertyRef Name="VenueZone_VenueID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1014,6 +1006,19 @@
                 <ScalarProperty Name="VenueType_ID" ColumnName="VenueType_ID" />
                 <ScalarProperty Name="VenueType_Name" ColumnName="VenueType_Name" />
                 <ScalarProperty Name="VenueType_Deleted" ColumnName="VenueType_Deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VenueZone">
+            <EntityTypeMapping TypeName="APTEventsModel.VenueZone">
+              <MappingFragment StoreEntitySet="VenueZone">
+                <ScalarProperty Name="VenueZone_ID" ColumnName="VenueZone_ID" />
+                <ScalarProperty Name="VenueZone_Name" ColumnName="VenueZone_Name" />
+                <ScalarProperty Name="VenueZone_VenueID" ColumnName="VenueZone_VenueID" />
+                <ScalarProperty Name="VenueZone_Code" ColumnName="VenueZone_Code" />
+                <ScalarProperty Name="VenueZone_Rows" ColumnName="VenueZone_Rows" />
+                <ScalarProperty Name="VenueZone_Columns" ColumnName="VenueZone_Columns" />
+                <ScalarProperty Name="VenueZone_Deleted" ColumnName="VenueZone_Deleted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1145,19 +1150,6 @@
                 <ScalarProperty Name="EventBooking_UserID" ColumnName="EventBooking_UserID" />
                 <ScalarProperty Name="EventBooking_Date" ColumnName="EventBooking_Date" />
                 <ScalarProperty Name="EventBooking_ID" ColumnName="EventBooking_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VenueZone">
-            <EntityTypeMapping TypeName="APTEventsModel.VenueZone">
-              <MappingFragment StoreEntitySet="VenueZone">
-                <ScalarProperty Name="VenueZone_Deleted" ColumnName="VenueZone_Deleted" />
-                <ScalarProperty Name="VenueZone_Columns" ColumnName="VenueZone_Columns" />
-                <ScalarProperty Name="VenueZone_Rows" ColumnName="VenueZone_Rows" />
-                <ScalarProperty Name="VenueZone_Code" ColumnName="VenueZone_Code" />
-                <ScalarProperty Name="VenueZone_VenueID" ColumnName="VenueZone_VenueID" />
-                <ScalarProperty Name="VenueZone_Name" ColumnName="VenueZone_Name" />
-                <ScalarProperty Name="VenueZone_ID" ColumnName="VenueZone_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -278,7 +278,6 @@
     <Compile Include="ViewModels\EventPerformancesViewModel.cs" />
     <Compile Include="ViewModels\EventsViewModel.cs" />
     <Compile Include="ViewModels\VenueViewModel.cs" />
-    <Compile Include="ViewModels\VenueZoneViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -462,8 +461,6 @@
     <Content Include="Views\EventBookings\_Form.cshtml" />
     <Content Include="Views\EventBookings\Checkout.cshtml" />
     <Content Include="Views\Events\EventSearchPage.cshtml" />
-    <Content Include="Views\VenueZones\_Form.cshtml" />
-    <Content Include="Views\EventPerformances\_Form.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
