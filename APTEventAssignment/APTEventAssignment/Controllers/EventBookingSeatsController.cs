@@ -148,47 +148,6 @@ namespace APTEventAssignment.Controllers
 
                 ViewData["PerformanceList"] = performances;
 
-                //List<DateTime> dates = new List<DateTime>();
-
-                //foreach (var p in performances)
-                //{
-                //    dates.Add((DateTime)p.EventPerformance_Date);
-                //}
-
-
-
-                //var viewmodel = new EventBookingSeatsViewModel
-                //{
-
-                //    Performances = new SelectList(dates)
-                //};
-
-                //List<String> rows = new List<String>();
-                //List<String> cols = new List<String>();
-                //List<String> codes = new List<String>();
-
-                //var query = (from e in db.VenueZone
-                //             where e.VenueZone_VenueID == venueID
-                //             select e);
-
-                //venueZones = query.ToList();
-
-                //foreach (var v in venueZones)
-                //{
-                //    rows.Add(v.VenueZone_Rows.ToString());
-                //    cols.Add(v.VenueZone_Rows.ToString());
-                //    codes.Add(v.VenueZone_Rows.ToString());
-                //}
-
-                //WEB web = new WEB();
-                //web.setZoneDetails(rows, cols, codes);
-
-                //ViewBag.venueZones = query.ToList();
-
-                //var eventBookingSeat = db.EventBookingSeat.Include(e => e.EventBooking);
-                //return View(eventBookingSeat.ToList());
-                //ViewBag.date = dates;
-
                 //for seating
                 ViewBag.Zones = getSeatingZoneCountForShow("A");
                 ViewBag.Layout = getSeatingPlanForShow("A");
@@ -208,7 +167,6 @@ namespace APTEventAssignment.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult SeatingPage(EventBookingSeatsViewModel viewmodel)
         {
-            //IEnumerable<SelectListItem> item = db.EventPerformance.Select(x => new SelectListItem{ Text = x.EventPerformance_Date.ToString() }).Where(?? == viewmodel.SelectPerformanceId);
             var eventDetails = this.Session["EventDetails"] as EventsDetailsViewModel;
             List<EventPerformance> performances = eventDetails.Event_Performances;
 
@@ -218,34 +176,9 @@ namespace APTEventAssignment.Controllers
             this.Session["BookingDetails"] = viewmodel;
 
             return RedirectToAction("IndexBooking", "EventBookings");
-            //return View(viewmodel);
         }
 
-        //String[] seatsArray = new String[10];
-        //int number = 0;
-        //public void GetSeats()
-        //{
-        //    WEB web = new WEB();
-        //    //seatsArray = web.getSeats();
-        //    seatsArray = web.getSeats();
-
-        //}
-
-        //int venueID = 1;
-        //public void GetRow()
-        //{
-        //    var query = (from e in db.VenueZone
-        //                 where e.VenueZone_VenueID == venueID
-        //                 select e.VenueZone_Rows);
-
-
-        //}
-
-        //public ActionResult ViewSeatingPlan()
-        //{
-        //    return View("WEB"); //Aspx file Views/Products/WebForm1.aspx
-        //}
-
+    
         public RedirectResult ViewSeatingPlan()
         {
             return Redirect("/SeatingPlan/WEB.aspx");

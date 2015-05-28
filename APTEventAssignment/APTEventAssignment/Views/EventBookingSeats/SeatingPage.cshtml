@@ -97,10 +97,6 @@
                         string thisSeat = "000" + (Rows * Convert.ToInt32(ViewBag.Layout[i, 3]) + cols).ToString();
                         thisSeat = ViewBag.Layout[i, 0] + thisSeat.Substring(thisSeat.Length - 3, 3);
 
-                        //   thisSeat = ViewBag.Layout[i, 0] + thisSeat.Substring(Rows * Convert.ToInt32(ViewBag.Layout[i, 3]) + cols, 3);
-
-                        //   Dim thisSeat = ViewBag.Layout(i, 0) & Strings.Right("000" & (Rows * ViewBag.Layout(i, 3) + cols).ToString(), 3)
-
 
                         //Check if this Seat is Already Booked
                         string seatStyle = "seatingAvailableBg";

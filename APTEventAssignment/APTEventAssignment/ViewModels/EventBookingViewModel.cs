@@ -36,16 +36,10 @@ namespace APTEventAssignment.ViewModels
         [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> PerformanceDate { get; set; }
 
-        
-        //public Nullable<int> EventBooking_EventPerformanceID { get; set; }
-        //public virtual EventPerformance EventPerformance { get; set; }
-        //public virtual ICollection<EventBookingSeat> EventBookingSeat { get; set; }
     }
 
     public class AddEventBookingViewModel
     {
-        //[Display(Name = "Booking Number")]
-        //[HiddenInput(DisplayValue = false)]
         [Key]
         public int EventBooking_ID { get; set; }
 

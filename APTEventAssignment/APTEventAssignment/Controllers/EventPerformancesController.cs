@@ -12,7 +12,7 @@ using APTEventAssignment.ViewModels;
 
 namespace APTEventAssignment.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]  //only accessible to the admin 
     public class EventPerformancesController : Controller
     {
         private APTEventsEntities db = new APTEventsEntities();
@@ -36,6 +36,7 @@ namespace APTEventAssignment.Controllers
             return View(viewmodel.ToList());
         }
 
+        // used by the create and edit post methods to map the viewmodel to the model
         private void UpdateEventPerformance(EventPerformance ep, AddEventPerformanceViewModel addviewmodel)
         {
             ep.EventPerformance_EventID = addviewmodel.EventPerformance_EventID;
@@ -77,8 +78,6 @@ namespace APTEventAssignment.Controllers
         }
 
         // POST: EventPerformances/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(AddEventPerformanceViewModel addviewmodel)
@@ -110,6 +109,7 @@ namespace APTEventAssignment.Controllers
                 return HttpNotFound();
             }
 
+            //setting the viewmodel properties to the data from the database of the event with the id passed 
             var addviewmodel = new AddEventPerformanceViewModel
             {
                 EventPerformance_EventName = ep.Event.Event_Name,
@@ -118,22 +118,18 @@ namespace APTEventAssignment.Controllers
                 EventPerformance_Date = ep.EventPerformance_Date,
                 EventPerformance_Time = ep.EventPerformance_Time,
             };
+
             ViewBag.EventPerformance_EventID = new SelectList(db.Event, "Event_ID", "Event_Name", ep.EventPerformance_EventID);
             return View(addviewmodel);
         }
 
         // POST: EventPerformances/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-       // public async Task<ActionResult> Edit([Bind(Include = "EventPerformance_ID,EventPerformance_EventID,EventPerformance_Date,EventPerformance_Time,EventPerformance_Deleted")] EventPerformance eventPerformance)
         public ActionResult Edit(AddEventPerformanceViewModel addviewmodel) 
        {
             if (ModelState.IsValid)
             {
-                //db.Entry(eventPerformance).State = EntityState.Modified;
-
                 var existingEP = db.EventPerformance.Find(addviewmodel.EventPerformance_ID);
                 UpdateEventPerformance(existingEP, addviewmodel);
 
@@ -145,7 +141,6 @@ namespace APTEventAssignment.Controllers
         }
 
         // GET: EventPerformances/Delete/5
-        //public async Task<ActionResult> Delete(int? id)
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -173,7 +168,6 @@ namespace APTEventAssignment.Controllers
         // POST: EventPerformances/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        //public async Task<ActionResult> DeleteConfirmed(int id)
         public ActionResult DeleteConfirmed(int id)
         {
             EventPerformance ep = db.EventPerformance.Find(id);

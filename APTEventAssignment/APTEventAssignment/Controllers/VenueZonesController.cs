@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using APTEventAssignment.Models;
+using APTEventAssignment.ViewModels;
 
 namespace APTEventAssignment.Controllers
 {
@@ -17,108 +18,166 @@ namespace APTEventAssignment.Controllers
         private APTEventsEntities db = new APTEventsEntities();
 
         // GET: VenueZones
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            var venueZone = db.VenueZone.Include(v => v.Venue);
-            return View(await venueZone.ToListAsync());
+            var viewmodel = (from vz in db.VenueZone
+                             select new VenueZoneViewModel()
+                             {
+                                 VenueZone_ID = vz.VenueZone_ID,
+                                 VenueZone_VenueID = vz.VenueZone_VenueID,
+                                 VenueZone_VenueName = vz.Venue.Venue_Name,
+                                 VenueZone_Name = vz.VenueZone_Name,
+                                 VenueZone_Code = vz.VenueZone_Code,
+                                 VenueZone_Columns = vz.VenueZone_Columns,
+                                 VenueZone_Rows = vz.VenueZone_Rows,
+                             });
+
+            return View(viewmodel.ToList());  
         }
 
         // GET: VenueZones/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VenueZone venueZone = await db.VenueZone.FindAsync(id);
+            VenueZone venueZone = db.VenueZone.Find(id);
             if (venueZone == null)
             {
                 return HttpNotFound();
             }
-            return View(venueZone);
+
+            var viewmodel = new VenueZoneViewModel
+            {
+                VenueZone_ID = venueZone.VenueZone_ID,
+                VenueZone_Name = venueZone.VenueZone_Name,
+                VenueZone_VenueID = venueZone.VenueZone_VenueID,
+                VenueZone_VenueName = venueZone.Venue.Venue_Name,
+                VenueZone_Code = venueZone.VenueZone_Code,
+                VenueZone_Columns = venueZone.VenueZone_Columns,
+                VenueZone_Rows = venueZone.VenueZone_Rows,
+            };
+
+            return View(viewmodel);
+
+        }
+
+        // used by the create and edit post methods to map the viewmodel to the model
+        private void UpdateZone(VenueZone venueZone, AddVenueZoneViewModel addviewmodel)
+        {
+            venueZone.VenueZone_ID = addviewmodel.VenueZone_ID;
+            venueZone.VenueZone_VenueID = addviewmodel.VenueZone_VenueID;
+            venueZone.VenueZone_Name = addviewmodel.VenueZone_Name;
+            venueZone.VenueZone_Code = addviewmodel.VenueZone_Code;
+            venueZone.VenueZone_Columns = addviewmodel.VenueZone_Columns;
+            venueZone.VenueZone_Rows = addviewmodel.VenueZone_Rows;
         }
 
         // GET: VenueZones/Create
         public ActionResult Create()
         {
             ViewBag.VenueZone_VenueID = new SelectList(db.Venue, "Venue_ID", "Venue_Name");
-            return View();
+            return View(new AddVenueZoneViewModel());
         }
 
         // POST: VenueZones/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "VenueZone_ID,VenueZone_Name,VenueZone_VenueID,VenueZone_Code,VenueZone_Rows,VenueZone_Columns,VenueZone_Deleted")] VenueZone venueZone)
+        public ActionResult Create(AddVenueZoneViewModel addviewmodel)
         {
             if (ModelState.IsValid)
             {
+                var venueZone = new VenueZone();
+
+                UpdateZone(venueZone, addviewmodel);
+
                 db.VenueZone.Add(venueZone);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.VenueZone_VenueID = new SelectList(db.Venue, "Venue_ID", "Venue_Name", venueZone.VenueZone_VenueID);
-            return View(venueZone);
+            ViewBag.VenueZone_VenueID = new SelectList(db.Venue, "Venue_ID", "Venue_Name", addviewmodel.VenueZone_VenueID);
+            return View(addviewmodel);
         }
 
         // GET: VenueZones/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VenueZone venueZone = await db.VenueZone.FindAsync(id);
-            if (venueZone == null)
+            VenueZone venueZone = db.VenueZone.Find(id); if (venueZone == null)
             {
                 return HttpNotFound();
             }
+
+            var addviewmodel = new AddVenueZoneViewModel
+            {
+                VenueZone_ID = venueZone.VenueZone_ID,
+                VenueZone_Name = venueZone.VenueZone_Name,
+                VenueZone_VenueID = venueZone.VenueZone_VenueID,
+                VenueZone_Code = venueZone.VenueZone_Code,
+                VenueZone_Columns = venueZone.VenueZone_Columns,
+                VenueZone_Rows = venueZone.VenueZone_Rows,
+            };
+
             ViewBag.VenueZone_VenueID = new SelectList(db.Venue, "Venue_ID", "Venue_Name", venueZone.VenueZone_VenueID);
-            return View(venueZone);
+            return View(addviewmodel);
         }
 
         // POST: VenueZones/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "VenueZone_ID,VenueZone_Name,VenueZone_VenueID,VenueZone_Code,VenueZone_Rows,VenueZone_Columns,VenueZone_Deleted")] VenueZone venueZone)
+        public ActionResult Edit(AddVenueZoneViewModel addviewmodel)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(venueZone).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                var existingVenueZone = db.VenueZone.Find(addviewmodel.VenueZone_ID);
+                UpdateZone(existingVenueZone, addviewmodel);
+
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.VenueZone_VenueID = new SelectList(db.Venue, "Venue_ID", "Venue_Name", venueZone.VenueZone_VenueID);
-            return View(venueZone);
+            ViewBag.VenueZone_VenueID = new SelectList(db.Venue, "Venue_ID", "Venue_Name", addviewmodel.VenueZone_VenueID);
+            return View(addviewmodel);
         }
 
         // GET: VenueZones/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VenueZone venueZone = await db.VenueZone.FindAsync(id);
-            if (venueZone == null)
+            VenueZone venueZone = db.VenueZone.Find(id); if (venueZone == null)
             {
                 return HttpNotFound();
             }
-            return View(venueZone);
+
+            var viewmodel = new VenueZoneViewModel
+            {
+                VenueZone_ID = venueZone.VenueZone_ID,
+                VenueZone_VenueID = venueZone.VenueZone_VenueID,
+                VenueZone_VenueName = venueZone.Venue.Venue_Name,
+                VenueZone_Code = venueZone.VenueZone_Code,
+                VenueZone_Name = venueZone.VenueZone_Name,
+                VenueZone_Columns = venueZone.VenueZone_Columns,
+                VenueZone_Rows = venueZone.VenueZone_Rows,
+            };
+
+            return View(viewmodel);
         }
 
         // POST: VenueZones/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            VenueZone venueZone = await db.VenueZone.FindAsync(id);
+            VenueZone venueZone = db.VenueZone.Find(id);
             db.VenueZone.Remove(venueZone);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

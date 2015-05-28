@@ -1,72 +1,68 @@
-﻿@model APTEventAssignment.Models.VenueZone
+﻿@model APTEventAssignment.ViewModels.VenueZoneViewModel
 
 @{
     ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Delete</h2>
+<div class="container">
+    <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>VenueZone</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.VenueZone_Name)
-        </dt>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Venue Zone</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.VenueZone_VenueName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.VenueZone_Name)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.VenueZone_VenueName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.VenueZone_Name)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.VenueZone_Code)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.VenueZone_Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.VenueZone_Code)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.VenueZone_Code)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.VenueZone_Rows)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.VenueZone_Code)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.VenueZone_Rows)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.VenueZone_Rows)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.VenueZone_Columns)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.VenueZone_Rows)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.VenueZone_Columns)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.VenueZone_Columns)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.VenueZone_Deleted)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.VenueZone_Columns)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.VenueZone_Deleted)
-        </dd>
+        </dl>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Venue.Venue_Name)
-        </dt>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.Venue.Venue_Name)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-warning" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
 </div>
+
