@@ -54,6 +54,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="VenueZone">
+      <EntityTypeMapping TypeName="APTEventsModel.VenueZone">
+        <MappingFragment StoreEntitySet="VenueZone">
+          <ScalarProperty Name="VenueZone_ID" ColumnName="VenueZone_ID" />
+          <ScalarProperty Name="VenueZone_Name" ColumnName="VenueZone_Name" />
+          <ScalarProperty Name="VenueZone_VenueID" ColumnName="VenueZone_VenueID" />
+          <ScalarProperty Name="VenueZone_Code" ColumnName="VenueZone_Code" />
+          <ScalarProperty Name="VenueZone_Rows" ColumnName="VenueZone_Rows" />
+          <ScalarProperty Name="VenueZone_Columns" ColumnName="VenueZone_Columns" />
+          <ScalarProperty Name="VenueZone_Deleted" ColumnName="VenueZone_Deleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Category">
       <EntityTypeMapping TypeName="APTEventsModel.Category">
         <MappingFragment StoreEntitySet="Category">
@@ -182,19 +195,6 @@
           <ScalarProperty Name="EventBooking_UserID" ColumnName="EventBooking_UserID" />
           <ScalarProperty Name="EventBooking_Date" ColumnName="EventBooking_Date" />
           <ScalarProperty Name="EventBooking_ID" ColumnName="EventBooking_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="VenueZone">
-      <EntityTypeMapping TypeName="APTEventsModel.VenueZone">
-        <MappingFragment StoreEntitySet="VenueZone">
-          <ScalarProperty Name="VenueZone_Deleted" ColumnName="VenueZone_Deleted" />
-          <ScalarProperty Name="VenueZone_Columns" ColumnName="VenueZone_Columns" />
-          <ScalarProperty Name="VenueZone_Rows" ColumnName="VenueZone_Rows" />
-          <ScalarProperty Name="VenueZone_Code" ColumnName="VenueZone_Code" />
-          <ScalarProperty Name="VenueZone_VenueID" ColumnName="VenueZone_VenueID" />
-          <ScalarProperty Name="VenueZone_Name" ColumnName="VenueZone_Name" />
-          <ScalarProperty Name="VenueZone_ID" ColumnName="VenueZone_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

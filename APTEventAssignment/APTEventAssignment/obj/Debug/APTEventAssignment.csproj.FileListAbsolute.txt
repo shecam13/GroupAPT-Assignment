@@ -178,6 +178,8 @@ C:\Users\Ian Seychell\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssign
 C:\Users\Ian Seychell\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\obj\Debug\APTEventAssignment.csproj.ResolveComReference.cache
 C:\Users\Ian Seychell\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\obj\Debug\APTEventAssignment.csprojResolveAssemblyReference.cache
 C:\Users\Sheryl\SkyDrive\Documents\University_SD\Year2\Semester2\CIS2104-GroupAPT\CSI2015\APTEventAssignment\APTEventAssignment\obj\Debug\APTEventAssignment.csproj.ResolveComReference.cache
+C:\Users\Ian Seychell\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\ImageResizer.dll
+C:\Users\Ian Seychell\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\ImageResizer.xml
 C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\obj\Debug\APTEventAssignment.csproj.ResolveComReference.cache
 C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\ActionMailer.Net.dll
 C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\ActionMailer.Net.Mvc.dll
