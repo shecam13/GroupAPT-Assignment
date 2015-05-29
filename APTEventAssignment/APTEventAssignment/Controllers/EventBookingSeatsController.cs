@@ -62,7 +62,7 @@ namespace APTEventAssignment.Controllers
         {
             string[] arrBookings = new string[51];
 
-            arrBookings[0] = "L002";
+            arrBookings[0] = "L001";
             arrBookings[1] = "L071";
             arrBookings[2] = "M122";
             arrBookings[3] = "M093";
