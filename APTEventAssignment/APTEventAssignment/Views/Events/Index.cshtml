@@ -30,18 +30,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.Event_Rating)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Event_Deleted)
-                </th>*@
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Event_Image)
-                </th>*@
             <th>
-                @*@Html.DisplayNameFor(model => model.Venue.Venue_Name)*@
                 @Html.DisplayNameFor(model => model.Event_VenueName)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.Category.Category_Name)*@
                 @Html.DisplayNameFor(model => model.Event_CategoryName)
             </th>
             <th></th>
@@ -56,12 +48,6 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Event_Rating)
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Event_Deleted)
-                    </td>*@
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Event_Image)
-                    </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Event_VenueName)
                 </td>
@@ -69,7 +55,6 @@
                     @Html.DisplayFor(modelItem => item.Event_CategoryName)
                 </td>
                 <td>
-                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Event_ID, idEP = item.EventPerformance_ID }, null) |*@
                     @Html.ActionLink("Edit", "Edit", new { id = item.Event_ID}, null) |
                     @Html.ActionLink("Details", "Details", new { id = item.Event_ID }, null) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Event_ID}, null)

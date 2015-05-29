@@ -10,7 +10,7 @@ using APTEventAssignment.Models;
 
 namespace APTEventAssignment.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")] //for admin users only 
     public class CategoriesController : Controller
     {
         private APTEventsEntities db = new APTEventsEntities();
@@ -43,8 +43,6 @@ namespace APTEventAssignment.Controllers
         }
 
         // POST: Categories/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Category_ID,Category_Name")] Category category)
@@ -75,8 +73,6 @@ namespace APTEventAssignment.Controllers
         }
 
         // POST: Categories/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Category_ID,Category_Name")] Category category)

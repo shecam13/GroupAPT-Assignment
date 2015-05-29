@@ -55,8 +55,6 @@ namespace APTEventAssignment.Controllers
                 Venue_Capacity = venue.Venue_Capacity,
                 VenueType_Name = venue.VenueType.VenueType_Name,
             };
-
-            //ViewBag.Venue_VenueTypeID = new SelectList(db.VenueType, "VenueType_ID", "VenueType_Name", venue.Venue_VenueTypeID);
             return View(viewmodel);
         }
 
@@ -74,9 +72,7 @@ namespace APTEventAssignment.Controllers
         public ActionResult Create()
         {
             ViewBag.Venue_VenueTypeID = new SelectList(db.VenueType, "VenueType_ID", "VenueType_Name");
-            return View(new AddVenueViewModel());
-            
-            //return View();
+            return View(new AddVenueViewModel());            
         }
 
         [HttpPost]
@@ -127,7 +123,6 @@ namespace APTEventAssignment.Controllers
 
             ViewBag.Venue_VenueTypeID = new SelectList(db.VenueType, "VenueType_ID", "VenueType_Name", venue.Venue_VenueTypeID);
             return View(addviewmodel);
-            //return View(venue);
         }
        
         [HttpPost]
@@ -140,7 +135,6 @@ namespace APTEventAssignment.Controllers
                 var existingVenue = db.Venue.Find(addviewmodel.Venue_ID);
                 UpdateVenue(existingVenue, addviewmodel);
 
-                //db.Entry(addviewmodel).State = EntityState.Modified;
                 db.SaveChanges();
 
                 return RedirectToAction("Index");

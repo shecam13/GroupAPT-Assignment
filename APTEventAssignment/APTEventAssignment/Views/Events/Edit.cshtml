@@ -1,5 +1,4 @@
-﻿@*@model APTEventAssignment.Models.Event*@
-@model APTEventAssignment.ViewModels.AddEventViewModel
+﻿@model APTEventAssignment.ViewModels.AddEventViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -9,8 +8,9 @@
 <div class="container">
     <h2>Edit</h2>
 
-    @using (Html.BeginForm())
-    {
+@using (Html.BeginForm("Edit", "Events", FormMethod.Post,
+                    new { enctype = "multipart/form-data" }))
+{
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">

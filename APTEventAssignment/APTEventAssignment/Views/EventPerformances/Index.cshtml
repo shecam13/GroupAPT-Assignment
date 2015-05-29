@@ -21,11 +21,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.EventPerformance_Time)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.EventPerformance_Deleted)
-                </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.EventPerformance_EventName) @*//Event.Event_Name*@
+                @Html.DisplayNameFor(model => model.EventPerformance_EventName) 
             </th>
             <th></th>
         </tr>
@@ -37,12 +34,8 @@
                     @Html.DisplayFor(modelItem => item.EventPerformance_Date)
                 </td>
                 <td>
-                    @*@{string parameterValue = item.EventPerformance_Time.Value.ToString("0:HH:mm");}*@
                     @Html.DisplayFor(modelItem => item.EventPerformance_Time)
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.EventPerformance_Deleted)
-                    </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.EventPerformance_EventName)
                 </td>

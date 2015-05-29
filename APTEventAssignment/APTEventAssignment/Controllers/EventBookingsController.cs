@@ -23,31 +23,6 @@ namespace APTEventAssignment.Controllers
         // GET: EventBookings
         public ActionResult Index()
         {
-            //var userId = User.Identity.GetUserId();
-            //List<EventBooking> bookings = null;
-
-            ////var query = ( from 
-                
-                
-                
-            ////    )
-                
-                
-            ////    "SELECT UserName, EventBooking_Date, Event_Name, EventPerformance_Date " +
-            ////            "FROM EventBooking "+
-            ////            "INNER JOIN EventBooking eb "
-
-            //if (User.IsInRole("admin"))
-            //{
-            //    bookings = db.EventBooking.Include(e => e.EventPerformance).ToList(); //get all evnets of all users
-            //}
-            //else
-            //{
-            //    bookings = db.EventBooking.Include(e => e.EventPerformance).Where(e => e.EventBooking_UserID == userId).ToList(); // get all event bookings of a particular user
-            //}
-
-            //return View(bookings); // return the list
-
             var viewmodel = (from eb in db.EventBooking
                              join pd in db.EventPerformance on eb.EventBooking_EventPerformanceID equals pd.EventPerformance_ID
                              join en in db.EventPerformance on eb.EventPerformance.EventPerformance_EventID equals en.Event.Event_ID
@@ -235,20 +210,6 @@ namespace APTEventAssignment.Controllers
         }
 
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Checkout([Bind(Include = "EventBooking_Date,EventBooking_EventPerformanceID,EventBooking_Deleted")] EventBooking eventBooking)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.EventBooking.Add(eventBooking);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID", eventBooking.EventBooking_EventPerformanceID);
-        //    return View(eventBooking);
-        //}
 
         private void UpdateEventBooking(EventBooking eb, AddEventBookingViewModel addviewmodel)
         {
@@ -262,18 +223,12 @@ namespace APTEventAssignment.Controllers
         public ActionResult Create()
         {
             ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID");
-            //return View();
             return View(new AddEventBookingViewModel());
         }
 
         // POST: EventBookings/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        // in the Bind(Include = ...) put those fields only that will be returned by the view 
-        //EventBooking_ID,EventBooking_Date,EventBooking_UserID,EventBooking_EventPerformanceID,EventBooking_Deleted
-        //public ActionResult Create([Bind(Include = "EventBooking_Date,EventBooking_EventPerformanceID,EventBooking_Deleted")] EventBooking eventBooking)
         public ActionResult Create(AddEventBookingViewModel addviewmodel)
         {
             if (ModelState.IsValid)
@@ -315,23 +270,16 @@ namespace APTEventAssignment.Controllers
             };
 
             ViewBag.EventBooking_EventPerformanceID = new SelectList(db.EventPerformance, "EventPerformance_ID", "EventPerformance_ID", addviewmodel.EventBooking_EventPerformanceID);
-            //ViewBag.EventBooking_UserID = new SelectList(db.User, "User_ID", "User_Login", eventBooking.EventBooking_UserID);
             return View(addviewmodel);
         }
 
         // POST: EventBookings/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "EventBooking_Date,EventBooking_EventPerformanceID,EventBooking_Deleted")] EventBooking eventBooking)
         public ActionResult Edit(AddEventBookingViewModel addviewmodel)
         {
             if (ModelState.IsValid)
             {
-                //eventBooking.EventBooking_UserID = User.Identity.GetUserId();
-                //db.Entry(eventBooking).State = EntityState.Modified;
-                //db.SaveChanges();
                 var existingBooking = db.EventBooking.Find(addviewmodel.EventBooking_ID);
                 UpdateEventBooking(existingBooking, addviewmodel);
 

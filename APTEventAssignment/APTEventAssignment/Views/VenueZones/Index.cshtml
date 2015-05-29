@@ -1,63 +1,63 @@
-﻿@model IEnumerable<APTEventAssignment.Models.VenueZone>
+﻿@model IEnumerable<APTEventAssignment.ViewModels.VenueZoneViewModel>
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="container">
+    <h2>Zones</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.VenueZone_Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VenueZone_Code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VenueZone_Rows)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VenueZone_Columns)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VenueZone_Deleted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Venue.Venue_Name)
-        </th>
-        <th></th>
-    </tr>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table table-hover">
+        <tr class="h3 warning">
+            <th>
+                @Html.DisplayNameFor(model => model.VenueZone_VenueName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VenueZone_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VenueZone_Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VenueZone_Rows)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VenueZone_Columns)
+            </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.VenueZone_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VenueZone_Code)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VenueZone_Rows)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VenueZone_Columns)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VenueZone_Deleted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Venue.Venue_Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.VenueZone_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.VenueZone_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.VenueZone_ID })
-        </td>
-    </tr>
-}
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VenueZone_VenueName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VenueZone_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VenueZone_Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VenueZone_Rows)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VenueZone_Columns)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.VenueZone_ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.VenueZone_ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.VenueZone_ID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
