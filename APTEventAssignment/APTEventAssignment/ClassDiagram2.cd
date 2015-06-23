@@ -1,436 +1,455 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="APTEventAssignment.BundleConfig" Collapsed="true">
-    <Position X="15" Y="1.5" Width="1.5" />
+  <Class Name="APTEventAssignment.BundleConfig">
+    <Position X="16.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
       <FileName>App_Start\BundleConfig.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.FilterConfig" Collapsed="true">
-    <Position X="13.25" Y="4.5" Width="1.5" />
+  <Class Name="APTEventAssignment.FilterConfig">
+    <Position X="4" Y="10.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>App_Start\FilterConfig.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.ApplicationUserManager" Collapsed="true">
-    <Position X="1" Y="1.5" Width="1.5" />
+  <Class Name="APTEventAssignment.ApplicationUserManager">
+    <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>App_Start\IdentityConfig.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.EmailService" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="13.25" Y="2.5" Width="1.5" />
+  <Class Name="APTEventAssignment.EmailService" BaseTypeListCollapsed="true">
+    <Position X="14.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>App_Start\IdentityConfig.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="APTEventAssignment.SmsService" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="11.5" Y="6.5" Width="1.5" />
+  <Class Name="APTEventAssignment.SmsService" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="10.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>App_Start\IdentityConfig.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="APTEventAssignment.RouteConfig" Collapsed="true">
-    <Position X="6.25" Y="6.5" Width="1.5" />
+  <Class Name="APTEventAssignment.RouteConfig">
+    <Position X="9.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
       <FileName>App_Start\RouteConfig.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.MvcApplication" Collapsed="true">
-    <Position X="13.25" Y="5.5" Width="1.5" />
+  <Class Name="APTEventAssignment.MvcApplication">
+    <Position X="2.25" Y="10.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
       <FileName>Global.asax.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Controllers.AccountController" Collapsed="true">
-    <Position X="1" Y="0.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Controllers.AccountController">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="APTEventAssignment.Controllers.AccountController.ManageMessageId" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\AccountController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Class Name="APTEventAssignment.Controllers.AccountController.ChallengeResult" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\AccountController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAABCChQCAQAgCBAAEAEgEABgEBIKoCAEEVAAQkAAA=</HashCode>
       <FileName>Controllers\AccountController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Controllers.AspNetUsersController" Collapsed="true">
-    <Position X="11.5" Y="1.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Controllers.AspNetUsersController">
+    <Position X="9.5" Y="10" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAAAAAAEAAAAAAAA=</HashCode>
       <FileName>Controllers\AspNetUsersController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Controllers.CategoriesController" Collapsed="true">
-    <Position X="2.75" Y="2.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Controllers.CategoriesController">
+    <Position X="16.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
       <FileName>Controllers\CategoriesController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Controllers.EventBookingsController" Collapsed="true">
-    <Position X="2.75" Y="3.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Controllers.EventBookingsController">
+    <Position X="14.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAUACACARBACAAAAAAAAAAAEAAEACAAEAAAAAAgA=</HashCode>
       <FileName>Controllers\EventBookingsController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Controllers.EventBookingSeatsController" Collapsed="true">
-    <Position X="6.25" Y="3.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Controllers.EventBookingSeatsController">
+    <Position X="18.25" Y="9.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="APTEventAssignment.Controllers.EventBookingSeatsController.Seating" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Controllers\EventBookingSeatsController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAEAAABAACARAADAAIAAAAAAAAEAAEACAQEAAAACAAA=</HashCode>
       <FileName>Controllers\EventBookingSeatsController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Controllers.EventPerformancesController" Collapsed="true">
-    <Position X="13.25" Y="3.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Controllers.EventPerformancesController">
+    <Position X="11" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEACAAEAAAAAIAA=</HashCode>
       <FileName>Controllers\EventPerformancesController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Controllers.EventsController" Collapsed="true">
-    <Position X="1" Y="4.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Controllers.EventsController">
+    <Position X="16.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACARAECAAAAAAAAKAAEAAEACAAEAAAAAAAA=</HashCode>
       <FileName>Controllers\EventsController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Controllers.EventVenueZonesController" Collapsed="true">
-    <Position X="8" Y="4.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Controllers.EventVenueZonesController">
+    <Position X="9.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
       <FileName>Controllers\EventVenueZonesController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Controllers.HomeController" Collapsed="true">
-    <Position X="1" Y="5.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Controllers.HomeController">
+    <Position X="14.75" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAgAAAAAAAAQAAEACAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
       <FileName>Controllers\HomeController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Controllers.VenuesController" Collapsed="true">
-    <Position X="6.25" Y="7.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Controllers.VenuesController">
+    <Position X="11.25" Y="11.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAgCARAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
       <FileName>Controllers\VenuesController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Controllers.VenueTypesController" Collapsed="true">
-    <Position X="9.75" Y="7.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Controllers.VenueTypesController">
+    <Position X="9.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACARAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
       <FileName>Controllers\VenueTypesController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Controllers.VenueZonesController" Collapsed="true">
-    <Position X="15" Y="7.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Controllers.VenueZonesController">
+    <Position X="13" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABAAAAAAACARAACAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
       <FileName>Controllers\VenueZonesController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.HtmlHelperRepository.Images.ImageHelper" Collapsed="true">
-    <Position X="4.5" Y="5.5" Width="1.5" />
+  <Class Name="APTEventAssignment.HtmlHelperRepository.Images.ImageHelper">
+    <Position X="4" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>HtmlHelperRepository\Images\ImageHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.ExternalLoginConfirmationViewModel" Collapsed="true">
-    <Position X="9.75" Y="4.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.ExternalLoginConfirmationViewModel">
+    <Position X="7.5" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\AccountViewModels.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.ExternalLoginListViewModel" Collapsed="true">
-    <Position X="11.5" Y="4.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.ExternalLoginListViewModel">
+    <Position X="2.25" Y="9.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAQ=</HashCode>
       <FileName>Models\AccountViewModels.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.ManageUserViewModel" Collapsed="true">
-    <Position X="11.5" Y="5.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.ManageUserViewModel">
+    <Position X="0.5" Y="9.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAEAAAAAAAAAAAAAAIAA=</HashCode>
       <FileName>Models\AccountViewModels.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.LoginViewModel" Collapsed="true">
-    <Position X="9.75" Y="5.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.LoginViewModel">
+    <Position X="4" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAAAAAAAgAAA=</HashCode>
       <FileName>Models\AccountViewModels.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.RegisterViewModel" Collapsed="true">
-    <Position X="2.75" Y="6.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.RegisterViewModel">
+    <Position X="9.5" Y="12.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAACCAAAAAAAAAAAAAAAAAAAAACAAAAAAAAIAA=</HashCode>
       <FileName>Models\AccountViewModels.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.EditUserViewModel" Collapsed="true">
-    <Position X="9.75" Y="2.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.EditUserViewModel">
+    <Position X="2.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAACCAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>Models\AccountViewModels.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.SelectUserRolesViewModel" Collapsed="true">
-    <Position X="9.75" Y="6.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.SelectUserRolesViewModel">
+    <Position X="5.75" Y="12.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAgAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>Models\AccountViewModels.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.SelectRoleEditorViewModel" Collapsed="true">
-    <Position X="8" Y="6.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.SelectRoleEditorViewModel">
+    <Position X="7.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAI=</HashCode>
       <FileName>Models\AccountViewModels.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.ResetPasswordViewModel" Collapsed="true">
-    <Position X="4.5" Y="6.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.ResetPasswordViewModel">
+    <Position X="4" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAgAAAAAAAAAAACAAAAAAAAIAA=</HashCode>
       <FileName>Models\AccountViewModels.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.ForgotPasswordViewModel" Collapsed="true">
-    <Position X="15" Y="4.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.ForgotPasswordViewModel">
+    <Position X="7.5" Y="10.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\AccountViewModels.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.APTEventsEntities" Collapsed="true">
-    <Position X="2.75" Y="1.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.APTEventsEntities">
+    <Position X="7.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAIAEAAQBIAhgABAAAACQQEAEgAEQAgAAAAAFAAACAE=</HashCode>
       <FileName>Models\APTEventModel.Context.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.AspNetRoles" Collapsed="true">
-    <Position X="4.5" Y="1.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.AspNetRoles">
+    <Position X="2.25" Y="12.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAQAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\AspNetRoles.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.AspNetUsers" Collapsed="true">
-    <Position X="9.75" Y="1.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.AspNetUsers">
+    <Position X="18.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACCAAAACCAAoEAAAAAAQAABAAAAQAAIAQQABBAAAQE=</HashCode>
       <FileName>Models\AspNetUsers.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.Category" Collapsed="true">
-    <Position X="4.5" Y="2.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.Category">
+    <Position X="20.25" Y="10.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAgAAAAAAAAAAAABACAA=</HashCode>
       <FileName>Models\Category.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.Event" Collapsed="true">
-    <Position X="15" Y="2.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.Event">
+    <Position X="11.25" Y="7.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAJIAAAAAAABQAAIAAAgAAAAgAAAAAAAAECCA=</HashCode>
       <FileName>Models\Event.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.EventBooking" Collapsed="true">
-    <Position X="1" Y="3.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.EventBooking">
+    <Position X="13" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAwAAAAAABAAAAACAQAAAQAAAggAAAAAAAAAAA=</HashCode>
       <FileName>Models\EventBooking.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.EventBookingSeat" Collapsed="true">
-    <Position X="4.5" Y="3.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.EventBookingSeat">
+    <Position X="20.25" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAIAAIAAAAAAAAAAACAAAABAAAgAA=</HashCode>
       <FileName>Models\EventBookingSeat.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.EventPerformance" Collapsed="true">
-    <Position X="11.5" Y="3.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.EventPerformance">
+    <Position X="11" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACAQAAABAAAAAgIAAAAAABEABABAAAA=</HashCode>
       <FileName>Models\EventPerformance.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.EventVenueZone" Collapsed="true">
-    <Position X="6.25" Y="4.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.EventVenueZone">
+    <Position X="2.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CCEAAAAAAAAAAAAAAAAAAAEAAgAAAAAAAAACAAABAAA=</HashCode>
       <FileName>Models\EventVenueZone.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.sp_helpdiagrams_Result" Collapsed="true">
-    <Position X="15" Y="6.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.sp_helpdiagrams_Result">
+    <Position X="7.5" Y="11.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAEAAiAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\sp_helpdiagrams_Result.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.Venue" Collapsed="true">
-    <Position X="4.5" Y="7.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.Venue">
+    <Position X="13" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAQAIAAAAAAAAAAAAAAAQEAQgQAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>Models\Venue.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.VenueType" Collapsed="true">
-    <Position X="8" Y="7.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.VenueType">
+    <Position X="4" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAABAAgAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\VenueType.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.VenueZone" Collapsed="true">
-    <Position X="13.25" Y="7.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.VenueZone">
+    <Position X="14.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAADIAAAAAAQAAAAAEgAAAAAAAAAAAACCAgAAA=</HashCode>
       <FileName>Models\VenueZone.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.EmailFormModel" Collapsed="true">
-    <Position X="11.5" Y="2.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.EmailFormModel">
+    <Position X="5.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAgAAAAAAAAAAIAAAAAA=</HashCode>
       <FileName>Models\EmailFormModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.ApplicationUser" Collapsed="true">
-    <Position X="15" Y="0.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.ApplicationUser">
+    <Position X="14.75" Y="12.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\IdentityModels.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.ApplicationDbContext" Collapsed="true">
-    <Position X="13.25" Y="0.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.ApplicationDbContext">
+    <Position X="18.25" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\IdentityModels.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.IdentityManager" Collapsed="true">
-    <Position X="2.75" Y="5.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.IdentityManager">
+    <Position X="20" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAQAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQCAA=</HashCode>
       <FileName>Models\IdentityModels.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.Models.ImageTable" Collapsed="true">
-    <Position X="6.25" Y="5.5" Width="1.5" />
+  <Class Name="APTEventAssignment.Models.ImageTable">
+    <Position X="5.75" Y="9.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
       <FileName>Models\ModelClasses.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="NVPAPICaller" Collapsed="true">
-    <Position X="15" Y="5.5" Width="1.5" />
+  <Class Name="NVPAPICaller">
+    <Position X="16.5" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABEAACoCACAAAABAMGIAAAAggFABEIAAAgAQAAAABA=</HashCode>
       <FileName>PayPalFunctions.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.ViewModels.EventBookingSeatsViewModel" Collapsed="true">
-    <Position X="8" Y="3.5" Width="1.5" />
+  <Class Name="APTEventAssignment.ViewModels.EventBookingSeatsViewModel">
+    <Position X="2.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAQAAAAAAAAAAQAAAAAAAABAAAAAAAAAAACA=</HashCode>
       <FileName>ViewModels\EventBookingSeatsViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.ViewModels.EventBookingViewModel" Collapsed="true">
-    <Position X="9.75" Y="3.5" Width="1.5" />
+  <Class Name="APTEventAssignment.ViewModels.EventBookingViewModel">
+    <Position X="4" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAACAQAAIQAAAAgAQCAAAAAAAA=</HashCode>
       <FileName>ViewModels\EventBookingViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.ViewModels.AddEventBookingViewModel" Collapsed="true">
-    <Position X="4.5" Y="0.5" Width="1.5" />
+  <Class Name="APTEventAssignment.ViewModels.AddEventBookingViewModel">
+    <Position X="5.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAACAQAAIQAAAAgAQCAAAAAAAA=</HashCode>
       <FileName>ViewModels\EventBookingViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.ViewModels.ImageTable" Collapsed="true">
-    <Position X="8" Y="5.5" Width="1.5" />
+  <Class Name="APTEventAssignment.ViewModels.ImageTable">
+    <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
       <FileName>ViewModels\EventImageViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.ViewModels.EventPerformancesViewModel" Collapsed="true">
-    <Position X="15" Y="3.5" Width="1.5" />
+  <Class Name="APTEventAssignment.ViewModels.EventPerformancesViewModel">
+    <Position X="0.5" Y="11.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACAQAAABAAAAAAAAAAAAAAAAAABAAAI=</HashCode>
       <FileName>ViewModels\EventPerformancesViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.ViewModels.AddEventPerformanceViewModel" Collapsed="true">
-    <Position X="6.25" Y="0.5" Width="1.5" />
+  <Class Name="APTEventAssignment.ViewModels.AddEventPerformanceViewModel">
+    <Position X="9.25" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACAQAAABAAAAAAAAAAAAAAAAAABAAAI=</HashCode>
       <FileName>ViewModels\EventPerformancesViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.ViewModels.EventsViewModel" Collapsed="true">
-    <Position X="4.5" Y="4.5" Width="1.5" />
+  <Class Name="APTEventAssignment.ViewModels.EventsViewModel">
+    <Position X="20.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAIAAAAAAAEBQAQAgAAAAIAAAAAAAAAAAEACA=</HashCode>
       <FileName>ViewModels\EventsViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.ViewModels.AddEventViewModel" Collapsed="true">
-    <Position X="8" Y="0.5" Width="1.5" />
+  <Class Name="APTEventAssignment.ViewModels.AddEventViewModel">
+    <Position X="4" Y="12" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAIAAAAAAAABQAAAgAAAAAAAAAAAAAAAAEACA=</HashCode>
       <FileName>ViewModels\EventsViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.ViewModels.EventsDetailsViewModel" Collapsed="true">
-    <Position X="2.75" Y="4.5" Width="1.5" />
+  <Class Name="APTEventAssignment.ViewModels.EventsDetailsViewModel">
+    <Position X="20" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAIAAAAAAAEAAAQAAAAAAIAAAAAAAAAAAEACA=</HashCode>
       <FileName>ViewModels\EventsViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.ViewModels.VenueViewModel" Collapsed="true">
-    <Position X="11.5" Y="7.5" Width="1.5" />
+  <Class Name="APTEventAssignment.ViewModels.VenueViewModel">
+    <Position X="5.75" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAQAAAAAAAAAAAAAAAAAAAAQAQIAAAAAAAAAEAAAAA=</HashCode>
       <FileName>ViewModels\VenueViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.ViewModels.AddVenueViewModel" Collapsed="true">
-    <Position X="9.75" Y="0.5" Width="1.5" />
+  <Class Name="APTEventAssignment.ViewModels.AddVenueViewModel">
+    <Position X="13" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAQAAAAAAAAAAAAAAAAAAAAQAQAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>ViewModels\VenueViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.ViewModels.VenueZoneViewModel" Collapsed="true">
-    <Position X="1" Y="8.5" Width="1.5" />
+  <Class Name="APTEventAssignment.ViewModels.VenueZoneViewModel">
+    <Position X="18.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAACAAAAAAAQAAAAAEgAAABAAAAAAAACAAgAAA=</HashCode>
       <FileName>ViewModels\VenueZoneViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="APTEventAssignment.ViewModels.AddVenueZoneViewModel" Collapsed="true">
-    <Position X="11.5" Y="0.5" Width="1.5" />
+  <Class Name="APTEventAssignment.ViewModels.AddVenueZoneViewModel">
+    <Position X="13" Y="12.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAACAAAAAAAQAAAAAEgAAAAAAAAAAAACAAgAAA=</HashCode>
       <FileName>ViewModels\VenueZoneViewModel.cs</FileName>
