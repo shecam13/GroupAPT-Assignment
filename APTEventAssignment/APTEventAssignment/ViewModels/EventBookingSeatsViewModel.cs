@@ -18,6 +18,8 @@ namespace APTEventAssignment.ViewModels
 
         public string PhoneNumber { get; set; }
 
+        public List<String> SeatIdentifiers { get; set; }
+
         public int SelectPerformanceId { get; set; }
 
         public IEnumerable<SelectListItem> Performances { get; set; }

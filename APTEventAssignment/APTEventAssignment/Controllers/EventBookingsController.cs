@@ -10,8 +10,7 @@ using APTEventAssignment.Models;
 using Microsoft.AspNet.Identity;
 using APTEventAssignment.ViewModels;
 using System.Net.Mail;
-//using APTEventAssignment.Message;
-//using APTEventAssignment.Message;
+using APTEventAssignment.Message;
 
 namespace APTEventAssignment.Controllers
 {
@@ -130,11 +129,11 @@ namespace APTEventAssignment.Controllers
                 }
 
                 //Send SMS if phone number is provided
-                //if (phoneNo != null)
-                //{
-                //    CreateSms cs = new CreateSms();
-                //    cs.SendSMS(viewmodel.EventBooking_Date.ToString(), viewmodel.EventName, viewmodel.PerformanceDate.ToString());
-                //}
+                if (phoneNo != null)
+                {
+                    CreateSms cs = new CreateSms();
+                    cs.SendSMS(viewmodel.EventBooking_Date.ToString(), viewmodel.EventName, viewmodel.PerformanceDate.ToString(), phoneNo);
+                }
 
                 // kill session
                 Session.Abandon();

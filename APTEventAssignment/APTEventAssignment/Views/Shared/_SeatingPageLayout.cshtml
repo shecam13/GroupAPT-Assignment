@@ -78,6 +78,12 @@
         }
     }
 
+    function getListOfSeats()
+    {
+        var lstSelectedSeats = document.getElementById("lstSelectedSeats");
+        return lstSelectedSeats;
+    }
+
     function removeSelected() {
         var lstSelectedSeats = document.getElementById("lstSelectedSeats");
         if (lstSelectedSeats.selectedIndex >= 0) {
