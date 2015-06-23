@@ -62,13 +62,17 @@ namespace APTEventAssignment.Controllers
         {
             string[] arrBookings = new string[51];
 
-            arrBookings[0] = "L002";
-            arrBookings[1] = "L071";
-            arrBookings[2] = "M122";
-            arrBookings[3] = "M093";
-            arrBookings[4] = "M094";
-            arrBookings[5] = "M095";
-            arrBookings[6] = "R000";
+            var query = from ep in db.EventBookingSeat
+                        join eb in db.EventBooking on ep.EventBookingSeat_EventBookingID equals eb.EventBooking_ID
+                        where eb.EventBooking_EventPerformanceID == ShowID
+                        select ep.EventBookingSeat_SeatIdentifier;
+
+            var seats = query.ToList();
+
+            for (int i = 0; i<seats.Count; i++)
+            {
+                arrBookings[i] = seats[i];
+            }
 
             return arrBookings;
         }
@@ -148,11 +152,9 @@ namespace APTEventAssignment.Controllers
 
                 ViewData["PerformanceList"] = performances;
 
-                //for seating
-                ViewBag.Zones = getSeatingZoneCountForShow("A");
-                ViewBag.Layout = getSeatingPlanForShow("A");
-                ViewBag.Booked = getSeatingBookedForShow(1);
-
+                // get the first event performance and generate seating plan for it
+                EventPerformance ep = performances.First();
+                generateSeatingPlan(ep.EventPerformance_ID);
 
                 return View(viewmodel);
             }
@@ -163,6 +165,14 @@ namespace APTEventAssignment.Controllers
 
         }
 
+        public void generateSeatingPlan(int perfID)
+        {
+            ViewBag.Zones = getSeatingZoneCountForShow("A");
+            ViewBag.Layout = getSeatingPlanForShow("A");
+            ViewBag.Booked = getSeatingBookedForShow(perfID);
+        }
+        
+
         [HttpPost]   
         [ValidateAntiForgeryToken]
         public ActionResult SeatingPage(EventBookingSeatsViewModel viewmodel)
@@ -170,14 +180,13 @@ namespace APTEventAssignment.Controllers
             var eventDetails = this.Session["EventDetails"] as EventsDetailsViewModel;
             List<EventPerformance> performances = eventDetails.Event_Performances;
 
-            viewmodel.Performances = GetPerformances(performances);           
+            viewmodel.Performances = GetPerformances(performances);
 
             // pass the view model to the index booking page
             this.Session["BookingDetails"] = viewmodel;
 
             return RedirectToAction("IndexBooking", "EventBookings");
         }
-
     
         public RedirectResult ViewSeatingPlan()
         {
