@@ -189,3 +189,6 @@ C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bi
 C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\ActionMailer.Net.Mvc.pdb
 C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\ActionMailer.Net.Mvc.xml
 C:\Users\Clara\Documents\GitHub\CSI2015\APTEventAssignment\APTEventAssignment\bin\ImageResizer.xml
+C:\Users\Sheryl\SkyDrive\Documents\University_SD\Year2\Semester2\CIS2104-GroupAPT\CSI2015\APTEventAssignment\APTEventAssignment\bin\ImageResizer.dll
+C:\Users\Sheryl\SkyDrive\Documents\University_SD\Year2\Semester2\CIS2104-GroupAPT\CSI2015\APTEventAssignment\APTEventAssignment\bin\ImageResizer.xml
+C:\Users\Sheryl\SkyDrive\Documents\University_SD\Year2\Semester2\CIS2104-GroupAPT\CSI2015\APTEventAssignment\APTEventAssignment\obj\Debug\Interop.AXMMCFGLib.dll

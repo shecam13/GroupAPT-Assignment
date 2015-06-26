@@ -155,10 +155,10 @@
     </Key>
     <Property Name="VenueZone_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="VenueZone_Name" Type="nvarchar" MaxLength="255" />
-    <Property Name="VenueZone_VenueID" Type="int" />
-    <Property Name="VenueZone_Code" Type="nvarchar" MaxLength="255" />
-    <Property Name="VenueZone_Rows" Type="int" />
-    <Property Name="VenueZone_Columns" Type="int" />
+    <Property Name="VenueZone_VenueID" Type="int" Nullable="false" />
+    <Property Name="VenueZone_Code" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="VenueZone_Rows" Type="int" Nullable="false" />
+    <Property Name="VenueZone_Columns" Type="int" Nullable="false" />
     <Property Name="VenueZone_Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -217,6 +217,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_dbo_AspNetUsers_EventBooking">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="EventBooking" Type="Self.EventBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventBooking">
+        <PropertyRef Name="EventBooking_UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Event_Category">
     <End Role="Category" Type="Self.Category" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -232,7 +246,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Event_Venue">
-    <End Role="Venue" Type="Self.Venue" Multiplicity="1" />
+    <End Role="Venue" Type="Self.Venue" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Event" Type="Self.Event" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Venue">
@@ -243,20 +259,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_EventBooking_AspNetUsers1">
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-    <End Role="EventBooking" Type="Self.EventBooking" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AspNetUsers">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="EventBooking">
-        <PropertyRef Name="EventBooking_UserID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_EventBooking_EventPerformance">
-    <End Role="EventPerformance" Type="Self.EventPerformance" Multiplicity="0..1" />
+    <End Role="EventPerformance" Type="Self.EventPerformance" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="EventBooking" Type="Self.EventBooking" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="EventPerformance">
@@ -267,8 +273,10 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_EventBookingSeat_EventBooking">
-    <End Role="EventBooking" Type="Self.EventBooking" Multiplicity="0..1" />
+  <Association Name="FK_EventBookingSeat_EventBookingSeat">
+    <End Role="EventBooking" Type="Self.EventBooking" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="EventBookingSeat" Type="Self.EventBookingSeat" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="EventBooking">
@@ -280,7 +288,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_EventPerformance_Event">
-    <End Role="Event" Type="Self.Event" Multiplicity="0..1" />
+    <End Role="Event" Type="Self.Event" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="EventPerformance" Type="Self.EventPerformance" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Event">
@@ -292,7 +302,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_EventVenueZone_Event">
-    <End Role="Event" Type="Self.Event" Multiplicity="0..1" />
+    <End Role="Event" Type="Self.Event" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="EventVenueZone" Type="Self.EventVenueZone" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Event">
@@ -328,7 +340,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_VenueZone_Venue">
-    <End Role="Venue" Type="Self.Venue" Multiplicity="0..1" />
+    <End Role="Venue" Type="Self.Venue" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="VenueZone" Type="Self.VenueZone" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Venue">
@@ -403,6 +417,10 @@
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
     </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUsers_EventBooking" Association="Self.FK_dbo_AspNetUsers_EventBooking">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="EventBooking" EntitySet="EventBooking" />
+    </AssociationSet>
     <AssociationSet Name="FK_Event_Category" Association="Self.FK_Event_Category">
       <End Role="Category" EntitySet="Category" />
       <End Role="Event" EntitySet="Event" />
@@ -411,15 +429,11 @@
       <End Role="Venue" EntitySet="Venue" />
       <End Role="Event" EntitySet="Event" />
     </AssociationSet>
-    <AssociationSet Name="FK_EventBooking_AspNetUsers1" Association="Self.FK_EventBooking_AspNetUsers1">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="EventBooking" EntitySet="EventBooking" />
-    </AssociationSet>
     <AssociationSet Name="FK_EventBooking_EventPerformance" Association="Self.FK_EventBooking_EventPerformance">
       <End Role="EventPerformance" EntitySet="EventPerformance" />
       <End Role="EventBooking" EntitySet="EventBooking" />
     </AssociationSet>
-    <AssociationSet Name="FK_EventBookingSeat_EventBooking" Association="Self.FK_EventBookingSeat_EventBooking">
+    <AssociationSet Name="FK_EventBookingSeat_EventBookingSeat" Association="Self.FK_EventBookingSeat_EventBookingSeat">
       <End Role="EventBooking" EntitySet="EventBooking" />
       <End Role="EventBookingSeat" EntitySet="EventBookingSeat" />
     </AssociationSet>
