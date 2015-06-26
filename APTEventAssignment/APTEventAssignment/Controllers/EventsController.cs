@@ -53,38 +53,38 @@ namespace APTEventAssignment.Controllers
                            select d.Category_Name;
 
             CategoryList.AddRange(CatQuery.Distinct());
-            ViewBag.Genre = new SelectList(CategoryList);
+            ViewBag.Category = new SelectList(CategoryList);
 
 
             //querying the db to get all data for events 
-                var viewmodel = (from e in db.Event
-                                 join cid in db.Category on e.Event_CategoryID equals cid.Category_ID
-                                 join vt in db.Venue on e.Event_VenueID equals vt.Venue_ID
-                                 select new EventsViewModel()
-                                 {
-                                     Event_ID = e.Event_ID,
-                                     Event_Name = e.Event_Name,
-                                     Event_VenueName = vt.Venue_Name,
-                                     Event_Rating = e.Event_Rating,
-                                     Event_CategoryName = cid.Category_Name,
-                                     Event_Image = e.Event_Image,
-                                 });
+            var viewmodel = (from e in db.Event
+                                join cid in db.Category on e.Event_CategoryID equals cid.Category_ID
+                                join vt in db.Venue on e.Event_VenueID equals vt.Venue_ID
+                                select new EventsViewModel()
+                                {
+                                    Event_ID = e.Event_ID,
+                                    Event_Name = e.Event_Name,
+                                    Event_VenueName = vt.Venue_Name,
+                                    Event_Rating = e.Event_Rating,
+                                    Event_CategoryName = cid.Category_Name,
+                                    Event_Image = e.Event_Image,
+                                });
 
 
-                if (!String.IsNullOrEmpty(search))
-                {
-                    viewmodel = viewmodel.Where(s => s.Event_Name.Contains(search));
+            if (!String.IsNullOrEmpty(search))
+            {
+                viewmodel = viewmodel.Where(s => s.Event_Name.Contains(search));
                     
-                }
-
-                if (!string.IsNullOrEmpty(category))
-                {
-                    viewmodel = viewmodel.Where(x => x.Event_CategoryName == category);
-                }
-
-                return View(viewmodel); 
-
             }
+
+            if (!string.IsNullOrEmpty(category))
+            {
+                viewmodel = viewmodel.Where(x => x.Event_CategoryName == category);
+            }
+
+            return View(viewmodel); 
+
+        }
 
 
         //method to update the model with the viewmodel data. Used in create and edit methods. 
@@ -122,6 +122,11 @@ namespace APTEventAssignment.Controllers
             var venue = db.Venue.FirstOrDefault(c => c.Venue_ID == @event.Event_VenueID);
             var venueName = venue.Venue_Name;
 
+            //get prices
+            var price = "€0.00";
+            var eventVenueZones = db.EventVenueZone.FirstOrDefault(c => c.EventVenueZone_EventID == @event.Event_ID);
+            price = eventVenueZones.EventVenueZone_Price.ToString();
+
             List<EventPerformance> performances = null;
 
             // get the list of performances for a particular event
@@ -143,7 +148,8 @@ namespace APTEventAssignment.Controllers
                 Event_VenueName = venueName,
                 Event_Image = @event.Event_Image,
                 Event_Rating = @event.Event_Rating,
-                Event_CategoryName = categoryName
+                Event_CategoryName = categoryName,
+                Event_Price = price
             };
 
             viewmodel.Event_Performances = performances;

@@ -97,42 +97,64 @@ namespace APTEventAssignment.Controllers
         }
 
 
-        public Array getSeatingPlanForShow(string Code)
+        public Array getSeatingPlanForShow(string venueName)
         {
             int intZoneCount = 0;
             string[,] arrSeating = new string[1, 6];
             string[,] arrBookedSeats = new string[1, 3];
 
-            switch (Code)
+            var query = from vz in db.VenueZone   
+                        join v in db.Venue on vz.VenueZone_VenueID equals v.Venue_ID
+                        where v.Venue_Name == venueName
+                        select vz;
+
+            var venueZones = query.ToList();
+
+            intZoneCount = venueZones.Count;
+
+            arrSeating = new string[intZoneCount, 6];
+
+            for (int i = 0; i < venueZones.Count; i++)
             {
-                case "A":
-                    //Define the Number of Vertical Zone 
-                    intZoneCount = 3;
-                    //Create the Array with the Zone Information
-                    arrSeating = new string[intZoneCount, 6];
-                    arrSeating[0, (int)Seating.Code] = "L";
-                    arrSeating[0, (int)Seating.Title] = "LEFT WING";
-                    arrSeating[0, (int)Seating.Rows] = "10";
-                    arrSeating[0, (int)Seating.Columns] = "5";
-
-                    arrSeating[1, (int)Seating.Code] = "M";
-                    arrSeating[1, (int)Seating.Title] = "MIDDLE";
-                    arrSeating[1, (int)Seating.Rows] = "10";
-                    arrSeating[1, (int)Seating.Columns] = "15";
-
-                    arrSeating[2, (int)Seating.Code] = "R";
-                    arrSeating[2, (int)Seating.Title] = "RIGHT WING";
-                    arrSeating[2, (int)Seating.Rows] = "10";
-                    arrSeating[2, (int)Seating.Columns] = "5";
-                    break;
-                case "B":
-
-                    break;
-                case "C":
-
-                    break;
-
+                arrSeating[i, (int)Seating.Code] = venueZones[i].VenueZone_Code;
+                arrSeating[i, (int)Seating.Title] = venueZones[i].VenueZone_Name;
+                arrSeating[i, (int)Seating.Rows] = venueZones[i].VenueZone_Rows.ToString();
+                arrSeating[i, (int)Seating.Columns] = venueZones[i].VenueZone_Columns.ToString();
             }
+
+
+
+
+            //switch (Code)
+            //{
+            //    case "A":
+            //        //Define the Number of Vertical Zone 
+            //        intZoneCount = 3;
+            //        //Create the Array with the Zone Information
+            //        arrSeating = new string[intZoneCount, 6];
+            //        arrSeating[0, (int)Seating.Code] = "L";
+            //        arrSeating[0, (int)Seating.Title] = "LEFT WING";
+            //        arrSeating[0, (int)Seating.Rows] = "10";
+            //        arrSeating[0, (int)Seating.Columns] = "5";
+
+            //        arrSeating[1, (int)Seating.Code] = "M";
+            //        arrSeating[1, (int)Seating.Title] = "MIDDLE";
+            //        arrSeating[1, (int)Seating.Rows] = "10";
+            //        arrSeating[1, (int)Seating.Columns] = "15";
+
+            //        arrSeating[2, (int)Seating.Code] = "R";
+            //        arrSeating[2, (int)Seating.Title] = "RIGHT WING";
+            //        arrSeating[2, (int)Seating.Rows] = "10";
+            //        arrSeating[2, (int)Seating.Columns] = "5";
+            //        break;
+            //    case "B":
+
+            //        break;
+            //    case "C":
+
+            //        break;
+
+            //}
             return arrSeating;
         }
 
@@ -154,7 +176,7 @@ namespace APTEventAssignment.Controllers
 
                 // get the first event performance and generate seating plan for it
                 EventPerformance ep = performances.First();
-                generateSeatingPlan(ep.EventPerformance_ID);
+                generateSeatingPlan(ep.EventPerformance_ID, viewmodel.Event_VenueName);
 
                 return View(viewmodel);
             }
@@ -165,10 +187,10 @@ namespace APTEventAssignment.Controllers
 
         }
 
-        public void generateSeatingPlan(int perfID)
+        public void generateSeatingPlan(int perfID, String venueName)
         {
-            ViewBag.Zones = getSeatingZoneCountForShow("A");
-            ViewBag.Layout = getSeatingPlanForShow("A");
+            ViewBag.Zones = getSeatingZoneCountForShow(venueName);
+            ViewBag.Layout = getSeatingPlanForShow(venueName);
             ViewBag.Booked = getSeatingBookedForShow(perfID);
         }
         
