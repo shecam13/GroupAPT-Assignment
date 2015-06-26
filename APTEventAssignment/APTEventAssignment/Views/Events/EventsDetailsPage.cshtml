@@ -26,17 +26,23 @@
 
                 <p><strong>Rating:</strong> @Html.DisplayFor(model => model.Event_Rating)</p>
                 <p><strong>Category:</strong> @Html.DisplayFor(model => model.Event_CategoryName)</p>
+                <p><strong>Price:</strong> € @Html.DisplayFor(model => model.Event_Price)</p>
 
-                <ul style="list-style-type:none">
+                @*<ul style="list-style-type:none">*@
                     @foreach (var item in Model.Event_Performances)
                     {
-                        <li><strong>Date:</strong> @item.EventPerformance_Date.ToShortDateString()</li>
+                        @*<li><strong>Date:</strong> @item.EventPerformance_Date.ToShortDateString()</li>*@
+                        <strong>Date:</strong> @item.EventPerformance_Date.ToShortDateString() <br>
                     }
-                </ul>
+                    @*</ul>*@
 
-                @*<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>*@
-                <input type='button' class="btn btn-primary" value='Book Tickets' onclick='window.location = "@Url.Action("SeatingPage", "EventBookingSeats")";' />
-            </center>
+               
+
+                    <div class="row-space"></div>
+
+                    @*<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>*@
+                    <input type='button' class="btn btn-primary" value='Book Tickets' onclick='window.location = "@Url.Action("SeatingPage", "EventBookingSeats")";' />
+</center>
         </div>
     </div>
 </div>

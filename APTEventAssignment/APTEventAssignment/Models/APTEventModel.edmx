@@ -237,7 +237,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Event_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Event" Type="Self.Event" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
@@ -249,7 +251,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Event_Venue">
-          <End Role="Venue" Type="Self.Venue" Multiplicity="1" />
+          <End Role="Venue" Type="Self.Venue" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Event" Type="Self.Event" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Venue">
@@ -261,7 +265,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EventBooking_EventPerformance">
-          <End Role="EventPerformance" Type="Self.EventPerformance" Multiplicity="0..1" />
+          <End Role="EventPerformance" Type="Self.EventPerformance" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EventBooking" Type="Self.EventBooking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EventPerformance">
@@ -273,7 +279,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EventBookingSeat_EventBookingSeat">
-          <End Role="EventBooking" Type="Self.EventBooking" Multiplicity="0..1" />
+          <End Role="EventBooking" Type="Self.EventBooking" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EventBookingSeat" Type="Self.EventBookingSeat" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EventBooking">
@@ -299,7 +307,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EventVenueZone_Event">
-          <End Role="Event" Type="Self.Event" Multiplicity="0..1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="EventVenueZone" Type="Self.EventVenueZone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Event">

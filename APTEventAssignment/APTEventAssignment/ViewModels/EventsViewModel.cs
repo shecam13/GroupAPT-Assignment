@@ -88,5 +88,7 @@ namespace APTEventAssignment.ViewModels
 
         public List<EventPerformance> Event_Performances { get; set; }
 
+        public string Event_Price { get; set; }
+
     }
 }

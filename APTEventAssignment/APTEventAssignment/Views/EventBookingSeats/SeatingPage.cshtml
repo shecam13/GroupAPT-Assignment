@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Seating";
     Layout = "~/Views/Shared/_SeatingPageLayout.cshtml";
+
+    System.Collections.ArrayList seats = new System.Collections.ArrayList();
 }
 
 
@@ -111,9 +113,9 @@
                         else
                         {
                             strSeatingPlan = strSeatingPlan + "<td class='seatingContainer'><div id='" + thisSeat + "' class='seating " + seatStyle + "' enabled='true' onClick=\"addSelectedSeat('" + thisSeat + "')\">";
+                            //seats.Add(thisSeat);
                         }
-
-
+                        
                         strSeatingPlan = strSeatingPlan + thisSeat;
 
                         strSeatingPlan = strSeatingPlan + "</div></td>";
@@ -189,6 +191,17 @@
 
         @Html.Raw(strView)
 
+    //var lstSelectedSeats = document.getElementById("lstSelectedSeats");
+    //for (var i = lstSelectedSeats.length - 1; i >= 0; i--) {
+    //    if (i >= 0) {
+    //        var thisSeatCode = lstSelectedSeats.options[i].value;
+    //        seats[i] = document.getElementById(thisSeatCode);
+    //    }
+    //}
+
+        
+        @Html.HiddenFor(model => model.SeatIdentifiers, seats)
+
     <div class="row row-space"></div>
         
     <center>
@@ -197,7 +210,6 @@
             <input type='submit' class="btn btn-primary" value='Book Tickets' />   
         </div>
     </center>
-      
-
+ 
     }
 </div>

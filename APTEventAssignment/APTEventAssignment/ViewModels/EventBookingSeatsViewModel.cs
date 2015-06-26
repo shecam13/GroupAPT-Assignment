@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace APTEventAssignment.ViewModels
 
         public string PhoneNumber { get; set; }
 
-        public List<String> SeatIdentifiers { get; set; }
+        public ArrayList SeatIdentifiers { get; set; }
 
         public int SelectPerformanceId { get; set; }
 
