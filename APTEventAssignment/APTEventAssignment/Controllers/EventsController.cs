@@ -123,9 +123,28 @@ namespace APTEventAssignment.Controllers
             var venueName = venue.Venue_Name;
 
             //get prices
-            var price = "€0.00";
+            var price = "10.00";
             var eventVenueZones = db.EventVenueZone.FirstOrDefault(c => c.EventVenueZone_EventID == @event.Event_ID);
-            price = eventVenueZones.EventVenueZone_Price.ToString();
+
+            if (eventVenueZones == null)
+            {
+                price = "10.00";
+            }
+            else
+            {
+                eventVenueZones.EventVenueZone_Price.ToString();
+            }
+
+            //if (eventVenueZones.EventVenueZone_Price.ToString() == "")
+            //{
+            //    price = "€10.00";
+            //}
+            //else
+            //{
+                
+            //}
+            
+           
 
             List<EventPerformance> performances = null;
 
