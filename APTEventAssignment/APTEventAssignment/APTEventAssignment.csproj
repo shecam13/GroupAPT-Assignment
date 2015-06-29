@@ -303,23 +303,6 @@
     <Content Include="img\logos\themeforest.jpg" />
     <Content Include="img\logos\wordpress.jpg" />
     <Content Include="img\map-image.png" />
-    <Content Include="img\portfolio\dreams-preview.png" />
-    <Content Include="img\portfolio\dreams.png" />
-    <Content Include="img\portfolio\escape-preview.png" />
-    <Content Include="img\portfolio\escape.png" />
-    <Content Include="img\portfolio\event1.png" />
-    <Content Include="img\portfolio\event2.png" />
-    <Content Include="img\portfolio\event3.png" />
-    <Content Include="img\portfolio\event4.png" />
-    <Content Include="img\portfolio\event5.png" />
-    <Content Include="img\portfolio\golden-preview.png" />
-    <Content Include="img\portfolio\golden.png" />
-    <Content Include="img\portfolio\roundicons-free.png" />
-    <Content Include="img\portfolio\roundicons.png" />
-    <Content Include="img\portfolio\startup-framework-preview.png" />
-    <Content Include="img\portfolio\startup-framework.png" />
-    <Content Include="img\portfolio\treehouse-preview.png" />
-    <Content Include="img\portfolio\treehouse.png" />
     <Content Include="img\team\1.jpg" />
     <Content Include="img\team\2.jpg" />
     <Content Include="img\team\3.jpg" />
@@ -466,6 +449,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="img\portfolio\" />
     <Folder Include="Views\ImageData\" />
     <Folder Include="Views\Mail\" />
   </ItemGroup>

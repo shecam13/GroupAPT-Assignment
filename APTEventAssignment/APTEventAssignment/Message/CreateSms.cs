@@ -24,7 +24,7 @@ namespace APTEventAssignment.Message
 
             //Console.WriteLine("Enter body of the message: ");
             //strBody = Console.ReadLine();
-            strBody = "Ticket Purchase Details on " + bookingDate + ", Event " + eventName + ", Date of Event " + eventDate;
+            strBody = "Ticket Purchase Details on " + bookingDate + ", Event " + eventName + ", Date of Event " + eventDate + ", Seats Booked R000, R001, R002, Price €36";
 
             object ob = (object)objMessageDB.Create();
             Console.WriteLine("Create, result: {0} ({1})", objMessageDB.LastError, objMessageDB.GetErrorDescription(objMessageDB.LastError));

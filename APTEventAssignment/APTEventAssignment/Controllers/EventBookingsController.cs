@@ -115,7 +115,7 @@ namespace APTEventAssignment.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    var body = "<p><h1>{1}</h1><br><h3><u>Booking Details</u></h3><p><b>Booking Number:</b> {3}</p><p><b>Date of Booking:</b> {0}</p><p><b>Performance Date:</b> {2}</p><p><b>Seat numbers:</b> L22, L23, L24</p><p><b>Price:</b> 50 Euros</p><br><b>Thank you for booking with us!</b><br>Events in Malta";
+                    var body = "<p><h1>{1}</h1><br><h3><u>Booking Details</u></h3><p><b>Booking Number:</b> {3}</p><p><b>Date of Booking:</b> {0}</p><p><b>Performance Date:</b> {2}</p><p><b>Seat numbers:</b> R000, R001, R002</p><p><b>Price:</b> 36 Euros</p><br><b>Thank you for booking with us!</b><br>Events in Malta";
                     var message = new MailMessage();
                     message.To.Add(new MailAddress(userEmail));
                     message.Subject = "Event Ticket Details";
