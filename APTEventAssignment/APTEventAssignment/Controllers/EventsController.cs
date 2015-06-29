@@ -123,9 +123,9 @@ namespace APTEventAssignment.Controllers
             var venueName = venue.Venue_Name;
 
             //get prices
-            var price = "€0.00";
-            var eventVenueZones = db.EventVenueZone.FirstOrDefault(c => c.EventVenueZone_EventID == @event.Event_ID);
-            price = eventVenueZones.EventVenueZone_Price.ToString();
+            //var price = "€0.00";
+            //var eventVenueZones = db.EventVenueZone.FirstOrDefault(c => c.EventVenueZone_EventID == @event.Event_ID);
+            //price = eventVenueZones.EventVenueZone_Price.ToString();
 
             List<EventPerformance> performances = null;
 
@@ -149,7 +149,7 @@ namespace APTEventAssignment.Controllers
                 Event_Image = @event.Event_Image,
                 Event_Rating = @event.Event_Rating,
                 Event_CategoryName = categoryName,
-                Event_Price = price
+               // Event_Price = price
             };
 
             viewmodel.Event_Performances = performances;

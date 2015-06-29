@@ -36,7 +36,9 @@ namespace APTEventAssignment.Controllers
 
                              });
 
-            return View(viewmodel.ToList());     
+            var d = viewmodel.Distinct();
+
+            return View(d.ToList());     
         }
 
         public ActionResult IndexBooking(int? id)
