@@ -35,9 +35,8 @@ namespace APTEventAssignment.Controllers
                                  UserName = u.AspNetUsers.UserName
 
                              });
-
             var d = viewmodel.Distinct();
-
+   
             return View(d.ToList());     
         }
 
